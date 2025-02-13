@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Conexion
+namespace Objetos
 {
-    public class Class1
+    public class ObjUsuario
     {
+
     }
 }
