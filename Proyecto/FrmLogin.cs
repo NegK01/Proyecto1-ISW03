@@ -62,6 +62,11 @@ namespace Proyecto
             RestringuirTexto(sender, Tecla);
         }
 
+        private void TxtId_KeyPress(object sender, KeyPressEventArgs Tecla)
+        {
+            RestringuirTexto(sender, Tecla);
+        }
+
         private void TxtContraseña_KeyPress(object sender, KeyPressEventArgs Tecla)
         {
             RestringuirTexto(sender, Tecla);
@@ -71,5 +76,6 @@ namespace Proyecto
         {
             InicioSesion();
         }
+
     }
 }
