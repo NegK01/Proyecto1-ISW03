@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Npgsql;
-
-
+﻿using Npgsql;
 //Using Añadidos
 using Objetos;
+using System;
 
 namespace Conexion
 {
@@ -19,13 +12,13 @@ namespace Conexion
 
         ConexionSQL conexion = new ConexionSQL();
 
-        public ObjUsuario InicioSesion(ObjUsuario UsuarioDado) 
+        public ObjUsuario InicioSesion(ObjUsuario UsuarioDado)
         {
             ObjUsuario NuevoUsuario = new ObjUsuario();
 
             ConexionRetorno = conexion.ConexionBD();
 
-            cmd = new NpgsqlCommand("SELECT id, contrasena FROM usuario WHERE id = " + UsuarioDado.Id + 
+            cmd = new NpgsqlCommand("SELECT id, contrasena FROM usuario WHERE id = " + UsuarioDado.Id +
                                     "AND contrasena = '" + UsuarioDado.Contraseña + "'", ConexionRetorno);
 
             var dr = cmd.ExecuteReader();

@@ -36,7 +36,7 @@
             // TxtId
             // 
             this.TxtId.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtId.Location = new System.Drawing.Point(493, 320);
+            this.TxtId.Location = new System.Drawing.Point(493, 287);
             this.TxtId.Name = "TxtId";
             this.TxtId.Size = new System.Drawing.Size(373, 26);
             this.TxtId.TabIndex = 0;

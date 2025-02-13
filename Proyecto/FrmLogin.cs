@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 //Using Añadidos
@@ -23,15 +16,24 @@ namespace Proyecto
             InitializeComponent();
         }
 
-        public void RestringuirTexto(object sender, KeyPressEventArgs Tecla) 
+        public void RestringuirTexto(object sender, KeyPressEventArgs Tecla)
         {
-            if (char.IsSeparator(Tecla.KeyChar) || ((TextBox)sender).Text.Length == 20)
+            TextBox textBox = sender as TextBox;
+
+            if (textBox.Name == "TxtContraseña")
+            {
+                if (!char.IsControl(Tecla.KeyChar) && (char.IsWhiteSpace(Tecla.KeyChar) || textBox.Text.Length >= 20))
+                {
+                    Tecla.Handled = true;
+                }
+            }
+            else if (!char.IsControl(Tecla.KeyChar) && (!char.IsDigit(Tecla.KeyChar) || textBox.Text.Length >= 20))
             {
                 Tecla.Handled = true;
             }
         }
 
-        public void InicioSesion() 
+        public void InicioSesion()
         {
 
             ObjUsuario UsuarioDado = new ObjUsuario
@@ -46,10 +48,10 @@ namespace Proyecto
             {
                 Visible = false;
 
-                FrmPrincipal Principal = new FrmPrincipal(); 
+                FrmPrincipal Principal = new FrmPrincipal();
                 Principal.Visible = true;
             }
-            else 
+            else
             {
                 MessageBox.Show("No se encontro ningun usuario.....");
             }

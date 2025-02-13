@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-//Using Añadidos
-using Objetos;
+﻿//Using Añadidos
 using Conexion;
+using Objetos;
 
 namespace Negocio
 {
@@ -14,13 +8,13 @@ namespace Negocio
     {
         BDUsuarios bdUsuarios = new BDUsuarios();
 
-        public bool InicioSecion(ObjUsuario UsuarioDado) 
+        public bool InicioSecion(ObjUsuario UsuarioDado)
         {
             bool Comprobacion = false;
 
             ObjUsuario NuevoUsuario = bdUsuarios.InicioSesion(UsuarioDado);
 
-            if (NuevoUsuario.Id != 0 && NuevoUsuario.Contraseña != null) 
+            if (NuevoUsuario.Id != 0 && NuevoUsuario.Contraseña != null)
             {
                 Comprobacion = true;
             }
