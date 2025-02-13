@@ -18,7 +18,7 @@ namespace Conexion
 
             ConexionRetorno = conexion.ConexionBD();
 
-            cmd = new NpgsqlCommand("SELECT id, contrasena FROM usuario WHERE id = " + UsuarioDado.Id +
+            cmd = new NpgsqlCommand("SELECT id, contrasena FROM usuario WHERE id = " + UsuarioDado.Id + " " +
                                     "AND contrasena = '" + UsuarioDado.Contraseña + "'", ConexionRetorno);
 
             var dr = cmd.ExecuteReader();
