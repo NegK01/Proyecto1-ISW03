@@ -27,7 +27,7 @@ namespace Proyecto
                     Tecla.Handled = true;
                 }
             }
-            else if (!char.IsControl(Tecla.KeyChar) && (!char.IsDigit(Tecla.KeyChar) || textBox.Text.Length >= 20))
+            else if (!char.IsControl(Tecla.KeyChar) && (!char.IsDigit(Tecla.KeyChar) || textBox.Text.Length >= 9))
             {
                 Tecla.Handled = true;
             }
@@ -35,14 +35,13 @@ namespace Proyecto
 
         public void InicioSesion()
         {
-
-            ObjUsuario UsuarioDado = new ObjUsuario
+            ObjUsuario NuevoUsuario = new ObjUsuario
             {
-                Id = Convert.ToInt32(TxtId.Text),
+                Cedula = Convert.ToInt32(TxtCedula.Text),
                 Contraseña = TxtContraseña.Text
             };
 
-            bool Comprobacion = Usuarios.InicioSecion(UsuarioDado);
+            bool Comprobacion = Usuarios.InicioSecion(NuevoUsuario);
 
             if (Comprobacion)
             {
