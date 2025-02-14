@@ -63,6 +63,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CduUsuarios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CduUsuarios.Designer.cs">
+      <DependentUpon>CduUsuarios.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CduUsuarios.resx">
+      <DependentUpon>CduUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
