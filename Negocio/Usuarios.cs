@@ -1,7 +1,6 @@
 ﻿//Using Añadidos
 using Conexion;
 using Objetos;
-using System.Deployment.Internal;
 
 namespace Negocio
 {
@@ -9,6 +8,8 @@ namespace Negocio
     {
         BDUsuarios bdUsuarios = new BDUsuarios();
         ConexionSQL conexionSQL = new ConexionSQL();
+
+        public string Tabla = "usuario";
 
         public bool InicioSecion(ObjUsuario NuevoUsuario)
         {
@@ -36,15 +37,11 @@ namespace Negocio
 
         public void EliminarUsuario(int Id)
         {
-            string Tabla = "usuario";
-
             conexionSQL.CambiarEstadoCRUD(Id, Tabla);
         }
 
         public int BuscarSiguienteId()
         {
-            string Tabla = "usuario";
-
             int SiguienteId = conexionSQL.BuscarSiguienteId(Tabla);
 
             return SiguienteId;

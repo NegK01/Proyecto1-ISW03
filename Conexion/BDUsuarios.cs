@@ -41,8 +41,8 @@ namespace Conexion
         {
             ConexionRetorno = conexion.ConexionBD();
 
-            cmd = new NpgsqlCommand("INSERT INTO usuario (id, cedula, nombre, apellido, correo, telefono, " +
-                                    "direccion, ciudad, contrasena, rol, estado) VALUES ('" +
+            cmd = new NpgsqlCommand("INSERT INTO usuario (id, cedula, nombre, apellido, correo, " +
+                "                   telefono, direccion, contrasena, rol, estado) VALUES ('" +
                                     NuevoUsuario.Id         + " ,  " +
                                     NuevoUsuario.Cedula     + " , '" +
                                     NuevoUsuario.Nombre     + "', '" +
@@ -50,7 +50,6 @@ namespace Conexion
                                     NuevoUsuario.Correo     + "', '" +
                                     NuevoUsuario.Telefono   + "', '" +
                                     NuevoUsuario.Direccion  + "', '" +
-                                    NuevoUsuario.Ciudad     + "', '" +
                                     NuevoUsuario.Contraseña + "',  " +
                                     NuevoUsuario.Rol        + " ,  " +
                                     NuevoUsuario.Estado     + " )", ConexionRetorno);
@@ -71,7 +70,6 @@ namespace Conexion
                                     "correo     = '" + NuevoUsuario.Correo     + "', " +
                                     "telefono   = '" + NuevoUsuario.Telefono   + "', " +
                                     "direccion  = '" + NuevoUsuario.Direccion  + "', " +
-                                    "ciudad     = '" + NuevoUsuario.Ciudad     + "', " +
                                     "contrasena = '" + NuevoUsuario.Contraseña + "', " +
                                     "rol        =  " + NuevoUsuario.Rol        + " , " +
                                     "estado     =  " + NuevoUsuario.Estado     + "   " +
