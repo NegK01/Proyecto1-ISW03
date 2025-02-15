@@ -1,8 +1,10 @@
-﻿using Negocio;
+﻿using System;
+using System.Windows.Forms;
+
 //Using Añadidos
 using Objetos;
-using System;
-using System.Windows.Forms;
+using Negocio;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Proyecto
 {
@@ -15,9 +17,9 @@ namespace Proyecto
             InitializeComponent();
         }
 
-        public void RestringuirTexto(object sender, KeyPressEventArgs Tecla)
+        public void RestringirTexto(object sender, KeyPressEventArgs Tecla)
         {
-            TextBox textBox = sender as TextBox;
+            System.Windows.Forms.TextBox textBox = sender as System.Windows.Forms.TextBox;
 
             if (textBox.Name == "TxtContraseña")
             {
@@ -34,13 +36,25 @@ namespace Proyecto
 
         public void InicioSesion()
         {
-            ObjUsuario NuevoUsuario = new ObjUsuario
-            {
-                Cedula = Convert.ToInt32(TxtCedula.Text),
-                Contraseña = TxtContraseña.Text
-            };
+            bool Comprobacion = false;
 
-            bool Comprobacion = Usuarios.InicioSecion(NuevoUsuario);
+            if (!string.IsNullOrEmpty(TxtCedula.Text) || !string.IsNullOrEmpty(TxtContraseña.Text))
+            {
+                ObjUsuario NuevoUsuario = new ObjUsuario
+                {
+                    Cedula = Convert.ToInt32(TxtCedula.Text),
+                    Contraseña = TxtContraseña.Text
+                };
+
+                Comprobacion = Usuarios.InicioSecion(NuevoUsuario);
+            } 
+            else
+            {
+                MessageBox.Show("Por favor, rellene todos los espacios.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return;
+            }
 
             if (Comprobacion)
             {
@@ -51,23 +65,26 @@ namespace Proyecto
             }
             else
             {
-                MessageBox.Show("No se encontro ningun usuario.....");
+                MessageBox.Show("No se encontro ningun usuario.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return;
             }
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs Tecla)
         {
-            RestringuirTexto(sender, Tecla);
+            RestringirTexto(sender, Tecla);
         }
 
         private void TxtId_KeyPress(object sender, KeyPressEventArgs Tecla)
         {
-            RestringuirTexto(sender, Tecla);
+            RestringirTexto(sender, Tecla);
         }
 
         private void TxtContraseña_KeyPress(object sender, KeyPressEventArgs Tecla)
         {
-            RestringuirTexto(sender, Tecla);
+            RestringirTexto(sender, Tecla);
         }
 
         private void BtnIngresar_Click(object sender, EventArgs e)

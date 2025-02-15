@@ -28,130 +28,155 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.CbxRol = new System.Windows.Forms.ComboBox();
-            this.TxtContraseña = new System.Windows.Forms.TextBox();
-            this.TxtCiudad = new System.Windows.Forms.TextBox();
-            this.TxtDireccion = new System.Windows.Forms.TextBox();
-            this.TxtApellido = new System.Windows.Forms.TextBox();
-            this.TxtCorreoUsu = new System.Windows.Forms.TextBox();
-            this.TxtTelefonoUsu = new System.Windows.Forms.TextBox();
-            this.TxtNombreUsu = new System.Windows.Forms.TextBox();
             this.DgvTablaUsuarios = new System.Windows.Forms.DataGridView();
+            this.BtnInsertarUsu = new System.Windows.Forms.Button();
+            this.BtnModificarUsu = new System.Windows.Forms.Button();
+            this.BtnEliminarUsu = new System.Windows.Forms.Button();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Contraseña = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTablaUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
-            // CbxRol
-            // 
-            this.CbxRol.FormattingEnabled = true;
-            this.CbxRol.Location = new System.Drawing.Point(451, 260);
-            this.CbxRol.Name = "CbxRol";
-            this.CbxRol.Size = new System.Drawing.Size(242, 21);
-            this.CbxRol.TabIndex = 16;
-            // 
-            // TxtContraseña
-            // 
-            this.TxtContraseña.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtContraseña.Location = new System.Drawing.Point(451, 229);
-            this.TxtContraseña.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtContraseña.Name = "TxtContraseña";
-            this.TxtContraseña.Size = new System.Drawing.Size(242, 26);
-            this.TxtContraseña.TabIndex = 15;
-            // 
-            // TxtCiudad
-            // 
-            this.TxtCiudad.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCiudad.Location = new System.Drawing.Point(451, 199);
-            this.TxtCiudad.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtCiudad.Name = "TxtCiudad";
-            this.TxtCiudad.Size = new System.Drawing.Size(242, 26);
-            this.TxtCiudad.TabIndex = 14;
-            // 
-            // TxtDireccion
-            // 
-            this.TxtDireccion.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDireccion.Location = new System.Drawing.Point(451, 169);
-            this.TxtDireccion.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtDireccion.Name = "TxtDireccion";
-            this.TxtDireccion.Size = new System.Drawing.Size(242, 26);
-            this.TxtDireccion.TabIndex = 13;
-            // 
-            // TxtApellido
-            // 
-            this.TxtApellido.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtApellido.Location = new System.Drawing.Point(451, 139);
-            this.TxtApellido.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtApellido.Name = "TxtApellido";
-            this.TxtApellido.Size = new System.Drawing.Size(242, 26);
-            this.TxtApellido.TabIndex = 12;
-            // 
-            // TxtCorreoUsu
-            // 
-            this.TxtCorreoUsu.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCorreoUsu.Location = new System.Drawing.Point(451, 109);
-            this.TxtCorreoUsu.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtCorreoUsu.Name = "TxtCorreoUsu";
-            this.TxtCorreoUsu.Size = new System.Drawing.Size(242, 26);
-            this.TxtCorreoUsu.TabIndex = 11;
-            // 
-            // TxtTelefonoUsu
-            // 
-            this.TxtTelefonoUsu.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTelefonoUsu.Location = new System.Drawing.Point(451, 79);
-            this.TxtTelefonoUsu.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtTelefonoUsu.Name = "TxtTelefonoUsu";
-            this.TxtTelefonoUsu.Size = new System.Drawing.Size(242, 26);
-            this.TxtTelefonoUsu.TabIndex = 10;
-            // 
-            // TxtNombreUsu
-            // 
-            this.TxtNombreUsu.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNombreUsu.Location = new System.Drawing.Point(451, 49);
-            this.TxtNombreUsu.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtNombreUsu.Name = "TxtNombreUsu";
-            this.TxtNombreUsu.Size = new System.Drawing.Size(242, 26);
-            this.TxtNombreUsu.TabIndex = 9;
-            // 
             // DgvTablaUsuarios
             // 
+            this.DgvTablaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvTablaUsuarios.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.DgvTablaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvTablaUsuarios.Location = new System.Drawing.Point(54, 30);
+            this.DgvTablaUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
+            this.Cedula,
+            this.Nombre,
+            this.Apellido,
+            this.Correo,
+            this.Telefono,
+            this.Direccion,
+            this.Contraseña,
+            this.Rol,
+            this.Estado});
+            this.DgvTablaUsuarios.Location = new System.Drawing.Point(23, 35);
             this.DgvTablaUsuarios.Margin = new System.Windows.Forms.Padding(2);
             this.DgvTablaUsuarios.Name = "DgvTablaUsuarios";
             this.DgvTablaUsuarios.RowTemplate.Height = 28;
-            this.DgvTablaUsuarios.Size = new System.Drawing.Size(326, 321);
+            this.DgvTablaUsuarios.Size = new System.Drawing.Size(708, 305);
             this.DgvTablaUsuarios.TabIndex = 17;
+            // 
+            // BtnInsertarUsu
+            // 
+            this.BtnInsertarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnInsertarUsu.Location = new System.Drawing.Point(411, 359);
+            this.BtnInsertarUsu.Name = "BtnInsertarUsu";
+            this.BtnInsertarUsu.Size = new System.Drawing.Size(90, 41);
+            this.BtnInsertarUsu.TabIndex = 18;
+            this.BtnInsertarUsu.Text = "Insertar";
+            this.BtnInsertarUsu.UseVisualStyleBackColor = true;
+            // 
+            // BtnModificarUsu
+            // 
+            this.BtnModificarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnModificarUsu.Location = new System.Drawing.Point(511, 359);
+            this.BtnModificarUsu.Name = "BtnModificarUsu";
+            this.BtnModificarUsu.Size = new System.Drawing.Size(90, 41);
+            this.BtnModificarUsu.TabIndex = 19;
+            this.BtnModificarUsu.Text = "Modificar";
+            this.BtnModificarUsu.UseVisualStyleBackColor = true;
+            // 
+            // BtnEliminarUsu
+            // 
+            this.BtnEliminarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEliminarUsu.Location = new System.Drawing.Point(607, 359);
+            this.BtnEliminarUsu.Name = "BtnEliminarUsu";
+            this.BtnEliminarUsu.Size = new System.Drawing.Size(124, 41);
+            this.BtnEliminarUsu.TabIndex = 20;
+            this.BtnEliminarUsu.Text = "Cambiar estado";
+            this.BtnEliminarUsu.UseVisualStyleBackColor = true;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            // 
+            // Cedula
+            // 
+            this.Cedula.HeaderText = "Cedula";
+            this.Cedula.Name = "Cedula";
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            // 
+            // Apellido
+            // 
+            this.Apellido.HeaderText = "Apellido";
+            this.Apellido.Name = "Apellido";
+            // 
+            // Correo
+            // 
+            this.Correo.HeaderText = "Correo";
+            this.Correo.Name = "Correo";
+            // 
+            // Telefono
+            // 
+            this.Telefono.HeaderText = "Telefono";
+            this.Telefono.Name = "Telefono";
+            // 
+            // Direccion
+            // 
+            this.Direccion.HeaderText = "Direccion";
+            this.Direccion.Name = "Direccion";
+            // 
+            // Contraseña
+            // 
+            this.Contraseña.HeaderText = "Contraseña";
+            this.Contraseña.Name = "Contraseña";
+            // 
+            // Rol
+            // 
+            this.Rol.HeaderText = "Tipo de rol";
+            this.Rol.Name = "Rol";
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
             // 
             // CduUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.BtnEliminarUsu);
+            this.Controls.Add(this.BtnModificarUsu);
+            this.Controls.Add(this.BtnInsertarUsu);
             this.Controls.Add(this.DgvTablaUsuarios);
-            this.Controls.Add(this.CbxRol);
-            this.Controls.Add(this.TxtContraseña);
-            this.Controls.Add(this.TxtCiudad);
-            this.Controls.Add(this.TxtDireccion);
-            this.Controls.Add(this.TxtApellido);
-            this.Controls.Add(this.TxtCorreoUsu);
-            this.Controls.Add(this.TxtTelefonoUsu);
-            this.Controls.Add(this.TxtNombreUsu);
             this.Name = "CduUsuarios";
-            this.Size = new System.Drawing.Size(730, 440);
+            this.Size = new System.Drawing.Size(745, 507);
             ((System.ComponentModel.ISupportInitialize)(this.DgvTablaUsuarios)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox CbxRol;
-        private System.Windows.Forms.TextBox TxtContraseña;
-        private System.Windows.Forms.TextBox TxtCiudad;
-        private System.Windows.Forms.TextBox TxtDireccion;
-        private System.Windows.Forms.TextBox TxtApellido;
-        private System.Windows.Forms.TextBox TxtCorreoUsu;
-        private System.Windows.Forms.TextBox TxtTelefonoUsu;
-        private System.Windows.Forms.TextBox TxtNombreUsu;
         private System.Windows.Forms.DataGridView DgvTablaUsuarios;
+        private System.Windows.Forms.Button BtnInsertarUsu;
+        private System.Windows.Forms.Button BtnModificarUsu;
+        private System.Windows.Forms.Button BtnEliminarUsu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cedula;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Correo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Contraseña;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Rol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
     }
 }
