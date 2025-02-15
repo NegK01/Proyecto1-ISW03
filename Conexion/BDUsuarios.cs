@@ -1,6 +1,7 @@
 ﻿//Using Añadidos
 using Npgsql;
 using Objetos;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -82,22 +83,40 @@ namespace Conexion
             ConexionRetorno.Close();
         }
 
-        public void CargarUsuarios(DataGridView Tabla)
+        public List<ObjUsuario> CargarUsuarios()
         {
             ConexionRetorno = conexion.ConexionBD();
 
-            DataTable dataTable = new DataTable();
+            List<ObjUsuario> ListaUsuarios = new List<ObjUsuario>();
 
-            NpgsqlDataAdapter adapter = new NpgsqlDataAdapter("SELECT u.id as \"ID\", u.cedula as \"Cedula\", " +
-                                            "Concat(u.nombre, ' ',  u.apellido) as \"Nombre completo\", " +
-                                            "r.tipo_rol as \"Tipo de usuario\", e.nombre_estado as \"Estado\" " +
-                                            "FROM usuario u join rol r on u.id_estado = r.id join estado e on " +
-                                            "u.id_estado = e.id", ConexionRetorno);
+            cmd = new NpgsqlCommand("select u.id, u.cedula, u.nombre, u.apellido," +
+                                    "u.correo, u.telefono, u.direccion, u contrasena," +
+                                    "u.id_rol, u.id_estado from usuario u", 
+                                    ConexionRetorno);
 
-            adapter.Fill(dataTable);
-            Tabla.DataSource = dataTable;
+            var dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                ObjUsuario Usuario = new ObjUsuario
+                {
+                    Id = dr.GetInt32(0),
+                    Cedula = dr.GetInt32(1),
+                    Nombre = dr.GetString(2),
+                    Apellido = dr.GetString(3),
+                    Correo = dr.GetString(4),
+                    Telefono = dr.GetString(5),
+                    Direccion = dr.GetString(6),
+                    Contraseña = "",
+                    Rol = dr.GetInt32(8),
+                    Estado = dr.GetInt32(9)
+                };
+                ListaUsuarios.Add(Usuario);
+            }
 
             ConexionRetorno.Close();
+
+            return ListaUsuarios;
         }
     }
 }

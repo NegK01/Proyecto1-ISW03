@@ -1,6 +1,7 @@
 ﻿//Using Añadidos
 using Conexion;
 using Objetos;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Negocio
@@ -48,9 +49,9 @@ namespace Negocio
             return SiguienteId;
         }
 
-        public void CargarUsuarios(DataGridView Tabla)
+        public List<ObjUsuario> CargarUsuarios()
         {
-            bdUsuarios.CargarUsuarios(Tabla);
+            return new BDUsuarios().CargarUsuarios();
         }
     }
 }
