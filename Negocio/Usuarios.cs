@@ -2,7 +2,6 @@
 using Conexion;
 using Objetos;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace Negocio
 {
@@ -27,19 +26,19 @@ namespace Negocio
             return Comprobacion;
         }
 
-        public void InsertarUsuario(ObjUsuario NuevoUsuario)
+        public bool InsertarUsuario(ObjUsuario NuevoUsuario)
         {
-            bdUsuarios.InsertarUsuario(NuevoUsuario);
+            return bdUsuarios.InsertarUsuario(NuevoUsuario);
         }
 
-        public void ModificarUsuario(ObjUsuario NuevoUsuario)
+        public bool ModificarUsuario(ObjUsuario NuevoUsuario)
         {
-            bdUsuarios.ModificarUsuario(NuevoUsuario);
+            return bdUsuarios.ModificarUsuario(NuevoUsuario);
         }
 
-        public void EliminarUsuario(int Id)
+        public bool EliminarUsuario(int Id)
         {
-            conexionSQL.CambiarEstadoCRUD(Id, Tabla);
+            return conexionSQL.CambiarEstadoCRUD(Id, Tabla);
         }
 
         public int BuscarSiguienteId()

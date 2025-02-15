@@ -102,7 +102,7 @@ namespace Proyecto
                 MessageBox.Show("No hay ninguna fila seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            
+
             int id = DgvTablaDistribuidores.CurrentRow.Cells[0].Value != null ? Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[0].Value) : 0;
             string nombre = DgvTablaDistribuidores.CurrentRow.Cells[1].Value != null ? DgvTablaDistribuidores.CurrentRow.Cells[1].Value.ToString() : string.Empty;
             string contacto = DgvTablaDistribuidores.CurrentRow.Cells[2].Value != null ? DgvTablaDistribuidores.CurrentRow.Cells[2].Value.ToString() : string.Empty;

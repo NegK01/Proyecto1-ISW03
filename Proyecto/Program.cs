@@ -14,7 +14,6 @@ namespace Proyecto
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmPrincipal());
-            //Application.Run(new Form { Controls = { new CduUsuarios() } });
         }
     }
 }

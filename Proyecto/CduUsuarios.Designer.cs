@@ -28,7 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DgvTablaUsuarios = new System.Windows.Forms.DataGridView();
+            this.BtnInsertarUsu = new System.Windows.Forms.Button();
+            this.BtnModificarUsu = new System.Windows.Forms.Button();
+            this.BtnEliminarUsu = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -37,11 +41,8 @@
             this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Contraseña = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rol = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BtnInsertarUsu = new System.Windows.Forms.Button();
-            this.BtnModificarUsu = new System.Windows.Forms.Button();
-            this.BtnEliminarUsu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTablaUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,12 +62,44 @@
             this.Contraseña,
             this.Rol,
             this.Estado});
-            this.DgvTablaUsuarios.Location = new System.Drawing.Point(23, 35);
-            this.DgvTablaUsuarios.Margin = new System.Windows.Forms.Padding(2);
+            this.DgvTablaUsuarios.Location = new System.Drawing.Point(34, 54);
             this.DgvTablaUsuarios.Name = "DgvTablaUsuarios";
             this.DgvTablaUsuarios.RowTemplate.Height = 28;
-            this.DgvTablaUsuarios.Size = new System.Drawing.Size(708, 305);
+            this.DgvTablaUsuarios.Size = new System.Drawing.Size(1013, 469);
             this.DgvTablaUsuarios.TabIndex = 17;
+            // 
+            // BtnInsertarUsu
+            // 
+            this.BtnInsertarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnInsertarUsu.Location = new System.Drawing.Point(567, 558);
+            this.BtnInsertarUsu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BtnInsertarUsu.Name = "BtnInsertarUsu";
+            this.BtnInsertarUsu.Size = new System.Drawing.Size(135, 63);
+            this.BtnInsertarUsu.TabIndex = 18;
+            this.BtnInsertarUsu.Text = "Insertar";
+            this.BtnInsertarUsu.UseVisualStyleBackColor = true;
+            // 
+            // BtnModificarUsu
+            // 
+            this.BtnModificarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnModificarUsu.Location = new System.Drawing.Point(717, 558);
+            this.BtnModificarUsu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BtnModificarUsu.Name = "BtnModificarUsu";
+            this.BtnModificarUsu.Size = new System.Drawing.Size(135, 63);
+            this.BtnModificarUsu.TabIndex = 19;
+            this.BtnModificarUsu.Text = "Modificar";
+            this.BtnModificarUsu.UseVisualStyleBackColor = true;
+            // 
+            // BtnEliminarUsu
+            // 
+            this.BtnEliminarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEliminarUsu.Location = new System.Drawing.Point(861, 558);
+            this.BtnEliminarUsu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BtnEliminarUsu.Name = "BtnEliminarUsu";
+            this.BtnEliminarUsu.Size = new System.Drawing.Size(186, 63);
+            this.BtnEliminarUsu.TabIndex = 20;
+            this.BtnEliminarUsu.Text = "Cambiar estado";
+            this.BtnEliminarUsu.UseVisualStyleBackColor = true;
             // 
             // ID
             // 
@@ -110,54 +143,30 @@
             // 
             // Rol
             // 
+            dataGridViewCellStyle1.Format = "....";
+            this.Rol.DefaultCellStyle = dataGridViewCellStyle1;
             this.Rol.HeaderText = "Tipo de rol";
             this.Rol.Name = "Rol";
+            this.Rol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Rol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // Estado
             // 
             this.Estado.HeaderText = "Estado";
             this.Estado.Name = "Estado";
-            // 
-            // BtnInsertarUsu
-            // 
-            this.BtnInsertarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnInsertarUsu.Location = new System.Drawing.Point(411, 359);
-            this.BtnInsertarUsu.Name = "BtnInsertarUsu";
-            this.BtnInsertarUsu.Size = new System.Drawing.Size(90, 41);
-            this.BtnInsertarUsu.TabIndex = 18;
-            this.BtnInsertarUsu.Text = "Insertar";
-            this.BtnInsertarUsu.UseVisualStyleBackColor = true;
-            // 
-            // BtnModificarUsu
-            // 
-            this.BtnModificarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnModificarUsu.Location = new System.Drawing.Point(511, 359);
-            this.BtnModificarUsu.Name = "BtnModificarUsu";
-            this.BtnModificarUsu.Size = new System.Drawing.Size(90, 41);
-            this.BtnModificarUsu.TabIndex = 19;
-            this.BtnModificarUsu.Text = "Modificar";
-            this.BtnModificarUsu.UseVisualStyleBackColor = true;
-            // 
-            // BtnEliminarUsu
-            // 
-            this.BtnEliminarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminarUsu.Location = new System.Drawing.Point(607, 359);
-            this.BtnEliminarUsu.Name = "BtnEliminarUsu";
-            this.BtnEliminarUsu.Size = new System.Drawing.Size(124, 41);
-            this.BtnEliminarUsu.TabIndex = 20;
-            this.BtnEliminarUsu.Text = "Cambiar estado";
-            this.BtnEliminarUsu.UseVisualStyleBackColor = true;
+            this.Estado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // CduUsuarios
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.BtnEliminarUsu);
             this.Controls.Add(this.BtnModificarUsu);
             this.Controls.Add(this.BtnInsertarUsu);
             this.Controls.Add(this.DgvTablaUsuarios);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CduUsuarios";
-            this.Size = new System.Drawing.Size(754, 507);
+            this.Size = new System.Drawing.Size(1131, 780);
             ((System.ComponentModel.ISupportInitialize)(this.DgvTablaUsuarios)).EndInit();
             this.ResumeLayout(false);
 
@@ -176,7 +185,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Contraseña;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Rol;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Rol;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
     }
 }

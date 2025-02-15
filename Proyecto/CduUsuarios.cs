@@ -1,34 +1,39 @@
-﻿using System;
-using System.Windows.Forms;
-
+﻿using Negocio;
 //Using Añadidos
 using Objetos;
-using Negocio;
+using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Proyecto
 {
     public partial class CduUsuarios : UserControl
     {
+        Roles Roles = new Roles();
         Usuarios Usuarios = new Usuarios();
 
         public CduUsuarios()
         {
             InitializeComponent();
             CargarUsuarios();
+            CargarRoles();
         }
 
-        public void RestringuirTexto(object sender, KeyPressEventArgs Tecla) 
+        private void CargarRoles()
         {
+            DataGridViewComboBoxColumn CbxRoles = DgvTablaUsuarios.Columns["Rol"] as DataGridViewComboBoxColumn;
 
+            List<ObjRol> ListaRoles = Roles.CargarRoles();
+
+            foreach (ObjRol rol in ListaRoles)
+            {
+                CbxRoles.Items.Add(rol.Nombre);
+            }
         }
 
         public void CargarUsuarios()
         {
-            List<ObjUsuario> ListaUsuarios = new List<ObjUsuario>();
-
-            ListaUsuarios = Usuarios.CargarUsuarios();
-
+            List<ObjUsuario> ListaUsuarios = Usuarios.CargarUsuarios();
             DgvTablaUsuarios.Rows.Clear();
 
             int Contador = 0;
@@ -56,79 +61,38 @@ namespace Proyecto
             }
         }
 
-        public void CargarRoles() 
+        public void InsertarUsuario(DataGridViewCellEventArgs Celda)
         {
+            DataGridViewRow row = DgvTablaUsuarios.Rows[Celda.RowIndex];
 
-        }
+            ObjUsuario NuevoUsuario = new ObjUsuario
+            {
+                Id         = Usuarios.BuscarSiguienteId(),
+                Cedula     = (int)row.Cells["Cedula"].Value,
+                Nombre     = (string)row.Cells["Nombre"].Value,
+                Apellido   = (string)row.Cells["Apellido"].Value,
+                Correo     = (string)row.Cells["Correo"].Value,
+                Telefono   = (string)row.Cells["Telefono"].Value,
+                Direccion  = (string)row.Cells["Direccion"].Value,
+                Contraseña = (string)row.Cells["Contraseña"].Value,
+                Rol        = CbxRol.SelectedIndex + 1,
+                Estado     = CbxEstado.SelectedIndex + 1
+            };
 
-        public void InsertarUsuario()
-        {
-            int SiguienteId = Usuarios.BuscarSiguienteId();
+            if (Usuarios.InsertarUsuario(NuevoUsuario))
+            {
+                MessageBox.Show("Usuario agregado correctamente.", "Usuario agregado",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            //ObjUsuario Usuario = new ObjUsuario
-            //{
-            //    Id = SiguienteId,
-            //    Cedula = Convert.ToInt32(TxtCedulaUsu.Text),
-            //    Nombre = TxtNombreUsu.Text,
-            //    Apellido = TxtApellidoUsu.Text,
-            //    Correo = TxtCorreoUsu.Text,
-            //    Telefono = TxtTelefonoUsu.Text,
-            //    Direccion = TxtDireccionUsu.Text,
-            //    Contraseña = TxtContraseñaUsu.Text, //Cambiar por una variable encriptada
-            //    Rol = 0,                     //Cambiar por valuemember del combobox
-            //    Estado = 1
-            //};
+                CargarUsuarios();
+            }
+            else
+            {
+                MessageBox.Show("Error al agregar el usuario.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            //Usuarios.InsertarUsuario(Usuario);
-
-            MessageBox.Show("Se agrego la el usuario correctamente...");
-
-            CargarUsuarios();
-        }
-
-        public void ModificarUsuario()
-        {
-            
-        }
-
-        public void EliminarUsuario()
-        {
-            
-        }
-
-        private void TxtNombreUsu_KeyPress(object sender, KeyPressEventArgs Tecla)
-        {
-            RestringuirTexto(sender, Tecla);
-        }
-
-        private void TxtCedulaUsu_KeyPress(object sender, KeyPressEventArgs Tecla)
-        {
-            RestringuirTexto(sender, Tecla);
-        }
-
-        private void TxtApellidoUsu_KeyPress(object sender, KeyPressEventArgs Tecla)
-        {
-            RestringuirTexto(sender, Tecla);
-        }
-
-        private void TxtTelefonoUsu_KeyPress(object sender, KeyPressEventArgs Tecla)
-        {
-            RestringuirTexto(sender, Tecla);
-        }
-
-        private void TxtContraseñaUsu_KeyPress(object sender, KeyPressEventArgs Tecla)
-        {
-            RestringuirTexto(sender, Tecla);
-        }
-
-        private void TxtCorreoUsu_KeyPress(object sender, KeyPressEventArgs Tecla)
-        {
-            RestringuirTexto(sender, Tecla);
-        }
-
-        private void TxtDireccionUsu_KeyPress(object sender, KeyPressEventArgs Tecla)
-        {
-            RestringuirTexto(sender, Tecla);
+                CargarUsuarios();
+            }
         }
     }
 }
