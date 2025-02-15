@@ -1,7 +1,6 @@
 ﻿//Using Añadidos
 using Conexion;
 using Objetos;
-using System.Deployment.Internal;
 
 namespace Negocio
 {

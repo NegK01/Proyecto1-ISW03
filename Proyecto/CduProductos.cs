@@ -2,9 +2,9 @@
 
 namespace Proyecto
 {
-    public partial class CduUsuarios : UserControl
+    public partial class CduProductos : UserControl
     {
-        public CduUsuarios()
+        public CduProductos()
         {
             InitializeComponent();
         }

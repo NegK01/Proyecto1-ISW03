@@ -1,9 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-
+﻿using Negocio;
 //Using Añadidos
 using Objetos;
-using Negocio;
+using System;
+using System.Windows.Forms;
 
 namespace Proyecto
 {

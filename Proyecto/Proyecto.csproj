@@ -49,6 +49,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimarPanel.cs" />
+    <Compile Include="CduDistribuidores.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CduDistribuidores.Designer.cs">
+      <DependentUpon>CduDistribuidores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CduOrdenes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CduOrdenes.Designer.cs">
+      <DependentUpon>CduOrdenes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CduProductos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CduProductos.Designer.cs">
+      <DependentUpon>CduProductos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +88,15 @@
     <Compile Include="CduUsuarios.Designer.cs">
       <DependentUpon>CduUsuarios.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CduDistribuidores.resx">
+      <DependentUpon>CduDistribuidores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CduOrdenes.resx">
+      <DependentUpon>CduOrdenes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CduProductos.resx">
+      <DependentUpon>CduProductos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CduUsuarios.resx">
       <DependentUpon>CduUsuarios.cs</DependentUpon>
     </EmbeddedResource>

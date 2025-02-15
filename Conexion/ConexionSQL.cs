@@ -1,6 +1,5 @@
 ﻿//Using Añadidos
 using Npgsql;
-using Objetos;
 
 namespace Conexion
 {
@@ -16,7 +15,7 @@ namespace Conexion
             string Servidor = "localhost";
             int Puerto = 5432;
             string Usuario = "postgres";
-            string Clave = "Mortadela010203";
+            string Clave = "password";
             string BaseDatos = "tienda";
 
             string CadenaConexion = "Server=" + Servidor + ";" + "Port=" + Puerto + ";" +
@@ -48,16 +47,18 @@ namespace Conexion
             return UltimoId;
         }
 
-        public void CambiarEstadoCRUD(int Id, string Tabla)
+        public bool CambiarEstadoCRUD(int Id, string Tabla)
         {
             ConexionRetorno = ConexionBD();
 
             cmd = new NpgsqlCommand("UPDATE " + Tabla + " SET id_estado = CASE WHEN id_estado = 1 " +
                                     "THEN 2 ELSE 1 END WHERE id = " + Id, ConexionRetorno);
 
-            cmd.ExecuteNonQuery();
+            int affectedRows = cmd.ExecuteNonQuery();
 
             ConexionRetorno.Close();
+
+            return affectedRows > 0;
         }
     }
 }
