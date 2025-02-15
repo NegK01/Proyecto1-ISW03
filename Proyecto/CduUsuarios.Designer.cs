@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.DgvTablaUsuarios = new System.Windows.Forms.DataGridView();
-            this.BtnInsertarUsu = new System.Windows.Forms.Button();
-            this.BtnModificarUsu = new System.Windows.Forms.Button();
-            this.BtnEliminarUsu = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +39,9 @@
             this.Contraseña = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtnInsertarUsu = new System.Windows.Forms.Button();
+            this.BtnModificarUsu = new System.Windows.Forms.Button();
+            this.BtnEliminarUsu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTablaUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,36 +67,6 @@
             this.DgvTablaUsuarios.RowTemplate.Height = 28;
             this.DgvTablaUsuarios.Size = new System.Drawing.Size(708, 305);
             this.DgvTablaUsuarios.TabIndex = 17;
-            // 
-            // BtnInsertarUsu
-            // 
-            this.BtnInsertarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnInsertarUsu.Location = new System.Drawing.Point(411, 359);
-            this.BtnInsertarUsu.Name = "BtnInsertarUsu";
-            this.BtnInsertarUsu.Size = new System.Drawing.Size(90, 41);
-            this.BtnInsertarUsu.TabIndex = 18;
-            this.BtnInsertarUsu.Text = "Insertar";
-            this.BtnInsertarUsu.UseVisualStyleBackColor = true;
-            // 
-            // BtnModificarUsu
-            // 
-            this.BtnModificarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnModificarUsu.Location = new System.Drawing.Point(511, 359);
-            this.BtnModificarUsu.Name = "BtnModificarUsu";
-            this.BtnModificarUsu.Size = new System.Drawing.Size(90, 41);
-            this.BtnModificarUsu.TabIndex = 19;
-            this.BtnModificarUsu.Text = "Modificar";
-            this.BtnModificarUsu.UseVisualStyleBackColor = true;
-            // 
-            // BtnEliminarUsu
-            // 
-            this.BtnEliminarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminarUsu.Location = new System.Drawing.Point(607, 359);
-            this.BtnEliminarUsu.Name = "BtnEliminarUsu";
-            this.BtnEliminarUsu.Size = new System.Drawing.Size(124, 41);
-            this.BtnEliminarUsu.TabIndex = 20;
-            this.BtnEliminarUsu.Text = "Cambiar estado";
-            this.BtnEliminarUsu.UseVisualStyleBackColor = true;
             // 
             // ID
             // 
@@ -148,6 +118,36 @@
             this.Estado.HeaderText = "Estado";
             this.Estado.Name = "Estado";
             // 
+            // BtnInsertarUsu
+            // 
+            this.BtnInsertarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnInsertarUsu.Location = new System.Drawing.Point(411, 359);
+            this.BtnInsertarUsu.Name = "BtnInsertarUsu";
+            this.BtnInsertarUsu.Size = new System.Drawing.Size(90, 41);
+            this.BtnInsertarUsu.TabIndex = 18;
+            this.BtnInsertarUsu.Text = "Insertar";
+            this.BtnInsertarUsu.UseVisualStyleBackColor = true;
+            // 
+            // BtnModificarUsu
+            // 
+            this.BtnModificarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnModificarUsu.Location = new System.Drawing.Point(511, 359);
+            this.BtnModificarUsu.Name = "BtnModificarUsu";
+            this.BtnModificarUsu.Size = new System.Drawing.Size(90, 41);
+            this.BtnModificarUsu.TabIndex = 19;
+            this.BtnModificarUsu.Text = "Modificar";
+            this.BtnModificarUsu.UseVisualStyleBackColor = true;
+            // 
+            // BtnEliminarUsu
+            // 
+            this.BtnEliminarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEliminarUsu.Location = new System.Drawing.Point(607, 359);
+            this.BtnEliminarUsu.Name = "BtnEliminarUsu";
+            this.BtnEliminarUsu.Size = new System.Drawing.Size(124, 41);
+            this.BtnEliminarUsu.TabIndex = 20;
+            this.BtnEliminarUsu.Text = "Cambiar estado";
+            this.BtnEliminarUsu.UseVisualStyleBackColor = true;
+            // 
             // CduUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -157,7 +157,7 @@
             this.Controls.Add(this.BtnInsertarUsu);
             this.Controls.Add(this.DgvTablaUsuarios);
             this.Name = "CduUsuarios";
-            this.Size = new System.Drawing.Size(745, 507);
+            this.Size = new System.Drawing.Size(754, 507);
             ((System.ComponentModel.ISupportInitialize)(this.DgvTablaUsuarios)).EndInit();
             this.ResumeLayout(false);
 
