@@ -35,8 +35,8 @@ namespace Conexion
             using (conexionRetorno = conexion.ConexionBD())
             {
                 cmd = new NpgsqlCommand("UPDATE distribuidor SET " +
-                                        "nombre = '" + obj.Nombre + "', " +
-                                        "contacto = '" + obj.Contacto + "' " +
+                                        "nombre_distribuidor = '" + obj.Nombre + "', " +
+                                        "info_contacto = '" + obj.Contacto + "' " +
                                         "WHERE id = " + obj.Id, conexionRetorno);
                 int affectedRows = cmd.ExecuteNonQuery();
                 return affectedRows > 0;
@@ -47,7 +47,7 @@ namespace Conexion
         {
             List<ObjDistribuidor> distribuidores = new List<ObjDistribuidor>();
             conexionRetorno = conexion.ConexionBD();
-            cmd = new NpgsqlCommand("SELECT id, nombre_distribuidor, info_contacto FROM distribuidor", conexionRetorno);
+            cmd = new NpgsqlCommand("SELECT id, nombre_distribuidor, info_contacto FROM distribuidor where id_estado = 1", conexionRetorno);
             var dr = cmd.ExecuteReader();
 
             while (dr.Read())
