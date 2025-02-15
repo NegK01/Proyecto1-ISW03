@@ -25,12 +25,12 @@ namespace Proyecto
         {
             if (ValidarCampos())
             {
-                RecogerDatos();
+                RecogerDatosDgv();
                 if (distribuidor.InsertarDistribuidor(objDistribuidor))
                 {
                     MessageBox.Show("Distribuidor agregado correctamente.", "Distribuidor agregado",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarCampos();
+                    CargarDistribuidores();
                 }
                 else
                 {
@@ -44,12 +44,12 @@ namespace Proyecto
         {
             if (ValidarCampos())
             {
-                RecogerDatos();
+                RecogerDatosDgv();
                 if (distribuidor.ActualizarDistribuidor(objDistribuidor))
                 {
                     MessageBox.Show("Distribuidor actualizado correctamente.", "Distribuidor actualizado",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarCampos();
+                    CargarDistribuidores();
                 }
                 else
                 {
@@ -61,20 +61,21 @@ namespace Proyecto
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-
-            RecogerDatos();
-            if (distribuidor.EliminarDistribuidor(objDistribuidor.Id))
+            if (ValidarCampos())
             {
-                MessageBox.Show("Distribuidor eliminado correctamente.", "Distribuidor eliminado",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarCampos();
+                RecogerDatosDgv();
+                if (distribuidor.EliminarDistribuidor(objDistribuidor.Id))
+                {
+                    MessageBox.Show("Distribuidor eliminado correctamente.", "Distribuidor eliminado",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarDistribuidores();
+                }
+                else
+                {
+                    MessageBox.Show("Error al eliminar el distribuidor.", "Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
-            {
-                MessageBox.Show("Error al eliminar el distribuidor.", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         public void CargarDistribuidores()
@@ -83,25 +84,37 @@ namespace Proyecto
             DgvTablaDistribuidores.Rows.Clear();
             foreach (ObjDistribuidor obj in listaObjDistribuidors)
             {
-                DgvTablaDistribuidores.Rows.Add(obj.Nombre, obj.Contacto);
+                DgvTablaDistribuidores.Rows.Add(obj.Id, obj.Nombre, obj.Contacto);
             }
         }
 
-        private void RecogerDatos()
+        private void RecogerDatosDgv()
         {
-            objDistribuidor.Id = DgvTablaDistribuidores.CurrentRow != null
-                         ? Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[0].Value)
-                         : 0;
-            objDistribuidor.Nombre = txtNombreDistri.Text.Trim();
-            objDistribuidor.Contacto = txtContactoDistri.Text.Trim();
+            objDistribuidor.Id = Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[0].Value);
+            objDistribuidor.Nombre = DgvTablaDistribuidores.CurrentRow.Cells[1].Value.ToString();
+            objDistribuidor.Contacto = DgvTablaDistribuidores.CurrentRow.Cells[2].Value.ToString();
         }
 
         private bool ValidarCampos()
         {
-            string nombre = txtNombreDistri.Text;
-            string contacto = txtContactoDistri.Text;
+            if (DgvTablaDistribuidores.CurrentRow == null)
+            {
+                MessageBox.Show("No hay ninguna fila seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            
+            int id = DgvTablaDistribuidores.CurrentRow.Cells[0].Value != null ? Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[0].Value) : 0;
+            string nombre = DgvTablaDistribuidores.CurrentRow.Cells[1].Value != null ? DgvTablaDistribuidores.CurrentRow.Cells[1].Value.ToString() : string.Empty;
+            string contacto = DgvTablaDistribuidores.CurrentRow.Cells[2].Value != null ? DgvTablaDistribuidores.CurrentRow.Cells[2].Value.ToString() : string.Empty;
             Regex regexNombre = new Regex(@"^(?! )[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+(?<! )$");
             Regex regexContacto = new Regex(@"^\d{8}$");
+
+            if (id == 0)
+            {
+                MessageBox.Show("No se ha seleccionado un distribuidor.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
             if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(contacto))
             {
@@ -125,12 +138,6 @@ namespace Proyecto
             }
 
             return true;
-        }
-
-        private void LimpiarCampos()
-        {
-            txtNombreDistri.Clear();
-            txtContactoDistri.Clear();
         }
     }
 }
