@@ -14,6 +14,7 @@ namespace Proyecto
         public CduUsuarios()
         {
             InitializeComponent();
+            CargarUsuarios();
         }
 
         public void RestringuirTexto(object sender, KeyPressEventArgs Tecla) 
@@ -23,7 +24,7 @@ namespace Proyecto
 
         public void CargarUsuarios()
         {
-            
+            Usuarios.CargarUsuarios(DgvTablaUsuarios);
         }
 
         public void CargarRoles() 

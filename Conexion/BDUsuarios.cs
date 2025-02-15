@@ -1,6 +1,8 @@
 ﻿//Using Añadidos
 using Npgsql;
 using Objetos;
+using System.Data;
+using System.Windows.Forms;
 
 namespace Conexion
 {
@@ -76,6 +78,24 @@ namespace Conexion
                                     "WHERE id   =  " + NuevoUsuario.Id, ConexionRetorno);
 
             cmd.ExecuteNonQuery();
+
+            ConexionRetorno.Close();
+        }
+
+        public void CargarUsuarios(DataGridView Tabla)
+        {
+            ConexionRetorno = conexion.ConexionBD();
+
+            DataTable dataTable = new DataTable();
+
+            NpgsqlDataAdapter adapter = new NpgsqlDataAdapter("SELECT u.id as \"ID\", u.cedula as \"Cedula\", " +
+                                            "Concat(u.nombre, ' ',  u.apellido) as \"Nombre completo\", " +
+                                            "r.tipo_rol as \"Tipo de usuario\", e.nombre_estado as \"Estado\" " +
+                                            "FROM usuario u join rol r on u.id_estado = r.id join estado e on " +
+                                            "u.id_estado = e.id", ConexionRetorno);
+
+            adapter.Fill(dataTable);
+            Tabla.DataSource = dataTable;
 
             ConexionRetorno.Close();
         }

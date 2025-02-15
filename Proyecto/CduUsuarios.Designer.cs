@@ -123,6 +123,7 @@
             // 
             // DgvTablaUsuarios
             // 
+            this.DgvTablaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvTablaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvTablaUsuarios.Location = new System.Drawing.Point(408, 65);
             this.DgvTablaUsuarios.Margin = new System.Windows.Forms.Padding(2);

@@ -1,6 +1,7 @@
 ﻿//Using Añadidos
 using Conexion;
 using Objetos;
+using System.Windows.Forms;
 
 namespace Negocio
 {
@@ -45,6 +46,11 @@ namespace Negocio
             int SiguienteId = conexionSQL.BuscarSiguienteId(Tabla);
 
             return SiguienteId;
+        }
+
+        public void CargarUsuarios(DataGridView Tabla)
+        {
+            bdUsuarios.CargarUsuarios(Tabla);
         }
     }
 }
