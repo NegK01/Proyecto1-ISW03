@@ -1,10 +1,9 @@
-﻿using System;
-using System.Windows.Forms;
-
+﻿using Negocio;
 //Using Añadidos
 using Objetos;
-using Negocio;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Proyecto
 {
@@ -47,7 +46,7 @@ namespace Proyecto
                 };
 
                 Comprobacion = Usuarios.InicioSecion(NuevoUsuario);
-            } 
+            }
             else
             {
                 MessageBox.Show("Por favor, rellene todos los espacios.", "Error",

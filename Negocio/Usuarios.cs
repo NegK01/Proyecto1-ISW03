@@ -2,7 +2,6 @@
 using Conexion;
 using Objetos;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace Negocio
 {

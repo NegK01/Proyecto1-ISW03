@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.TxtCedula = new System.Windows.Forms.TextBox();
             this.TxtContraseña = new System.Windows.Forms.TextBox();
             this.BtnIngresar = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // TxtCedula
@@ -65,6 +67,12 @@
             this.BtnIngresar.UseVisualStyleBackColor = true;
             this.BtnIngresar.Click += new System.EventHandler(this.BtnIngresar_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -87,5 +95,6 @@
         private System.Windows.Forms.TextBox TxtCedula;
         private System.Windows.Forms.TextBox TxtContraseña;
         private System.Windows.Forms.Button BtnIngresar;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

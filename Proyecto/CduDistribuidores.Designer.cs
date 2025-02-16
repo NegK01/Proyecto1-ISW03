@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.DgvTablaDistribuidores = new System.Windows.Forms.DataGridView();
+            this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvContacto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvIdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvContacto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTablaDistribuidores)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,13 +46,37 @@
             this.DgvTablaDistribuidores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvId,
             this.dgvNombre,
-            this.dgvContacto});
-            this.DgvTablaDistribuidores.Location = new System.Drawing.Point(182, 95);
+            this.dgvContacto,
+            this.dgvIdEstado});
+            this.DgvTablaDistribuidores.Location = new System.Drawing.Point(155, 95);
             this.DgvTablaDistribuidores.Margin = new System.Windows.Forms.Padding(2);
             this.DgvTablaDistribuidores.Name = "DgvTablaDistribuidores";
             this.DgvTablaDistribuidores.RowTemplate.Height = 28;
-            this.DgvTablaDistribuidores.Size = new System.Drawing.Size(343, 161);
+            this.DgvTablaDistribuidores.Size = new System.Drawing.Size(410, 161);
             this.DgvTablaDistribuidores.TabIndex = 18;
+            // 
+            // dgvId
+            // 
+            this.dgvId.HeaderText = "Código";
+            this.dgvId.Name = "dgvId";
+            this.dgvId.ReadOnly = true;
+            this.dgvId.Width = 50;
+            // 
+            // dgvNombre
+            // 
+            this.dgvNombre.HeaderText = "Nombre";
+            this.dgvNombre.Name = "dgvNombre";
+            // 
+            // dgvContacto
+            // 
+            this.dgvContacto.HeaderText = "Contacto";
+            this.dgvContacto.Name = "dgvContacto";
+            // 
+            // dgvIdEstado
+            // 
+            this.dgvIdEstado.HeaderText = "Estado";
+            this.dgvIdEstado.Name = "dgvIdEstado";
+            this.dgvIdEstado.ReadOnly = true;
             // 
             // label3
             // 
@@ -92,22 +117,6 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // dgvId
-            // 
-            this.dgvId.HeaderText = "Código";
-            this.dgvId.Name = "dgvId";
-            this.dgvId.ReadOnly = true;
-            // 
-            // dgvNombre
-            // 
-            this.dgvNombre.HeaderText = "Nombre";
-            this.dgvNombre.Name = "dgvNombre";
-            // 
-            // dgvContacto
-            // 
-            this.dgvContacto.HeaderText = "Contacto";
-            this.dgvContacto.Name = "dgvContacto";
-            // 
             // CduDistribuidores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -134,5 +143,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvContacto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvIdEstado;
     }
 }

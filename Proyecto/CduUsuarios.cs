@@ -1,10 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-
+﻿using Negocio;
 //Using Añadidos
 using Objetos;
-using Negocio;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Proyecto
 {
@@ -18,7 +16,7 @@ namespace Proyecto
             CargarUsuarios();
         }
 
-        public void RestringuirTexto(object sender, KeyPressEventArgs Tecla) 
+        public void RestringuirTexto(object sender, KeyPressEventArgs Tecla)
         {
 
         }
@@ -56,7 +54,7 @@ namespace Proyecto
             }
         }
 
-        public void CargarRoles() 
+        public void CargarRoles()
         {
 
         }
@@ -88,12 +86,12 @@ namespace Proyecto
 
         public void ModificarUsuario()
         {
-            
+
         }
 
         public void EliminarUsuario()
         {
-            
+
         }
 
         private void TxtNombreUsu_KeyPress(object sender, KeyPressEventArgs Tecla)

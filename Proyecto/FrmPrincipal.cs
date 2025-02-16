@@ -23,7 +23,7 @@ namespace Proyecto
             cduProductos = new CduProductos();
             cduOrdenes = new CduOrdenes();
             cduDistribuidores = new CduDistribuidores();
-            CargarCdu(cduUsuarios); // Tal vez colocar como primera vista un dashboard, el pago del producto o la creacion de un usuario
+            //CargarCdu(cduUsuarios); // Tal vez colocar como primera vista un dashboard, el pago del producto o la creacion de un usuario
         }
 
         private void InicializarClases()
@@ -50,7 +50,7 @@ namespace Proyecto
 
         private void btnProductos_Click(object sender, System.EventArgs e)
         {
-            CargarCdu(cduProductos);
+            CargarCdu(new CduProductos());
         }
 
         private void btnOrdenes_Click(object sender, System.EventArgs e)

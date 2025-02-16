@@ -4,24 +4,29 @@ using System.Collections.Generic;
 
 namespace Conexion
 {
-    public class BDDistribuidor
+    public class BDDistribuidores
     {
         public NpgsqlConnection conexionRetorno;
         public NpgsqlCommand cmd;
         ConexionSQL conexion;
 
-        public BDDistribuidor()
+        public BDDistribuidores()
         {
             conexion = new ConexionSQL();
         }
 
         public bool InsertarDistribuidorBD(ObjDistribuidor obj)
         {
+            if (conexion.ConfirmarDuplicidad("distribuidor", "nombre", obj.Nombre))
+            {
+                return false;
+            }
+
             obj.Id = conexion.BuscarSiguienteId("distribuidor");
 
             using (conexionRetorno = conexion.ConexionBD())
             {
-                cmd = new NpgsqlCommand("INSERT INTO distribuidor (id, nombre_distribuidor, info_contacto) VALUES (" +
+                cmd = new NpgsqlCommand("INSERT INTO distribuidor (id, nombre, info_contacto) VALUES (" +
                                         obj.Id + ", '" +
                                         obj.Nombre + "', '" +
                                         obj.Contacto + "')", conexionRetorno);
@@ -32,10 +37,15 @@ namespace Conexion
 
         public bool ActualizarDistribuidorBD(ObjDistribuidor obj)
         {
+            if (conexion.ConfirmarDuplicidad("distribuidor", "nombre", obj.Nombre, obj.Id))
+            {
+                return false;
+            }
+
             using (conexionRetorno = conexion.ConexionBD())
             {
                 cmd = new NpgsqlCommand("UPDATE distribuidor SET " +
-                                        "nombre_distribuidor = '" + obj.Nombre + "', " +
+                                        "nombre = '" + obj.Nombre + "', " +
                                         "info_contacto = '" + obj.Contacto + "' " +
                                         "WHERE id = " + obj.Id, conexionRetorno);
                 int affectedRows = cmd.ExecuteNonQuery();
@@ -47,7 +57,7 @@ namespace Conexion
         {
             List<ObjDistribuidor> distribuidores = new List<ObjDistribuidor>();
             conexionRetorno = conexion.ConexionBD();
-            cmd = new NpgsqlCommand("SELECT id, nombre_distribuidor, info_contacto FROM distribuidor where id_estado = 1", conexionRetorno);
+            cmd = new NpgsqlCommand("SELECT id, nombre, info_contacto, id_estado FROM distribuidor", conexionRetorno);
             var dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -56,7 +66,8 @@ namespace Conexion
                 {
                     Id = dr.GetInt32(0),
                     Nombre = dr.GetString(1),
-                    Contacto = dr.GetString(2)
+                    Contacto = dr.GetString(2),
+                    Id_Estado = dr.GetInt32(3)
                 };
                 distribuidores.Add(distribuidor);
             }
@@ -64,5 +75,24 @@ namespace Conexion
             conexionRetorno.Close();
             return distribuidores;
         }
+
+        public List<ObjDistribuidor> ObtenerNombresDistribuidoresBD()
+        {
+            List<ObjDistribuidor> distribuidores = new List<ObjDistribuidor>();
+            conexionRetorno = conexion.ConexionBD();
+            cmd = new NpgsqlCommand("SELECT nombre FROM distribuidor where id_estado = 1", conexionRetorno);
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                ObjDistribuidor distribuidor = new ObjDistribuidor
+                {
+                    Nombre = dr.GetString(0)
+                };
+                distribuidores.Add(distribuidor);
+            }
+            conexionRetorno.Close();
+            return distribuidores;
+        }
+
     }
 }
