@@ -12,12 +12,12 @@ namespace Negocio
 
         public string Tabla = "rol";
 
-        public bool InsertarUsuario(ObjRol NuevoRol)
+        public bool InsertarRol(ObjRol NuevoRol)
         {
             return bdRoles.InsertarRol(NuevoRol);
         }
 
-        public bool ModificarUsuario(ObjRol NuevoRol)
+        public bool ModificarRol(ObjRol NuevoRol)
         {
             return bdRoles.ModificarRol(NuevoRol);
         }
@@ -42,9 +42,32 @@ namespace Negocio
             return bdRoles.BuscarNombreRol(Id);
         }
 
+        public int BuscarIdEstado(string Nombre)
+        {
+            string TablaEstado = "estado";
+
+            return conexionSQL.BuscarIdEstado(TablaEstado, Nombre);
+        }
+
+        public string BuscarNombreEstado(int Id)
+        {
+            string TablaEstado = "estado";
+
+            return conexionSQL.BuscarNombreEstado(TablaEstado, Id);
+        }
+
         public List<ObjRol> CargarRoles()
         {
-            return new BDRoles().CargarRoles();
+            string Codicion = "";
+
+            return new BDRoles().CargarRoles(Codicion);
+        }
+
+        public List<ObjRol> CargarComboRoles()
+        {
+            string Codicion = "WHERE id_estado = 1";
+
+            return new BDRoles().CargarRoles(Codicion);
         }
     }
 }

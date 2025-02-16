@@ -2,6 +2,8 @@
 using Conexion;
 using Objetos;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Negocio
 {
@@ -63,6 +65,23 @@ namespace Negocio
         public List<ObjUsuario> CargarUsuarios()
         {
             return new BDUsuarios().CargarUsuarios();
+        }
+
+        public string EncriptarMD5(string Contraseña)
+        {
+            MD5 md5 = MD5.Create();
+
+            byte[] inputBytes = Encoding.UTF8.GetBytes(Contraseña);
+            byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+            StringBuilder ContraEncryptada = new StringBuilder();
+
+            for (int i = 0; i < hashBytes.Length; i++)
+            {
+                ContraEncryptada.Append(hashBytes[i].ToString("x2"));
+            }
+
+            return ContraEncryptada.ToString();
         }
     }
 }

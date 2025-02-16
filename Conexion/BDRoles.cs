@@ -16,9 +16,10 @@ namespace Conexion
         {
             ConexionRetorno = conexion.ConexionBD();
 
-            cmd = new NpgsqlCommand("INSERT INTO rol (id, tipo_rol) VALUES ('" +
+            cmd = new NpgsqlCommand("INSERT INTO rol (id, tipo_rol, id_estado) VALUES (" +
                                     NuevoRol.Id + " , '" +
-                                    NuevoRol.Nombre + "')", ConexionRetorno);
+                                    NuevoRol.Nombre + "'," +
+                                    NuevoRol.Estado + ")", ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();
 
@@ -32,7 +33,7 @@ namespace Conexion
             ConexionRetorno = conexion.ConexionBD();
 
             cmd = new NpgsqlCommand("UPDATE rol SET " +
-                                    "nombre     =  " + NuevoRol.Nombre + " , " +
+                                    "tipo_rol     =  '" + NuevoRol.Nombre + "'" +
                                     "WHERE id   =  " + NuevoRol.Id, ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();
@@ -42,13 +43,13 @@ namespace Conexion
             return affectedRows > 0;
         }
 
-        public List<ObjRol> CargarRoles()
+        public List<ObjRol> CargarRoles(string Condicion)
         {
             ConexionRetorno = conexion.ConexionBD();
 
             List<ObjRol> ListaRoles = new List<ObjRol>();
 
-            cmd = new NpgsqlCommand("SELECT * FROM rol ", ConexionRetorno);
+            cmd = new NpgsqlCommand("SELECT * FROM rol " + Condicion, ConexionRetorno);
 
             var dr = cmd.ExecuteReader();
 
@@ -57,7 +58,8 @@ namespace Conexion
                 ObjRol Rol = new ObjRol
                 {
                     Id = dr.GetInt32(0),
-                    Nombre = dr.GetString(1)
+                    Nombre = dr.GetString(1),
+                    Estado = dr.GetInt32(2)
                 };
                 ListaRoles.Add(Rol);
             }

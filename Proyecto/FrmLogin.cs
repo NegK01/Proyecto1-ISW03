@@ -1,5 +1,5 @@
-﻿using Negocio;
-//Using Añadidos
+﻿//Using Añadidos
+using Negocio;
 using Objetos;
 using System;
 using System.Windows.Forms;
@@ -41,7 +41,7 @@ namespace Proyecto
                 ObjUsuario NuevoUsuario = new ObjUsuario
                 {
                     Cedula = Convert.ToInt32(TxtCedula.Text),
-                    Contraseña = TxtContraseña.Text
+                    Contraseña = Usuarios.EncriptarMD5(TxtContraseña.Text)
                 };
 
                 Comprobacion = Usuarios.InicioSecion(NuevoUsuario);

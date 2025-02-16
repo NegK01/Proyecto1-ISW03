@@ -1,5 +1,5 @@
-﻿using Negocio;
-//Using Añadidos
+﻿//Using Añadidos
+using Negocio;
 using Objetos;
 using System;
 using System.Collections.Generic;
@@ -18,13 +18,14 @@ namespace Proyecto
             InitializeComponent();
             CargarUsuarios();
             CargarRoles();
+            CargarComboRoles();
         }
 
-        private void CargarRoles()
+        private void CargarComboRoles()
         {
-            DataGridViewComboBoxColumn CbxRoles = DgvTablaUsuarios.Columns["Rol"] as DataGridViewComboBoxColumn;
+            DataGridViewComboBoxColumn CbxRoles = DgvTablaUsuarios.Columns["RolU"] as DataGridViewComboBoxColumn;
 
-            List<ObjRol> ListaRoles = Roles.CargarRoles();
+            List<ObjRol> ListaRoles = Roles.CargarComboRoles();
 
             foreach (ObjRol rol in ListaRoles)
             {
@@ -43,27 +44,49 @@ namespace Proyecto
             {
                 DgvTablaUsuarios.Rows.Add();
 
-                DgvTablaUsuarios.Rows[Contador].Cells["ID"].Value = Usuario.Id.ToString();
-                DgvTablaUsuarios.Rows[Contador].Cells["Cedula"].Value = Usuario.Cedula.ToString();
-                DgvTablaUsuarios.Rows[Contador].Cells["Nombre"].Value = Usuario.Nombre.ToString();
-                DgvTablaUsuarios.Rows[Contador].Cells["Apellido"].Value = Usuario.Apellido.ToString();
-                DgvTablaUsuarios.Rows[Contador].Cells["Correo"].Value = Usuario.Correo.ToString();
-                DgvTablaUsuarios.Rows[Contador].Cells["Telefono"].Value = Usuario.Telefono.ToString();
-                DgvTablaUsuarios.Rows[Contador].Cells["Direccion"].Value = Usuario.Direccion.ToString();
-                DgvTablaUsuarios.Rows[Contador].Cells["Contraseña"].Value = Usuario.Contraseña.ToString();
+                DgvTablaUsuarios.Rows[Contador].Cells["IdU"].Value = Usuario.Id.ToString();
+                DgvTablaUsuarios.Rows[Contador].Cells["CedulaU"].Value = Usuario.Cedula.ToString();
+                DgvTablaUsuarios.Rows[Contador].Cells["NombreU"].Value = Usuario.Nombre.ToString();
+                DgvTablaUsuarios.Rows[Contador].Cells["ApellidoU"].Value = Usuario.Apellido.ToString();
+                DgvTablaUsuarios.Rows[Contador].Cells["CorreoU"].Value = Usuario.Correo.ToString();
+                DgvTablaUsuarios.Rows[Contador].Cells["TelefonoU"].Value = Usuario.Telefono.ToString();
+                DgvTablaUsuarios.Rows[Contador].Cells["DireccionU"].Value = Usuario.Direccion.ToString();
+                DgvTablaUsuarios.Rows[Contador].Cells["ContraseñaU"].Value = Usuario.Contraseña.ToString();
 
                 string Rol = Roles.BuscarNombreRol(Usuario.Rol);
 
                 string Estado = Usuarios.BuscarNombreEstado(Usuario.Estado);
 
-                DgvTablaUsuarios.Rows[Contador].Cells["Rol"].Value = Rol;
-                DgvTablaUsuarios.Rows[Contador].Cells["Estado"].Value = Estado;
+                DgvTablaUsuarios.Rows[Contador].Cells["RolU"].Value = Rol;
+                DgvTablaUsuarios.Rows[Contador].Cells["EstadoU"].Value = Estado;
 
                 Contador++;
             }
         }
 
-        private bool ValidarCampos(int id)
+        public void CargarRoles()
+        {
+            List<ObjRol> ListaRoles = Roles.CargarRoles(); ;
+            DgvTablaRoles.Rows.Clear();
+
+            int Contador = 0;
+
+            foreach (ObjRol Rol in ListaRoles)
+            {
+                DgvTablaRoles.Rows.Add();
+
+                DgvTablaRoles.Rows[Contador].Cells["IdR"].Value = Rol.Id.ToString();
+                DgvTablaRoles.Rows[Contador].Cells["NombreR"].Value = Rol.Nombre.ToString();
+
+                string Estado = Roles.BuscarNombreEstado(Rol.Estado);
+
+                DgvTablaRoles.Rows[Contador].Cells["EstadoR"].Value = Estado;
+
+                Contador++;
+            }
+        }
+
+        private bool ValidarCamposUsuario(int id)
         {
             if (DgvTablaUsuarios.CurrentRow == null)
             {
@@ -142,6 +165,49 @@ namespace Proyecto
             return true;
         }
 
+        private bool ValidarCamposRol(int id)
+        {
+            if (DgvTablaRoles.CurrentRow == null)
+            {
+                MessageBox.Show("No hay ninguna fila seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (id == 0)
+            {
+                id = DgvTablaRoles.CurrentRow.Cells[0].Value != null ? Convert.ToInt32(DgvTablaRoles.CurrentRow.Cells[0].Value) : 0;
+            }
+
+            string nombre = DgvTablaRoles.CurrentRow.Cells[1].Value != null ? DgvTablaRoles.CurrentRow.Cells[1].Value.ToString() : string.Empty;
+
+            Regex regexNombre = new Regex(@"^[A-Za-zÁÉÍÓÚáéíóúÑñ]+$");
+
+            if (id == 0)
+            {
+                MessageBox.Show("No se ha seleccionado un usuario.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(nombre))
+            {
+                MessageBox.Show("Por favor, completa todos los campos.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!regexNombre.IsMatch(nombre))
+            {
+                MessageBox.Show("Ingrese un texto que no contenga espacios.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        //-----------------------------------------------------------------------------------
+
         public void InsertarUsuario()
         {
             DataGridViewRow row = DgvTablaUsuarios.CurrentRow;
@@ -149,14 +215,14 @@ namespace Proyecto
             ObjUsuario NuevoUsuario = new ObjUsuario
             {
                 Id = Usuarios.BuscarSiguienteId(),
-                Cedula = Convert.ToInt32(row.Cells["Cedula"].Value),
-                Nombre = (string)row.Cells["Nombre"].Value,
-                Apellido = (string)row.Cells["Apellido"].Value,
-                Correo = (string)row.Cells["Correo"].Value,
-                Telefono = (string)row.Cells["Telefono"].Value,
-                Direccion = (string)row.Cells["Direccion"].Value,
-                Contraseña = (string)row.Cells["Contraseña"].Value,
-                Rol = Roles.BuscarIdRol((string)row.Cells["Rol"].Value),
+                Cedula = Convert.ToInt32(row.Cells["CedulaU"].Value),
+                Nombre = (string)row.Cells["NombreU"].Value,
+                Apellido = (string)row.Cells["ApellidoU"].Value,
+                Correo = (string)row.Cells["CorreoU"].Value,
+                Telefono = (string)row.Cells["TelefonoU"].Value,
+                Direccion = (string)row.Cells["DireccionU"].Value,
+                Contraseña = Usuarios.EncriptarMD5((string)row.Cells["ContraseñaU"].Value),
+                Rol = Roles.BuscarIdRol((string)row.Cells["RolU"].Value),
                 Estado = 1
             };
 
@@ -182,28 +248,30 @@ namespace Proyecto
 
             ObjUsuario NuevoUsuario = new ObjUsuario
             {
-                Id = Convert.ToInt32(row.Cells["ID"].Value),
-                Cedula = Convert.ToInt32(row.Cells["Cedula"].Value),
-                Nombre = (string)row.Cells["Nombre"].Value,
-                Apellido = (string)row.Cells["Apellido"].Value,
-                Correo = (string)row.Cells["Correo"].Value,
-                Telefono = (string)row.Cells["Telefono"].Value,
-                Direccion = (string)row.Cells["Direccion"].Value,
-                Contraseña = (string)row.Cells["Contraseña"].Value,
-                Rol = Roles.BuscarIdRol((string)row.Cells["Rol"].Value),
-                Estado = Usuarios.BuscarIdEstado((string)row.Cells["Estado"].Value)
+                Id = Convert.ToInt32(row.Cells["IdU"].Value),
+                Cedula = Convert.ToInt32(row.Cells["CedulaU"].Value),
+                Nombre = (string)row.Cells["NombreU"].Value,
+                Apellido = (string)row.Cells["ApellidoU"].Value,
+                Correo = (string)row.Cells["CorreoU"].Value,
+                Telefono = (string)row.Cells["TelefonoU"].Value,
+                Direccion = (string)row.Cells["DireccionU"].Value,
+                Contraseña = Usuarios.EncriptarMD5((string)row.Cells["ContraseñaU"].Value),
+                Rol = Roles.BuscarIdRol((string)row.Cells["RolU"].Value),
+                Estado = Usuarios.BuscarIdEstado((string)row.Cells["EstadoU"].Value)
             };
 
             if (Usuarios.ModificarUsuario(NuevoUsuario))
             {
                 MessageBox.Show("Usuario modificado correctamente.", "Usuario modificado",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 CargarUsuarios();
             }
             else
             {
                 MessageBox.Show("Error al modificar el usuario.", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 CargarUsuarios();
             }
         }
@@ -212,7 +280,7 @@ namespace Proyecto
         {
             DataGridViewRow row = DgvTablaUsuarios.CurrentRow;
 
-            int Id = Convert.ToInt32(row.Cells["ID"].Value);
+            int Id = Convert.ToInt32(row.Cells["IdU"].Value);
 
             if (DgvTablaUsuarios.CurrentRow == null)
             {
@@ -223,7 +291,7 @@ namespace Proyecto
 
             if (Usuarios.EliminarUsuario(Id))
             {
-                MessageBox.Show("Estado de usuario hecho correctamente.", "Estado actualizado",
+                MessageBox.Show("Estado de usuario actualizado correctamente.", "Estado actualizado",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarUsuarios();
             }
@@ -235,11 +303,98 @@ namespace Proyecto
             }
         }
 
+        //-----------------------------------------------------------------------------------
+
+        public void InsertarRol()
+        {
+            DataGridViewRow row = DgvTablaRoles.CurrentRow;
+
+            ObjRol NuevoRol = new ObjRol
+            {
+                Id = Convert.ToInt32(Roles.BuscarSiguienteId()),
+                Nombre = (string)row.Cells["NombreR"].Value,
+                Estado = 1
+            };
+
+            if (Roles.InsertarRol(NuevoRol))
+            {
+                MessageBox.Show("Rol agregado correctamente.", "Rol agregado",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                CargarRoles();
+            }
+            else
+            {
+                MessageBox.Show("Error al agregar el nuevo rol.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                CargarRoles();
+            }
+        }
+
+        public void ModificarRol()
+        {
+            DataGridViewRow row = DgvTablaRoles.CurrentRow;
+
+            ObjRol NuevoRol = new ObjRol
+            {
+                Id = Convert.ToInt32(row.Cells["IdR"].Value),
+                Nombre = (string)row.Cells["NombreR"].Value,
+                Estado = Roles.BuscarIdEstado((string)row.Cells["EstadoR"].Value)
+            };
+
+            if (Roles.ModificarRol(NuevoRol))
+            {
+                MessageBox.Show("Rol modificado correctamente.", "Rol modificado",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                CargarRoles();
+            }
+            else
+            {
+                MessageBox.Show("Error al modificar el rol.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                CargarRoles();
+            }
+        }
+
+        public void EliminarRol()
+        {
+            DataGridViewRow row = DgvTablaRoles.CurrentRow;
+
+            int Id = Convert.ToInt32(row.Cells["IdR"].Value);
+
+            if (DgvTablaRoles.CurrentRow == null)
+            {
+                MessageBox.Show("No se ha seleccionado un rol.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (Roles.EliminarRol(Id))
+            {
+                MessageBox.Show("Estado del rol actualizado correctamente.", "Estado actualizado",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                CargarRoles();
+            }
+            else
+            {
+                MessageBox.Show("Error al actualizar el estado del rol.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                CargarRoles();
+            }
+        }
+
+        //-----------------------------------------------------------------------------------
+
         private void BtnInsertarUsu_Click(object sender, EventArgs e)
         {
             int SiguienteID = Usuarios.BuscarSiguienteId();
 
-            if (ValidarCampos(SiguienteID))
+            if (ValidarCamposUsuario(SiguienteID))
             {
                 InsertarUsuario();
             }
@@ -249,7 +404,7 @@ namespace Proyecto
         {
             int Id = 0;
 
-            if (ValidarCampos(Id))
+            if (ValidarCamposUsuario(Id))
             {
                 ModificarUsuario();
             }
@@ -258,6 +413,33 @@ namespace Proyecto
         private void BtnEliminarUsu_Click(object sender, EventArgs e)
         {
             EliminarUsuario();
+        }
+
+        //-----------------------------------------------------------------------------------
+
+        private void BtnInsertarR_Click(object sender, EventArgs e)
+        {
+            int SiguienteID = Roles.BuscarSiguienteId();
+
+            if (ValidarCamposRol(SiguienteID))
+            {
+                InsertarRol();
+            }
+        }
+
+        private void BtnModificarR_Click(object sender, EventArgs e)
+        {
+            int Id = 0;
+
+            if (ValidarCamposRol(Id))
+            {
+                ModificarRol();
+            }
+        }
+
+        private void BtnEliminarR_Click(object sender, EventArgs e)
+        {
+            EliminarRol();
         }
     }
 }
