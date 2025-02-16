@@ -67,7 +67,7 @@ namespace Conexion
             return ListaRoles;
         }
 
-        public int BuscarIdRol(string Nombre) 
+        public int BuscarIdRol(string Nombre)
         {
             int IdRol = 0;
 
@@ -99,7 +99,7 @@ namespace Conexion
 
             while (dr.Read())
             {
-                 NombreRol = dr.GetString(0);
+                NombreRol = dr.GetString(0);
             }
 
             ConexionRetorno.Close();

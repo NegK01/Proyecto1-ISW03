@@ -3,7 +3,6 @@
 using Objetos;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -72,19 +71,19 @@ namespace Proyecto
                 return false;
             }
 
-            if (id == 0) 
+            if (id == 0)
             {
                 id = DgvTablaUsuarios.CurrentRow.Cells[0].Value != null ? Convert.ToInt32(DgvTablaUsuarios.CurrentRow.Cells[0].Value) : 0;
             }
 
-            string cedula     = DgvTablaUsuarios.CurrentRow.Cells[1].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[1].Value.ToString() : string.Empty;
-            string nombre     = DgvTablaUsuarios.CurrentRow.Cells[2].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[2].Value.ToString() : string.Empty;
-            string apellido   = DgvTablaUsuarios.CurrentRow.Cells[3].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[3].Value.ToString() : string.Empty;
-            string correo     = DgvTablaUsuarios.CurrentRow.Cells[4].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[4].Value.ToString() : string.Empty;
-            string telefono   = DgvTablaUsuarios.CurrentRow.Cells[5].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[5].Value.ToString() : string.Empty;
-            string direccion  = DgvTablaUsuarios.CurrentRow.Cells[6].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[6].Value.ToString() : string.Empty;
+            string cedula = DgvTablaUsuarios.CurrentRow.Cells[1].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[1].Value.ToString() : string.Empty;
+            string nombre = DgvTablaUsuarios.CurrentRow.Cells[2].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[2].Value.ToString() : string.Empty;
+            string apellido = DgvTablaUsuarios.CurrentRow.Cells[3].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[3].Value.ToString() : string.Empty;
+            string correo = DgvTablaUsuarios.CurrentRow.Cells[4].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[4].Value.ToString() : string.Empty;
+            string telefono = DgvTablaUsuarios.CurrentRow.Cells[5].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[5].Value.ToString() : string.Empty;
+            string direccion = DgvTablaUsuarios.CurrentRow.Cells[6].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[6].Value.ToString() : string.Empty;
             string contraseña = DgvTablaUsuarios.CurrentRow.Cells[7].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[7].Value.ToString() : string.Empty;
-            string rol        = DgvTablaUsuarios.CurrentRow.Cells[8].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[8].Value.ToString() : string.Empty;
+            string rol = DgvTablaUsuarios.CurrentRow.Cells[8].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[8].Value.ToString() : string.Empty;
 
             Regex regexNombre = new Regex(@"^[A-Za-zÁÉÍÓÚáéíóúÑñ]+$");
             Regex regexEspacios = new Regex(@"^[^\s]+$");
@@ -149,16 +148,16 @@ namespace Proyecto
 
             ObjUsuario NuevoUsuario = new ObjUsuario
             {
-                Id         = Usuarios.BuscarSiguienteId(),
-                Cedula     = Convert.ToInt32(row.Cells["Cedula"].Value),
-                Nombre     = (string)row.Cells["Nombre"].Value,
-                Apellido   = (string)row.Cells["Apellido"].Value,
-                Correo     = (string)row.Cells["Correo"].Value,
-                Telefono   = (string)row.Cells["Telefono"].Value,
-                Direccion  = (string)row.Cells["Direccion"].Value,
+                Id = Usuarios.BuscarSiguienteId(),
+                Cedula = Convert.ToInt32(row.Cells["Cedula"].Value),
+                Nombre = (string)row.Cells["Nombre"].Value,
+                Apellido = (string)row.Cells["Apellido"].Value,
+                Correo = (string)row.Cells["Correo"].Value,
+                Telefono = (string)row.Cells["Telefono"].Value,
+                Direccion = (string)row.Cells["Direccion"].Value,
                 Contraseña = (string)row.Cells["Contraseña"].Value,
-                Rol        = Roles.BuscarIdRol((string)row.Cells["Rol"].Value),
-                Estado     = 1
+                Rol = Roles.BuscarIdRol((string)row.Cells["Rol"].Value),
+                Estado = 1
             };
 
             if (Usuarios.InsertarUsuario(NuevoUsuario))
@@ -177,11 +176,70 @@ namespace Proyecto
             }
         }
 
+        public void ModificarUsuario()
+        {
+            DataGridViewRow row = DgvTablaUsuarios.CurrentRow;
+
+            ObjUsuario NuevoUsuario = new ObjUsuario
+            {
+                Id = Convert.ToInt32(row.Cells["ID"].Value),
+                Cedula = Convert.ToInt32(row.Cells["Cedula"].Value),
+                Nombre = (string)row.Cells["Nombre"].Value,
+                Apellido = (string)row.Cells["Apellido"].Value,
+                Correo = (string)row.Cells["Correo"].Value,
+                Telefono = (string)row.Cells["Telefono"].Value,
+                Direccion = (string)row.Cells["Direccion"].Value,
+                Contraseña = (string)row.Cells["Contraseña"].Value,
+                Rol = Roles.BuscarIdRol((string)row.Cells["Rol"].Value),
+                Estado = Usuarios.BuscarIdEstado((string)row.Cells["Estado"].Value)
+            };
+
+            if (Usuarios.ModificarUsuario(NuevoUsuario))
+            {
+                MessageBox.Show("Usuario modificado correctamente.", "Usuario modificado",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarUsuarios();
+            }
+            else
+            {
+                MessageBox.Show("Error al modificar el usuario.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CargarUsuarios();
+            }
+        }
+
+        public void EliminarUsuario()
+        {
+            DataGridViewRow row = DgvTablaUsuarios.CurrentRow;
+
+            int Id = Convert.ToInt32(row.Cells["ID"].Value);
+
+            if (DgvTablaUsuarios.CurrentRow == null)
+            {
+                MessageBox.Show("No se ha seleccionado un usuario.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (Usuarios.EliminarUsuario(Id))
+            {
+                MessageBox.Show("Estado de usuario hecho correctamente.", "Estado actualizado",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarUsuarios();
+            }
+            else
+            {
+                MessageBox.Show("Error al actualizar el estado del usuario.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CargarUsuarios();
+            }
+        }
+
         private void BtnInsertarUsu_Click(object sender, EventArgs e)
         {
             int SiguienteID = Usuarios.BuscarSiguienteId();
 
-            if (ValidarCampos(SiguienteID)) 
+            if (ValidarCampos(SiguienteID))
             {
                 InsertarUsuario();
             }
@@ -189,12 +247,17 @@ namespace Proyecto
 
         private void BtnModificarUsu_Click(object sender, EventArgs e)
         {
-            int SiguienteID = 0;
+            int Id = 0;
+
+            if (ValidarCampos(Id))
+            {
+                ModificarUsuario();
+            }
         }
 
         private void BtnEliminarUsu_Click(object sender, EventArgs e)
         {
-            int SiguienteID = 0;
+            EliminarUsuario();
         }
     }
 }

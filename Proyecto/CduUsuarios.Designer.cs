@@ -43,7 +43,16 @@
             this.BtnInsertarUsu = new System.Windows.Forms.Button();
             this.BtnModificarUsu = new System.Windows.Forms.Button();
             this.BtnEliminarUsu = new System.Windows.Forms.Button();
+            this.TabControlUsuarios = new System.Windows.Forms.TabControl();
+            this.TabCrudUsuarios = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.PnlFondoRoles = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTablaUsuarios)).BeginInit();
+            this.TabControlUsuarios.SuspendLayout();
+            this.TabCrudUsuarios.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DgvTablaUsuarios
@@ -62,10 +71,10 @@
             this.Contraseña,
             this.Rol,
             this.Estado});
-            this.DgvTablaUsuarios.Location = new System.Drawing.Point(34, 54);
+            this.DgvTablaUsuarios.Location = new System.Drawing.Point(61, 29);
             this.DgvTablaUsuarios.Name = "DgvTablaUsuarios";
             this.DgvTablaUsuarios.RowTemplate.Height = 28;
-            this.DgvTablaUsuarios.Size = new System.Drawing.Size(1013, 469);
+            this.DgvTablaUsuarios.Size = new System.Drawing.Size(1008, 469);
             this.DgvTablaUsuarios.TabIndex = 17;
             // 
             // ID
@@ -126,7 +135,7 @@
             // BtnInsertarUsu
             // 
             this.BtnInsertarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnInsertarUsu.Location = new System.Drawing.Point(567, 558);
+            this.BtnInsertarUsu.Location = new System.Drawing.Point(597, 506);
             this.BtnInsertarUsu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BtnInsertarUsu.Name = "BtnInsertarUsu";
             this.BtnInsertarUsu.Size = new System.Drawing.Size(135, 63);
@@ -138,19 +147,19 @@
             // BtnModificarUsu
             // 
             this.BtnModificarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnModificarUsu.Location = new System.Drawing.Point(717, 558);
+            this.BtnModificarUsu.Location = new System.Drawing.Point(740, 506);
             this.BtnModificarUsu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BtnModificarUsu.Name = "BtnModificarUsu";
             this.BtnModificarUsu.Size = new System.Drawing.Size(135, 63);
             this.BtnModificarUsu.TabIndex = 19;
-            this.BtnModificarUsu.Text = "Modificar";
+            this.BtnModificarUsu.Text = "Actualizar";
             this.BtnModificarUsu.UseVisualStyleBackColor = true;
             this.BtnModificarUsu.Click += new System.EventHandler(this.BtnModificarUsu_Click);
             // 
             // BtnEliminarUsu
             // 
             this.BtnEliminarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminarUsu.Location = new System.Drawing.Point(861, 558);
+            this.BtnEliminarUsu.Location = new System.Drawing.Point(883, 506);
             this.BtnEliminarUsu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BtnEliminarUsu.Name = "BtnEliminarUsu";
             this.BtnEliminarUsu.Size = new System.Drawing.Size(186, 63);
@@ -159,18 +168,69 @@
             this.BtnEliminarUsu.UseVisualStyleBackColor = true;
             this.BtnEliminarUsu.Click += new System.EventHandler(this.BtnEliminarUsu_Click);
             // 
+            // TabControlUsuarios
+            // 
+            this.TabControlUsuarios.Controls.Add(this.tabPage2);
+            this.TabControlUsuarios.Controls.Add(this.TabCrudUsuarios);
+            this.TabControlUsuarios.Location = new System.Drawing.Point(0, 0);
+            this.TabControlUsuarios.Name = "TabControlUsuarios";
+            this.TabControlUsuarios.SelectedIndex = 0;
+            this.TabControlUsuarios.Size = new System.Drawing.Size(1131, 780);
+            this.TabControlUsuarios.TabIndex = 21;
+            // 
+            // TabCrudUsuarios
+            // 
+            this.TabCrudUsuarios.Controls.Add(this.panel1);
+            this.TabCrudUsuarios.Location = new System.Drawing.Point(4, 29);
+            this.TabCrudUsuarios.Name = "TabCrudUsuarios";
+            this.TabCrudUsuarios.Padding = new System.Windows.Forms.Padding(3);
+            this.TabCrudUsuarios.Size = new System.Drawing.Size(1123, 747);
+            this.TabCrudUsuarios.TabIndex = 0;
+            this.TabCrudUsuarios.Text = "Gestion de usuarios";
+            this.TabCrudUsuarios.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.PnlFondoRoles);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1123, 747);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Gestion de roles";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // PnlFondoRoles
+            // 
+            this.PnlFondoRoles.Location = new System.Drawing.Point(0, 0);
+            this.PnlFondoRoles.Name = "PnlFondoRoles";
+            this.PnlFondoRoles.Size = new System.Drawing.Size(1124, 751);
+            this.PnlFondoRoles.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.BtnInsertarUsu);
+            this.panel1.Controls.Add(this.DgvTablaUsuarios);
+            this.panel1.Controls.Add(this.BtnEliminarUsu);
+            this.panel1.Controls.Add(this.BtnModificarUsu);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1123, 751);
+            this.panel1.TabIndex = 21;
+            // 
             // CduUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.BtnEliminarUsu);
-            this.Controls.Add(this.BtnModificarUsu);
-            this.Controls.Add(this.BtnInsertarUsu);
-            this.Controls.Add(this.DgvTablaUsuarios);
+            this.Controls.Add(this.TabControlUsuarios);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CduUsuarios";
             this.Size = new System.Drawing.Size(1131, 780);
             ((System.ComponentModel.ISupportInitialize)(this.DgvTablaUsuarios)).EndInit();
+            this.TabControlUsuarios.ResumeLayout(false);
+            this.TabCrudUsuarios.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -190,5 +250,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Contraseña;
         private System.Windows.Forms.DataGridViewComboBoxColumn Rol;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.TabControl TabControlUsuarios;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage TabCrudUsuarios;
+        private System.Windows.Forms.Panel PnlFondoRoles;
+        private System.Windows.Forms.Panel panel1;
     }
 }

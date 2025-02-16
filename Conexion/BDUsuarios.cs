@@ -44,16 +44,16 @@ namespace Conexion
 
             cmd = new NpgsqlCommand("INSERT INTO usuario (id, cedula, nombre, apellido, correo, " +
                 "                   telefono, direccion, contrasena, id_rol, id_estado) VALUES (" +
-                                    NuevoUsuario.Id         + " ,  " +
-                                    NuevoUsuario.Cedula     + " , '" +
-                                    NuevoUsuario.Nombre     + "', '" +
-                                    NuevoUsuario.Apellido   + "', '" +
-                                    NuevoUsuario.Correo     + "', '" +
-                                    NuevoUsuario.Telefono   + "', '" +
-                                    NuevoUsuario.Direccion  + "', '" +
+                                    NuevoUsuario.Id + " ,  " +
+                                    NuevoUsuario.Cedula + " , '" +
+                                    NuevoUsuario.Nombre + "', '" +
+                                    NuevoUsuario.Apellido + "', '" +
+                                    NuevoUsuario.Correo + "', '" +
+                                    NuevoUsuario.Telefono + "', '" +
+                                    NuevoUsuario.Direccion + "', '" +
                                     NuevoUsuario.Contraseña + "',  " +
-                                    NuevoUsuario.Rol        + " ,  " +
-                                    NuevoUsuario.Estado     + " )", ConexionRetorno);
+                                    NuevoUsuario.Rol + " ,  " +
+                                    NuevoUsuario.Estado + " )", ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();
 
@@ -74,8 +74,8 @@ namespace Conexion
                                     "telefono   = '" + NuevoUsuario.Telefono + "', " +
                                     "direccion  = '" + NuevoUsuario.Direccion + "', " +
                                     "contrasena = '" + NuevoUsuario.Contraseña + "', " +
-                                    "rol        =  " + NuevoUsuario.Rol + " , " +
-                                    "estado     =  " + NuevoUsuario.Estado + "   " +
+                                    "id_rol     =  " + NuevoUsuario.Rol + " , " +
+                                    "id_estado  =  " + NuevoUsuario.Estado + "   " +
                                     "WHERE id   =  " + NuevoUsuario.Id, ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();
