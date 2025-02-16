@@ -28,11 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DgvTablaUsuarios = new System.Windows.Forms.DataGridView();
-            this.BtnInsertarUsu = new System.Windows.Forms.Button();
-            this.BtnModificarUsu = new System.Windows.Forms.Button();
-            this.BtnEliminarUsu = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +40,9 @@
             this.Contraseña = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Rol = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtnInsertarUsu = new System.Windows.Forms.Button();
+            this.BtnModificarUsu = new System.Windows.Forms.Button();
+            this.BtnEliminarUsu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTablaUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,39 +67,6 @@
             this.DgvTablaUsuarios.RowTemplate.Height = 28;
             this.DgvTablaUsuarios.Size = new System.Drawing.Size(1013, 469);
             this.DgvTablaUsuarios.TabIndex = 17;
-            // 
-            // BtnInsertarUsu
-            // 
-            this.BtnInsertarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnInsertarUsu.Location = new System.Drawing.Point(567, 558);
-            this.BtnInsertarUsu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.BtnInsertarUsu.Name = "BtnInsertarUsu";
-            this.BtnInsertarUsu.Size = new System.Drawing.Size(135, 63);
-            this.BtnInsertarUsu.TabIndex = 18;
-            this.BtnInsertarUsu.Text = "Insertar";
-            this.BtnInsertarUsu.UseVisualStyleBackColor = true;
-            // 
-            // BtnModificarUsu
-            // 
-            this.BtnModificarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnModificarUsu.Location = new System.Drawing.Point(717, 558);
-            this.BtnModificarUsu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.BtnModificarUsu.Name = "BtnModificarUsu";
-            this.BtnModificarUsu.Size = new System.Drawing.Size(135, 63);
-            this.BtnModificarUsu.TabIndex = 19;
-            this.BtnModificarUsu.Text = "Modificar";
-            this.BtnModificarUsu.UseVisualStyleBackColor = true;
-            // 
-            // BtnEliminarUsu
-            // 
-            this.BtnEliminarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminarUsu.Location = new System.Drawing.Point(861, 558);
-            this.BtnEliminarUsu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.BtnEliminarUsu.Name = "BtnEliminarUsu";
-            this.BtnEliminarUsu.Size = new System.Drawing.Size(186, 63);
-            this.BtnEliminarUsu.TabIndex = 20;
-            this.BtnEliminarUsu.Text = "Cambiar estado";
-            this.BtnEliminarUsu.UseVisualStyleBackColor = true;
             // 
             // ID
             // 
@@ -143,8 +110,8 @@
             // 
             // Rol
             // 
-            dataGridViewCellStyle1.Format = "....";
-            this.Rol.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "....";
+            this.Rol.DefaultCellStyle = dataGridViewCellStyle2;
             this.Rol.HeaderText = "Tipo de rol";
             this.Rol.Name = "Rol";
             this.Rol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -155,6 +122,42 @@
             this.Estado.HeaderText = "Estado";
             this.Estado.Name = "Estado";
             this.Estado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // BtnInsertarUsu
+            // 
+            this.BtnInsertarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnInsertarUsu.Location = new System.Drawing.Point(567, 558);
+            this.BtnInsertarUsu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BtnInsertarUsu.Name = "BtnInsertarUsu";
+            this.BtnInsertarUsu.Size = new System.Drawing.Size(135, 63);
+            this.BtnInsertarUsu.TabIndex = 18;
+            this.BtnInsertarUsu.Text = "Insertar";
+            this.BtnInsertarUsu.UseVisualStyleBackColor = true;
+            this.BtnInsertarUsu.Click += new System.EventHandler(this.BtnInsertarUsu_Click);
+            // 
+            // BtnModificarUsu
+            // 
+            this.BtnModificarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnModificarUsu.Location = new System.Drawing.Point(717, 558);
+            this.BtnModificarUsu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BtnModificarUsu.Name = "BtnModificarUsu";
+            this.BtnModificarUsu.Size = new System.Drawing.Size(135, 63);
+            this.BtnModificarUsu.TabIndex = 19;
+            this.BtnModificarUsu.Text = "Modificar";
+            this.BtnModificarUsu.UseVisualStyleBackColor = true;
+            this.BtnModificarUsu.Click += new System.EventHandler(this.BtnModificarUsu_Click);
+            // 
+            // BtnEliminarUsu
+            // 
+            this.BtnEliminarUsu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEliminarUsu.Location = new System.Drawing.Point(861, 558);
+            this.BtnEliminarUsu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BtnEliminarUsu.Name = "BtnEliminarUsu";
+            this.BtnEliminarUsu.Size = new System.Drawing.Size(186, 63);
+            this.BtnEliminarUsu.TabIndex = 20;
+            this.BtnEliminarUsu.Text = "Cambiar estado";
+            this.BtnEliminarUsu.UseVisualStyleBackColor = true;
+            this.BtnEliminarUsu.Click += new System.EventHandler(this.BtnEliminarUsu_Click);
             // 
             // CduUsuarios
             // 

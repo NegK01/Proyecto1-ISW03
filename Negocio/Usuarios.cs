@@ -43,9 +43,21 @@ namespace Negocio
 
         public int BuscarSiguienteId()
         {
-            int SiguienteId = conexionSQL.BuscarSiguienteId(Tabla);
+            return conexionSQL.BuscarSiguienteId(Tabla);
+        }
 
-            return SiguienteId;
+        public int BuscarIdEstado(string Nombre)
+        {
+            string TablaEstado = "estado";
+
+            return conexionSQL.BuscarIdEstado(TablaEstado, Nombre);
+        }
+
+        public string BuscarNombreEstado(int Id)
+        {
+            string TablaEstado = "estado";
+
+            return conexionSQL.BuscarNombreEstado(TablaEstado, Id);
         }
 
         public List<ObjUsuario> CargarUsuarios()

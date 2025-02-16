@@ -29,9 +29,17 @@ namespace Negocio
 
         public int BuscarSiguienteId()
         {
-            int SiguienteId = conexionSQL.BuscarSiguienteId(Tabla);
+            return conexionSQL.BuscarSiguienteId(Tabla);
+        }
 
-            return SiguienteId;
+        public int BuscarIdRol(string Nombre)
+        {
+            return bdRoles.BuscarIdRol(Nombre);
+        }
+
+        public string BuscarNombreRol(int Id)
+        {
+            return bdRoles.BuscarNombreRol(Id);
         }
 
         public List<ObjRol> CargarRoles()

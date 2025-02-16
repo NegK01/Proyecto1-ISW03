@@ -3,6 +3,8 @@
 using Objetos;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Proyecto
@@ -51,8 +53,9 @@ namespace Proyecto
                 DgvTablaUsuarios.Rows[Contador].Cells["Direccion"].Value = Usuario.Direccion.ToString();
                 DgvTablaUsuarios.Rows[Contador].Cells["Contraseña"].Value = Usuario.Contraseña.ToString();
 
-                string Rol = Usuario.Rol == 1 ? "Administrador" : "Usuario";
-                string Estado = Usuario.Rol == 1 ? "Activo" : "Inactivo";
+                string Rol = Roles.BuscarNombreRol(Usuario.Rol);
+
+                string Estado = Usuarios.BuscarNombreEstado(Usuario.Estado);
 
                 DgvTablaUsuarios.Rows[Contador].Cells["Rol"].Value = Rol;
                 DgvTablaUsuarios.Rows[Contador].Cells["Estado"].Value = Estado;
@@ -61,22 +64,101 @@ namespace Proyecto
             }
         }
 
-        public void InsertarUsuario(DataGridViewCellEventArgs Celda)
+        private bool ValidarCampos(int id)
         {
-            DataGridViewRow row = DgvTablaUsuarios.Rows[Celda.RowIndex];
+            if (DgvTablaUsuarios.CurrentRow == null)
+            {
+                MessageBox.Show("No hay ninguna fila seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (id == 0) 
+            {
+                id = DgvTablaUsuarios.CurrentRow.Cells[0].Value != null ? Convert.ToInt32(DgvTablaUsuarios.CurrentRow.Cells[0].Value) : 0;
+            }
+
+            string cedula     = DgvTablaUsuarios.CurrentRow.Cells[1].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[1].Value.ToString() : string.Empty;
+            string nombre     = DgvTablaUsuarios.CurrentRow.Cells[2].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[2].Value.ToString() : string.Empty;
+            string apellido   = DgvTablaUsuarios.CurrentRow.Cells[3].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[3].Value.ToString() : string.Empty;
+            string correo     = DgvTablaUsuarios.CurrentRow.Cells[4].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[4].Value.ToString() : string.Empty;
+            string telefono   = DgvTablaUsuarios.CurrentRow.Cells[5].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[5].Value.ToString() : string.Empty;
+            string direccion  = DgvTablaUsuarios.CurrentRow.Cells[6].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[6].Value.ToString() : string.Empty;
+            string contraseña = DgvTablaUsuarios.CurrentRow.Cells[7].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[7].Value.ToString() : string.Empty;
+            string rol        = DgvTablaUsuarios.CurrentRow.Cells[8].Value != null ? DgvTablaUsuarios.CurrentRow.Cells[8].Value.ToString() : string.Empty;
+
+            Regex regexNombre = new Regex(@"^[A-Za-zÁÉÍÓÚáéíóúÑñ]+$");
+            Regex regexEspacios = new Regex(@"^[^\s]+$");
+            Regex regexTelefono = new Regex(@"^\d{8}$");
+            Regex regexCedula = new Regex(@"^\d{9}$");
+
+            if (id == 0)
+            {
+                MessageBox.Show("No se ha seleccionado un usuario.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(cedula) || string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(apellido))
+            {
+                MessageBox.Show("Por favor, completa todos los campos.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(correo) || string.IsNullOrEmpty(telefono) || string.IsNullOrEmpty(direccion))
+            {
+                MessageBox.Show("Por favor, completa todos los campos.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(contraseña) || string.IsNullOrEmpty(rol))
+            {
+                MessageBox.Show("Por favor, completa todos los campos.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!regexNombre.IsMatch(nombre) || !regexNombre.IsMatch(apellido) || !regexEspacios.IsMatch(contraseña))
+            {
+                MessageBox.Show("Ingrese un texto que no contenga espacios.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!regexEspacios.IsMatch(correo) || !correo.Contains("@gmail.com"))
+            {
+                MessageBox.Show("El el correo no el valido, verifique el texto dado.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!regexTelefono.IsMatch(telefono) || !regexCedula.IsMatch(cedula))
+            {
+                MessageBox.Show("Ingrese un texto que no contenga espacios, cedula o telefono no validos", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        public void InsertarUsuario()
+        {
+            DataGridViewRow row = DgvTablaUsuarios.CurrentRow;
 
             ObjUsuario NuevoUsuario = new ObjUsuario
             {
                 Id         = Usuarios.BuscarSiguienteId(),
-                Cedula     = (int)row.Cells["Cedula"].Value,
+                Cedula     = Convert.ToInt32(row.Cells["Cedula"].Value),
                 Nombre     = (string)row.Cells["Nombre"].Value,
                 Apellido   = (string)row.Cells["Apellido"].Value,
                 Correo     = (string)row.Cells["Correo"].Value,
                 Telefono   = (string)row.Cells["Telefono"].Value,
                 Direccion  = (string)row.Cells["Direccion"].Value,
                 Contraseña = (string)row.Cells["Contraseña"].Value,
-                Rol        = CbxRol.SelectedIndex + 1,
-                Estado     = CbxEstado.SelectedIndex + 1
+                Rol        = Roles.BuscarIdRol((string)row.Cells["Rol"].Value),
+                Estado     = 1
             };
 
             if (Usuarios.InsertarUsuario(NuevoUsuario))
@@ -93,6 +175,26 @@ namespace Proyecto
 
                 CargarUsuarios();
             }
+        }
+
+        private void BtnInsertarUsu_Click(object sender, EventArgs e)
+        {
+            int SiguienteID = Usuarios.BuscarSiguienteId();
+
+            if (ValidarCampos(SiguienteID)) 
+            {
+                InsertarUsuario();
+            }
+        }
+
+        private void BtnModificarUsu_Click(object sender, EventArgs e)
+        {
+            int SiguienteID = 0;
+        }
+
+        private void BtnEliminarUsu_Click(object sender, EventArgs e)
+        {
+            int SiguienteID = 0;
         }
     }
 }

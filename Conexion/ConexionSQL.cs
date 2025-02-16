@@ -60,5 +60,45 @@ namespace Conexion
 
             return affectedRows > 0;
         }
+
+        public int BuscarIdEstado(string Tabla, string Nombre)
+        {
+            int Id = 0;
+
+            ConexionRetorno = ConexionBD();
+
+            cmd = new NpgsqlCommand("SELECT id FROM " + Tabla + " WHERE nombre_estado = '" + Nombre + "'", ConexionRetorno);
+
+            var dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Id = dr.GetInt32(0);
+            }
+
+            ConexionRetorno.Close();
+
+            return Id;
+        }
+
+        public string BuscarNombreEstado(string Tabla, int Id)
+        {
+            string Nombre = "";
+
+            ConexionRetorno = ConexionBD();
+
+            cmd = new NpgsqlCommand("SELECT nombre_estado FROM " + Tabla + " WHERE id = " + Id, ConexionRetorno);
+
+            var dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Nombre = dr.GetString(0);
+            }
+
+            ConexionRetorno.Close();
+
+            return Nombre;
+        }
     }
 }

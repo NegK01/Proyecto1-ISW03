@@ -66,5 +66,45 @@ namespace Conexion
 
             return ListaRoles;
         }
+
+        public int BuscarIdRol(string Nombre) 
+        {
+            int IdRol = 0;
+
+            ConexionRetorno = conexion.ConexionBD();
+
+            cmd = new NpgsqlCommand("SELECT id FROM rol WHERE tipo_rol = '" + Nombre + "'", ConexionRetorno);
+
+            var dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                IdRol = dr.GetInt32(0);
+            }
+
+            ConexionRetorno.Close();
+
+            return IdRol;
+        }
+
+        public string BuscarNombreRol(int Id)
+        {
+            string NombreRol = "";
+
+            ConexionRetorno = conexion.ConexionBD();
+
+            cmd = new NpgsqlCommand("SELECT tipo_rol FROM rol WHERE id = " + Id, ConexionRetorno);
+
+            var dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                 NombreRol = dr.GetString(0);
+            }
+
+            ConexionRetorno.Close();
+
+            return NombreRol;
+        }
     }
 }
