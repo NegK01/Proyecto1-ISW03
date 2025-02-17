@@ -381,8 +381,8 @@ namespace Proyecto
             }
             else
             {
-                MessageBox.Show("Error al actualizar el estado del rol.", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al actualizar el rol, asegurese de que no haya dependencias.", "Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 CargarRoles();
             }

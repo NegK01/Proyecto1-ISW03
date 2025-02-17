@@ -1,5 +1,6 @@
 ﻿//Using Añadidos
 using Npgsql;
+using System;
 
 namespace Conexion
 {
@@ -99,6 +100,22 @@ namespace Conexion
             ConexionRetorno.Close();
 
             return Nombre;
+        }
+
+        public bool ConfirmarDuplicidad(string tabla, string atributo, string valor, int idExclusion = -1)
+        {
+            using (ConexionRetorno = ConexionBD())
+            {
+                string query = "SELECT COUNT(*) FROM " + tabla + " WHERE " + atributo + " = '" + valor + "'";
+                if (idExclusion != -1)
+                {
+                    // Una exclusion para evitar que se considere a si mismo como un duplicado al hacer un update
+                    query += " AND id != " + idExclusion;
+                }
+                cmd = new NpgsqlCommand(query, ConexionRetorno);
+                long count = Convert.ToInt64(cmd.ExecuteScalar() ?? 0);
+                return count > 0; // True (Duplicados) - False (Sin Duplicidad)
+            }
         }
     }
 }

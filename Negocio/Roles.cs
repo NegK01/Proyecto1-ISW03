@@ -24,6 +24,11 @@ namespace Negocio
 
         public bool EliminarRol(int Id)
         {
+            if (conexionSQL.ConfirmarDuplicidad("usuario", "id_rol", Id.ToString()))
+            {
+                return false;
+            }
+
             return conexionSQL.CambiarEstadoCRUD(Id, Tabla);
         }
 
