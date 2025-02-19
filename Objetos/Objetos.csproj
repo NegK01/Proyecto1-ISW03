@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ObjRol.cs" />
+    <Compile Include="ObjCategoria.cs" />
     <Compile Include="ObjDistribuidor.cs" />
     <Compile Include="ObjProducto.cs" />
     <Compile Include="ObjUsuario.cs" />

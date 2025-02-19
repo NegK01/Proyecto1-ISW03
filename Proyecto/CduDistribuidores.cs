@@ -10,15 +10,15 @@ namespace Proyecto
     public partial class CduDistribuidores : UserControl
     {
         ObjDistribuidor objDistribuidor;
-        Distribuidor distribuidor;
+        Distribuidores distribuidor;
         List<ObjDistribuidor> listaObjDistribuidors;
 
         public CduDistribuidores()
         {
             InitializeComponent();
             objDistribuidor = new ObjDistribuidor();
-            distribuidor = new Distribuidor();
-            CargarDistribuidores();
+            distribuidor = new Distribuidores();
+            CargarTablaDistribuidores();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -30,7 +30,7 @@ namespace Proyecto
                 {
                     MessageBox.Show("Distribuidor agregado correctamente.", "Distribuidor agregado",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarDistribuidores();
+                    CargarTablaDistribuidores();
                 }
                 else
                 {
@@ -49,7 +49,7 @@ namespace Proyecto
                 {
                     MessageBox.Show("Distribuidor actualizado correctamente.", "Distribuidor actualizado",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarDistribuidores();
+                    CargarTablaDistribuidores();
                 }
                 else
                 {
@@ -68,24 +68,25 @@ namespace Proyecto
                 {
                     MessageBox.Show("Distribuidor eliminado correctamente.", "Distribuidor eliminado",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarDistribuidores();
+                    CargarTablaDistribuidores();
                 }
                 else
                 {
-                    MessageBox.Show("Error al eliminar el distribuidor.", "Error",
+                    MessageBox.Show("Error al eliminar el distribuidor, asegurese de que no haya dependencias.", "Error",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-        public void CargarDistribuidores()
+        public void CargarTablaDistribuidores()
         {
             listaObjDistribuidors = distribuidor.ObtenerDistribuidores();
             DgvTablaDistribuidores.Rows.Clear();
             foreach (ObjDistribuidor obj in listaObjDistribuidors)
             {
-                DgvTablaDistribuidores.Rows.Add(obj.Id, obj.Nombre, obj.Contacto);
+                DgvTablaDistribuidores.Rows.Add(obj.Id, obj.Nombre, obj.Contacto, obj.Id_Estado);
             }
+            DgvTablaDistribuidores.Sort(DgvTablaDistribuidores.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
         }
 
         private void RecogerDatosDgv()
@@ -93,6 +94,7 @@ namespace Proyecto
             objDistribuidor.Id = Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[0].Value);
             objDistribuidor.Nombre = DgvTablaDistribuidores.CurrentRow.Cells[1].Value.ToString();
             objDistribuidor.Contacto = DgvTablaDistribuidores.CurrentRow.Cells[2].Value.ToString();
+            objDistribuidor.Id_Estado = Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[3].Value);
         }
 
         private bool ValidarCampos()
@@ -103,18 +105,10 @@ namespace Proyecto
                 return false;
             }
 
-            int id = DgvTablaDistribuidores.CurrentRow.Cells[0].Value != null ? Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[0].Value) : 0;
             string nombre = DgvTablaDistribuidores.CurrentRow.Cells[1].Value != null ? DgvTablaDistribuidores.CurrentRow.Cells[1].Value.ToString() : string.Empty;
             string contacto = DgvTablaDistribuidores.CurrentRow.Cells[2].Value != null ? DgvTablaDistribuidores.CurrentRow.Cells[2].Value.ToString() : string.Empty;
             Regex regexNombre = new Regex(@"^(?! )[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+(?<! )$");
             Regex regexContacto = new Regex(@"^\d{8}$");
-
-            if (id == 0)
-            {
-                MessageBox.Show("No se ha seleccionado un distribuidor.", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
 
             if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(contacto))
             {

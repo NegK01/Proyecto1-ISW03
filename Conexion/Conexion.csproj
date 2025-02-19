@@ -109,7 +109,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BDDistribuidor.cs" />
+    <Compile Include="BDCategorias.cs" />
+    <Compile Include="BDDistribuidores.cs" />
     <Compile Include="BDUsuarios.cs" />
     <Compile Include="BDProductos.cs" />
     <Compile Include="BDRoles.cs" />

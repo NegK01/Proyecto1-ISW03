@@ -43,7 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Roles.cs" />
-    <Compile Include="Distribuidor.cs" />
+    <Compile Include="Categorias.cs" />
+    <Compile Include="Distribuidores.cs" />
     <Compile Include="Productos.cs" />
     <Compile Include="Usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

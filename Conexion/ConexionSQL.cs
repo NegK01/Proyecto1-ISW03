@@ -102,6 +102,39 @@ namespace Conexion
             return Nombre;
         }
 
+        public string BuscarNombreXIdBD(string Tabla, int Id)
+        {
+            string Nombre = "";
+
+            using (ConexionRetorno = ConexionBD())
+            {
+                cmd = new NpgsqlCommand("SELECT nombre FROM " + Tabla + " WHERE id = " + Id, ConexionRetorno);
+
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Nombre = dr.GetString(0);
+                }
+            }
+
+            return Nombre;
+        }
+
+        public int BuscarIdXNombreBD(string Tabla, string Nombre)
+        {
+            int Id = 0;
+            using (ConexionRetorno = ConexionBD())
+            {
+                cmd = new NpgsqlCommand("SELECT id FROM " + Tabla + " WHERE nombre = '" + Nombre + "'", ConexionRetorno);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Id = dr.GetInt32(0);
+                }
+            }
+            return Id;
+        }
+
         public bool ConfirmarDuplicidad(string tabla, string atributo, string valor, int idExclusion = -1)
         {
             using (ConexionRetorno = ConexionBD())
