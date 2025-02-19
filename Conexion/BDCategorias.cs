@@ -56,7 +56,7 @@ namespace Conexion
                 cmd = new NpgsqlCommand("SELECT COUNT(*) FROM producto WHERE id_categoria = " + idCategoria, conexionRetorno);
                 var count = (long)cmd.ExecuteScalar();
                 return count > 0;
-            }   
+            }
         }
 
         public List<ObjCategoria> ObtenerCategoriasBD()

@@ -28,12 +28,14 @@ namespace Proyecto
 
         private void InicializarClases()
         {
-            animador = new AnimarPanel(panel1, btnExpandirMenu, panel2);
+            animador = new AnimarPanel(panel1, panel2, btnExpandirMenu, btnUsuarios, btnProductos, btnOrdenes, btnDistribuidores);
         }
 
         private void btnExpandirMenu_Click(object sender, System.EventArgs e)
         {
+
             animador.AlternarAnimacion();
+            panel1.SendToBack();
         }
 
         public void CargarCdu(UserControl cdu)

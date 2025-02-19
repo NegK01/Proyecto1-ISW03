@@ -98,8 +98,8 @@ namespace Proyecto
                 {
                     MessageBox.Show("Categoria agregada correctamente.", "Categoria agregada",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarTablaCategorias();
                     CargarTablaProductos();
+                    CargarTablaCategorias();
                 }
                 else
                 {
@@ -118,8 +118,8 @@ namespace Proyecto
                 {
                     MessageBox.Show("Categoria actualizada correctamente.", "Categoria actualizada",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarTablaCategorias();
                     CargarTablaProductos();
+                    CargarTablaCategorias();
                 }
                 else
                 {
@@ -252,7 +252,7 @@ namespace Proyecto
         private void CargarDistribuidores()
         {
             DataGridViewComboBoxColumn cbxDistribuidores = dgvTablaProductos.Columns[6] as DataGridViewComboBoxColumn;
-            
+
             if (cbxDistribuidores != null)
             {
                 cbxDistribuidores.Items.Clear();
