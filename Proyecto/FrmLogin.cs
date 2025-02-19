@@ -42,7 +42,10 @@ namespace Proyecto
                 {
                     Cedula = Convert.ToInt32(TxtCedula.Text),
                     Contraseña = Usuarios.EncriptarMD5(TxtContraseña.Text)
+
                 };
+                string Contraseña = Usuarios.EncriptarMD5(TxtContraseña.Text);
+                Console.WriteLine(Contraseña);
 
                 Comprobacion = Usuarios.InicioSecion(NuevoUsuario);
             }

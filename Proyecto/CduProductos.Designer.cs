@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvTablaProductos = new System.Windows.Forms.DataGridView();
             this.dgvIdPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvNombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,9 +75,9 @@
             this.dgvIdDistribuidor,
             this.dgvIdEstado,
             this.dgvFechaExpiracion});
-            this.dgvTablaProductos.Location = new System.Drawing.Point(8, 6);
+            this.dgvTablaProductos.Location = new System.Drawing.Point(16, 35);
             this.dgvTablaProductos.Name = "dgvTablaProductos";
-            this.dgvTablaProductos.Size = new System.Drawing.Size(701, 285);
+            this.dgvTablaProductos.Size = new System.Drawing.Size(701, 349);
             this.dgvTablaProductos.TabIndex = 0;
             // 
             // dgvIdPro
@@ -133,9 +137,9 @@
             // 
             // btnAgregarPro
             // 
-            this.btnAgregarPro.Location = new System.Drawing.Point(205, 312);
+            this.btnAgregarPro.Location = new System.Drawing.Point(229, 399);
             this.btnAgregarPro.Name = "btnAgregarPro";
-            this.btnAgregarPro.Size = new System.Drawing.Size(92, 29);
+            this.btnAgregarPro.Size = new System.Drawing.Size(92, 39);
             this.btnAgregarPro.TabIndex = 1;
             this.btnAgregarPro.Text = "Agregar";
             this.btnAgregarPro.UseVisualStyleBackColor = true;
@@ -143,9 +147,9 @@
             // 
             // btnActualizarPro
             // 
-            this.btnActualizarPro.Location = new System.Drawing.Point(303, 312);
+            this.btnActualizarPro.Location = new System.Drawing.Point(327, 399);
             this.btnActualizarPro.Name = "btnActualizarPro";
-            this.btnActualizarPro.Size = new System.Drawing.Size(92, 29);
+            this.btnActualizarPro.Size = new System.Drawing.Size(92, 39);
             this.btnActualizarPro.TabIndex = 2;
             this.btnActualizarPro.Text = "Actualizar";
             this.btnActualizarPro.UseVisualStyleBackColor = true;
@@ -153,9 +157,9 @@
             // 
             // btnEliminarPro
             // 
-            this.btnEliminarPro.Location = new System.Drawing.Point(401, 312);
+            this.btnEliminarPro.Location = new System.Drawing.Point(425, 399);
             this.btnEliminarPro.Name = "btnEliminarPro";
-            this.btnEliminarPro.Size = new System.Drawing.Size(92, 29);
+            this.btnEliminarPro.Size = new System.Drawing.Size(92, 39);
             this.btnEliminarPro.TabIndex = 3;
             this.btnEliminarPro.Text = "Eliminar";
             this.btnEliminarPro.UseVisualStyleBackColor = true;
@@ -165,10 +169,11 @@
             // 
             this.tcProductos.Controls.Add(this.tabProductos);
             this.tcProductos.Controls.Add(this.tabCategorias);
-            this.tcProductos.Location = new System.Drawing.Point(3, 38);
+            this.tcProductos.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tcProductos.Location = new System.Drawing.Point(3, 3);
             this.tcProductos.Name = "tcProductos";
             this.tcProductos.SelectedIndex = 0;
-            this.tcProductos.Size = new System.Drawing.Size(723, 388);
+            this.tcProductos.Size = new System.Drawing.Size(751, 503);
             this.tcProductos.TabIndex = 4;
             // 
             // tabProductos
@@ -177,10 +182,10 @@
             this.tabProductos.Controls.Add(this.dgvTablaProductos);
             this.tabProductos.Controls.Add(this.btnActualizarPro);
             this.tabProductos.Controls.Add(this.btnAgregarPro);
-            this.tabProductos.Location = new System.Drawing.Point(4, 22);
+            this.tabProductos.Location = new System.Drawing.Point(4, 23);
             this.tabProductos.Name = "tabProductos";
             this.tabProductos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabProductos.Size = new System.Drawing.Size(715, 362);
+            this.tabProductos.Size = new System.Drawing.Size(743, 476);
             this.tabProductos.TabIndex = 0;
             this.tabProductos.Text = "Productos";
             this.tabProductos.UseVisualStyleBackColor = true;
@@ -191,19 +196,19 @@
             this.tabCategorias.Controls.Add(this.btnActualizarCat);
             this.tabCategorias.Controls.Add(this.btnAgregarCat);
             this.tabCategorias.Controls.Add(this.dgvTablaCategorias);
-            this.tabCategorias.Location = new System.Drawing.Point(4, 22);
+            this.tabCategorias.Location = new System.Drawing.Point(4, 23);
             this.tabCategorias.Name = "tabCategorias";
             this.tabCategorias.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCategorias.Size = new System.Drawing.Size(715, 362);
+            this.tabCategorias.Size = new System.Drawing.Size(743, 476);
             this.tabCategorias.TabIndex = 1;
             this.tabCategorias.Text = "Categorias";
             this.tabCategorias.UseVisualStyleBackColor = true;
             // 
             // btnEliminarCat
             // 
-            this.btnEliminarCat.Location = new System.Drawing.Point(382, 284);
+            this.btnEliminarCat.Location = new System.Drawing.Point(439, 318);
             this.btnEliminarCat.Name = "btnEliminarCat";
-            this.btnEliminarCat.Size = new System.Drawing.Size(92, 29);
+            this.btnEliminarCat.Size = new System.Drawing.Size(92, 35);
             this.btnEliminarCat.TabIndex = 6;
             this.btnEliminarCat.Text = "Eliminar";
             this.btnEliminarCat.UseVisualStyleBackColor = true;
@@ -211,9 +216,9 @@
             // 
             // btnActualizarCat
             // 
-            this.btnActualizarCat.Location = new System.Drawing.Point(284, 284);
+            this.btnActualizarCat.Location = new System.Drawing.Point(341, 318);
             this.btnActualizarCat.Name = "btnActualizarCat";
-            this.btnActualizarCat.Size = new System.Drawing.Size(92, 29);
+            this.btnActualizarCat.Size = new System.Drawing.Size(92, 35);
             this.btnActualizarCat.TabIndex = 5;
             this.btnActualizarCat.Text = "Actualizar";
             this.btnActualizarCat.UseVisualStyleBackColor = true;
@@ -221,9 +226,9 @@
             // 
             // btnAgregarCat
             // 
-            this.btnAgregarCat.Location = new System.Drawing.Point(186, 284);
+            this.btnAgregarCat.Location = new System.Drawing.Point(243, 318);
             this.btnAgregarCat.Name = "btnAgregarCat";
-            this.btnAgregarCat.Size = new System.Drawing.Size(92, 29);
+            this.btnAgregarCat.Size = new System.Drawing.Size(92, 35);
             this.btnAgregarCat.TabIndex = 4;
             this.btnAgregarCat.Text = "Agregar";
             this.btnAgregarCat.UseVisualStyleBackColor = true;
@@ -231,29 +236,38 @@
             // 
             // dgvTablaCategorias
             // 
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvTablaCategorias.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvTablaCategorias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTablaCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTablaCategorias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvIdCat,
             this.dgvNombreCat,
             this.dgvIdEstadoCat});
-            this.dgvTablaCategorias.Location = new System.Drawing.Point(117, 59);
+            this.dgvTablaCategorias.Location = new System.Drawing.Point(117, 37);
             this.dgvTablaCategorias.Name = "dgvTablaCategorias";
-            this.dgvTablaCategorias.Size = new System.Drawing.Size(441, 219);
+            this.dgvTablaCategorias.Size = new System.Drawing.Size(536, 275);
             this.dgvTablaCategorias.TabIndex = 0;
             // 
             // dgvIdCat
             // 
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvIdCat.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvIdCat.HeaderText = "Código";
             this.dgvIdCat.Name = "dgvIdCat";
             this.dgvIdCat.ReadOnly = true;
             // 
             // dgvNombreCat
             // 
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvNombreCat.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvNombreCat.HeaderText = "Nombre";
             this.dgvNombreCat.Name = "dgvNombreCat";
             // 
             // dgvIdEstadoCat
             // 
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvIdEstadoCat.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvIdEstadoCat.HeaderText = "Estado";
             this.dgvIdEstadoCat.Name = "dgvIdEstadoCat";
             this.dgvIdEstadoCat.ReadOnly = true;
@@ -264,7 +278,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tcProductos);
             this.Name = "CduProductos";
-            this.Size = new System.Drawing.Size(754, 507);
+            this.Size = new System.Drawing.Size(754, 506);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTablaProductos)).EndInit();
             this.tcProductos.ResumeLayout(false);
             this.tabProductos.ResumeLayout(false);
@@ -287,9 +301,6 @@
         private System.Windows.Forms.Button btnEliminarCat;
         private System.Windows.Forms.Button btnActualizarCat;
         private System.Windows.Forms.Button btnAgregarCat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvIdCat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvNombreCat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvIdEstadoCat;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvIdPro;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvNombreProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvPrecio;
@@ -299,5 +310,8 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn dgvIdDistribuidor;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvIdEstado;
         private DataGridViewDateTimePickerColumn.DataGridViewDateTimePickerColumn dgvFechaExpiracion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvIdCat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvNombreCat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvIdEstadoCat;
     }
 }

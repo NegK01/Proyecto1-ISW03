@@ -84,7 +84,10 @@ namespace Proyecto
             DgvTablaDistribuidores.Rows.Clear();
             foreach (ObjDistribuidor obj in listaObjDistribuidors)
             {
-                DgvTablaDistribuidores.Rows.Add(obj.Id, obj.Nombre, obj.Contacto, obj.Id_Estado);
+
+                string nombreEstado = distribuidor.BuscarNombreEstado(obj.Id_Estado);
+
+                DgvTablaDistribuidores.Rows.Add(obj.Id, obj.Nombre, obj.Contacto, nombreEstado);
             }
             DgvTablaDistribuidores.Sort(DgvTablaDistribuidores.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
         }
@@ -94,7 +97,7 @@ namespace Proyecto
             objDistribuidor.Id = Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[0].Value);
             objDistribuidor.Nombre = DgvTablaDistribuidores.CurrentRow.Cells[1].Value.ToString();
             objDistribuidor.Contacto = DgvTablaDistribuidores.CurrentRow.Cells[2].Value.ToString();
-            objDistribuidor.Id_Estado = Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[3].Value);
+            objDistribuidor.Id_Estado = Convert.ToInt32(distribuidor.BuscarIdEstado(DgvTablaDistribuidores.CurrentRow.Cells[3].Value.ToString()));
         }
 
         private bool ValidarCampos()

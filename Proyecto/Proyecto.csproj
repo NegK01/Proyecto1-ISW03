@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DataGridViewDateTimePickerColumn">
-      <HintPath>..\..\DataGridViewDateTimePickerColumn\DataGridViewDateTimePickerColumn\bin\Debug\DataGridViewDateTimePickerColumn.dll</HintPath>
+      <HintPath>..\..\Librerias\DataGridViewDateTimePickerColumn.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

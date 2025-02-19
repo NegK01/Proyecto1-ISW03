@@ -159,9 +159,7 @@ namespace Proyecto
 
             objProducto.Id_Categoria = categorias.BuscarIdXNombre(dgvTablaProductos.CurrentRow.Cells["dgvIdCategoria"].Value.ToString());
             objProducto.Id_Distribuidor = distribuidores.BuscarIdXNombre(dgvTablaProductos.CurrentRow.Cells["dgvIdDistribuidor"].Value.ToString());
-
-            objProducto.Id_Estado = Convert.ToInt32(dgvTablaProductos.CurrentRow.Cells["dgvIdEstado"].Value);
-
+            objProducto.Id_Estado = Convert.ToInt32(productos.BuscarIdEstado(dgvTablaProductos.CurrentRow.Cells["dgvIdEstado"].Value.ToString()));
             objProducto.FechaExpiracion = DateTime.Parse(dgvTablaProductos.CurrentRow.Cells["dgvFechaExpiracion"].Value.ToString());
         }
 
@@ -170,7 +168,7 @@ namespace Proyecto
 
             objCategoria.Id = Convert.ToInt32(dgvTablaCategorias.CurrentRow.Cells[0].Value);
             objCategoria.NombreCategoria = dgvTablaCategorias.CurrentRow.Cells[1].Value.ToString();
-            objCategoria.Id_Estado = Convert.ToInt32(dgvTablaCategorias.CurrentRow.Cells[2].Value);
+            objCategoria.Id_Estado = Convert.ToInt32(categorias.BuscarIdEstado(dgvTablaCategorias.CurrentRow.Cells[2].Value.ToString()));
         }
 
         private bool ValidarCampos()
@@ -280,7 +278,6 @@ namespace Proyecto
             }
         }
 
-
         private void CargarProductos()
         {
             List<ObjProducto> listaObjProductos = productos.ObtenerProductos();
@@ -298,7 +295,7 @@ namespace Proyecto
                 dgvTablaProductos.Rows[i].Cells["dgvDescProducto"].Value = obj.DescripcionProducto;
                 dgvTablaProductos.Rows[i].Cells["dgvIdCategoria"].Value = categorias.BuscarNombreXId(obj.Id_Categoria);
                 dgvTablaProductos.Rows[i].Cells["dgvIdDistribuidor"].Value = distribuidores.BuscarNombreXId(obj.Id_Distribuidor);
-                dgvTablaProductos.Rows[i].Cells["dgvIdEstado"].Value = obj.Id_Estado;
+                dgvTablaProductos.Rows[i].Cells["dgvIdEstado"].Value = productos.BuscarNombreEstado(obj.Id_Estado);
                 dgvTablaProductos.Rows[i].Cells["dgvFechaExpiracion"].Value = obj.FechaExpiracion;
             }
             dgvTablaProductos.Sort(dgvTablaProductos.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
@@ -315,7 +312,7 @@ namespace Proyecto
 
                 dgvTablaCategorias.Rows[i].Cells["dgvIdCat"].Value = obj.Id;
                 dgvTablaCategorias.Rows[i].Cells["dgvNombreCat"].Value = obj.NombreCategoria;
-                dgvTablaCategorias.Rows[i].Cells["dgvIdEstadoCat"].Value = obj.Id_Estado;
+                dgvTablaCategorias.Rows[i].Cells["dgvIdEstadoCat"].Value = categorias.BuscarNombreEstado(obj.Id_Estado);
             }
             dgvTablaCategorias.Sort(dgvTablaCategorias.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
         }
