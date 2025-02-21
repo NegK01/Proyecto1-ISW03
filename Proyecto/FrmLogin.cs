@@ -9,7 +9,6 @@ namespace Proyecto
     public partial class FrmLogin : Form
     {
         Usuarios Usuarios = new Usuarios();
-
         public FrmLogin()
         {
             InitializeComponent();
@@ -34,7 +33,7 @@ namespace Proyecto
 
         public void InicioSesion()
         {
-            bool Comprobacion = false;
+            ObjUsuario UsuarioDado;
 
             if (!string.IsNullOrEmpty(TxtCedula.Text) || !string.IsNullOrEmpty(TxtContraseña.Text))
             {
@@ -47,7 +46,7 @@ namespace Proyecto
                 string Contraseña = Usuarios.EncriptarMD5(TxtContraseña.Text);
                 Console.WriteLine(Contraseña);
 
-                Comprobacion = Usuarios.InicioSecion(NuevoUsuario);
+                UsuarioDado = Usuarios.InicioSecion(NuevoUsuario);
             }
             else
             {
@@ -57,11 +56,11 @@ namespace Proyecto
                 return;
             }
 
-            if (Comprobacion)
+            if (UsuarioDado.Id != 0)
             {
                 Visible = false;
 
-                FrmPrincipal Principal = new FrmPrincipal();
+                FrmPrincipal Principal = new FrmPrincipal(UsuarioDado);
                 Principal.Visible = true;
             }
             else

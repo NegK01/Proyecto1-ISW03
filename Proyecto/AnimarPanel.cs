@@ -82,7 +82,7 @@ public class AnimarPanel
         //int objetivoPanel = expandido ? -panelAnchoOriginal + expMenu.Width : 0;
         // Versión modificada para mostrar la mitad
         int objetivoPanel = expandido ? -(panelAnchoOriginal * 75 / 100) : 0; // 50% del ancho
-        int objetivoPanelContenedor = expandido ? 55 : panel.Width-55;
+        int objetivoPanelContenedor = expandido ? 55 : panel.Width - 55;
 
         // Mover el panel principal
         panel.Left = Suavizar(panel.Left, objetivoPanel, velocidad);
@@ -119,7 +119,7 @@ public class AnimarPanel
 
             // Mantenemos el ajuste de ancho si es necesario
             boton.Width = Suavizar(boton.Width, expandido ? expMenu.Width : botonesOriginales[i].Width, velocidad);
-            
+
         }
 
         // Verificar finalización
@@ -144,7 +144,7 @@ public class AnimarPanel
         //panel.Left = expandido ? 0 : -panelAnchoOriginal + expMenu.Width;
         // Ajuste preciso final para el panel (mitad del ancho)
         panel.Left = expandido ? 0 : -(panelAnchoOriginal * 75 / 100);
-        panelContenedor.Left = !expandido ? 55 : panel.Width-55;
+        panelContenedor.Left = !expandido ? 55 : panel.Width - 55;
 
         // Ajuste preciso para los botones
         foreach (var (boton, i) in botones.Select((b, i) => (b, i)))

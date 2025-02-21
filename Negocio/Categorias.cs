@@ -35,8 +35,6 @@ namespace Negocio
             return conexionSQL.CambiarEstadoCRUD(id, "categoria");
         }
 
-
-
         public List<ObjCategoria> ObtenerCategorias()
         {
             return bdCategorias.ObtenerCategoriasBD();

@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using Objetos;
+using System.Windows.Forms;
 
 namespace Proyecto
 {
@@ -10,11 +11,16 @@ namespace Proyecto
         private CduOrdenes cduOrdenes;
         private CduDistribuidores cduDistribuidores;
 
-        public FrmPrincipal()
+        public static ObjUsuario Usuario;
+
+        public FrmPrincipal(ObjUsuario UsuarioDado)
         {
             InitializeComponent();
             InicializarControles();
             InicializarClases();
+
+            Usuario = UsuarioDado;
+            RestringuirAcceso();
         }
 
         private void InicializarControles()
@@ -29,6 +35,16 @@ namespace Proyecto
         private void InicializarClases()
         {
             animador = new AnimarPanel(panel1, panel2, btnExpandirMenu, btnUsuarios, btnProductos, btnOrdenes, btnDistribuidores);
+        }
+
+        public void RestringuirAcceso()
+        {
+            if (Usuario.Rol != 1)
+            {
+                btnUsuarios.Visible = false;
+                btnProductos.Visible = false;
+                btnDistribuidores.Visible = false;
+            }
         }
 
         private void btnExpandirMenu_Click(object sender, System.EventArgs e)
