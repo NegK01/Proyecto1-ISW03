@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvTablaProductos = new System.Windows.Forms.DataGridView();
             this.dgvIdPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvNombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,6 +64,7 @@
             // 
             // dgvTablaProductos
             // 
+            this.dgvTablaProductos.BackgroundColor = System.Drawing.Color.White;
             this.dgvTablaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTablaProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvIdPro,
@@ -236,9 +237,10 @@
             // 
             // dgvTablaCategorias
             // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvTablaCategorias.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvTablaCategorias.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTablaCategorias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvTablaCategorias.BackgroundColor = System.Drawing.Color.White;
             this.dgvTablaCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTablaCategorias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvIdCat,
@@ -251,23 +253,23 @@
             // 
             // dgvIdCat
             // 
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvIdCat.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvIdCat.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvIdCat.HeaderText = "Código";
             this.dgvIdCat.Name = "dgvIdCat";
             this.dgvIdCat.ReadOnly = true;
             // 
             // dgvNombreCat
             // 
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvNombreCat.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvNombreCat.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvNombreCat.HeaderText = "Nombre";
             this.dgvNombreCat.Name = "dgvNombreCat";
             // 
             // dgvIdEstadoCat
             // 
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvIdEstadoCat.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvIdEstadoCat.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvIdEstadoCat.HeaderText = "Estado";
             this.dgvIdEstadoCat.Name = "dgvIdEstadoCat";
             this.dgvIdEstadoCat.ReadOnly = true;
@@ -276,6 +278,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tcProductos);
             this.Name = "CduProductos";
             this.Size = new System.Drawing.Size(754, 506);

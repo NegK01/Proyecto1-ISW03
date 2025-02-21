@@ -28,7 +28,7 @@ namespace Proyecto
 
         private void InicializarClases()
         {
-            animador = new AnimarPanel(panel1, panel2, btnExpandirMenu, btnUsuarios, btnProductos, btnOrdenes, btnDistribuidores);
+            animador = new AnimarPanel(panel1, panel2, btnExpandirMenu, btnUsuarios, btnOrdenes, btnDistribuidores);
         }
 
         private void btnExpandirMenu_Click(object sender, System.EventArgs e)

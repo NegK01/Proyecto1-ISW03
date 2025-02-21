@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DgvTablaUsuarios = new System.Windows.Forms.DataGridView();
             this.IdU = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CedulaU = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,8 +69,8 @@
             // 
             // DgvTablaUsuarios
             // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DgvTablaUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DgvTablaUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DgvTablaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvTablaUsuarios.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.DgvTablaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -134,8 +134,8 @@
             // 
             // RolU
             // 
-            dataGridViewCellStyle4.Format = "....";
-            this.RolU.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Format = "....";
+            this.RolU.DefaultCellStyle = dataGridViewCellStyle2;
             this.RolU.HeaderText = "Tipo de rol";
             this.RolU.Name = "RolU";
             this.RolU.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -195,11 +195,11 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.PnlFondoRoles);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 23);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(711, 481);
+            this.tabPage2.Size = new System.Drawing.Size(711, 480);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Gestion de roles";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -215,6 +215,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.DgvTablaRoles);
             this.panel2.Controls.Add(this.BtnInsertarR);
             this.panel2.Controls.Add(this.BtnEliminarR);
@@ -318,6 +319,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.TabControlUsuarios);
             this.Name = "CduUsuarios";
             this.Size = new System.Drawing.Size(719, 507);
