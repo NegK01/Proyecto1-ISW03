@@ -16,11 +16,10 @@ namespace Proyecto
         public FrmPrincipal(ObjUsuario UsuarioDado)
         {
             InitializeComponent();
-            InicializarControles();
-            InicializarClases();
-
             Usuario = UsuarioDado;
+            InicializarControles();
             RestringuirAcceso();
+            InicializarClases();
         }
 
         private void InicializarControles()
@@ -29,21 +28,24 @@ namespace Proyecto
             cduProductos = new CduProductos();
             cduOrdenes = new CduOrdenes();
             cduDistribuidores = new CduDistribuidores();
-            //CargarCdu(cduUsuarios); // Tal vez colocar como primera vista un dashboard, el pago del producto o la creacion de un usuario
         }
 
         private void InicializarClases()
         {
-            animador = new AnimarPanel(panel1, panel2, btnExpandirMenu, btnUsuarios, btnOrdenes, btnDistribuidores);
+            animador = new AnimarPanel(panel1, panel2, panel3, btnExpandirMenu, btnDashboard, btnUsuarios, btnProductos, btnOrdenes, btnDistribuidores, btnReportes, btnCerrarSesion);
         }
 
         public void RestringuirAcceso()
         {
             if (Usuario.Rol != 1)
             {
-                btnUsuarios.Visible = false;
-                btnProductos.Visible = false;
-                btnDistribuidores.Visible = false;
+                //btnDashboard.SetBounds(13, 190, 146, 28);
+                //btnOrdenes.SetBounds(12, 239, 146, 28);
+                btnOrdenes.SetBounds(13, 141, 146, 28);
+                panel1.Controls.Remove(btnUsuarios);
+                panel1.Controls.Remove(btnProductos);
+                panel1.Controls.Remove(btnDistribuidores);
+                panel1.Controls.Remove(btnReportes);
             }
         }
 
@@ -79,6 +81,24 @@ namespace Proyecto
         private void btnDistribuidores_Click(object sender, System.EventArgs e)
         {
             CargarCdu(cduDistribuidores);
+        }
+
+        private void btnDashboard_Click(object sender, System.EventArgs e)
+        {
+            panel2.Controls.Clear();
+            panel2.Controls.Add(pictureBox3);
+        }
+
+        private void btnReportes_Click(object sender, System.EventArgs e)
+        {
+            CargarCdu(new CduReportes());
+        }
+
+        private void btnCerrarSesion_Click(object sender, System.EventArgs e)
+        {
+            FrmLogin login = new FrmLogin();
+            login.Visible = true;
+            Visible = false;
         }
     }
 }

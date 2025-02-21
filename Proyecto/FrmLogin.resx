@@ -121,7 +121,7 @@
   <data name="BtnIngresar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAWEAAAArCAYAAACpSzlpAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAK
-        dAAACnQBmGI/GQAABf1JREFUeF7tnT1v21YUhgm0ogR00ZaxnrJWS7LGS2d7iGd7yG4D6W4D+QEK6h/g
+        cwAACnMByiaZZgAABf1JREFUeF7tnT1v21YUhgm0ogR00ZaxnrJWS7LGS2d7iGd7yG4D6W4D+QEK6h/g
         on+ApZS0QwMoHjrYQ9QiGVqgqYoOzdAAaoZ0aAcW76WOfHVJRbREu0X0HOCBLd5zvzi8OvfwXiqKVrGk
         3Y568XbUa3ajfpxEveYo6sXjqNfMAADeT+Jx1G8OnOb1m/vR40YnlMart35r0w2iMDgAgDUkbY6itLUb
         Ja2NUC7rNYmvi3ZLBgEAAFn0VaNbvxirQSJfAIBqWGRciyWtPfK8AABL4KLidjuU1eqWto4KjQIAQHXS
@@ -150,13 +150,10 @@
         RU5ErkJggg==
 </value>
   </data>
-  <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARMAAAA6CAYAAACTfb3yAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAQ
-        mwAAEJsBdImcSwAADBJJREFUeF7tndtx4zoShiHallS1L87geGsse2pfdjI4zmAmg3UGMxl4MvDJwJuB
+        mgAAEJoBps5+rwAADBJJREFUeF7tndtx4zoShiHallS1L87geGsse2pfdjI4zmAmg3UGMxl4MvDJwJuB
         VnLNs0NwCApBIZytBkQJbPSPC0HK8ri/qi5XWRBBEt0/GxdCxiiKoiiKoiiKoiiKoiiKoiiKoiiKoii/
         Pev5vXmePnRt9t2sL+7N8/md+XXxhX9FURQlZD37O8ueZ6/mebo0q/l/zHJ+xQ+jKMpHh4tGrj3PXqyw
         KIqiWLhIlNpqtlFR+aBcmUtze/Yi2FdeVPkIrKfbQCD62Gr6kx96MJaXl7ZrRUbjOK1pd+tt+WyuzE3z
