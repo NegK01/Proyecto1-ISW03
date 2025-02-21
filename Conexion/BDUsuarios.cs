@@ -18,7 +18,7 @@ namespace Conexion
 
             ConexionRetorno = conexion.ConexionBD();
 
-            cmd = new NpgsqlCommand("SELECT id, contrasena FROM usuario WHERE cedula = " + NuevoUsuario.Cedula + " " +
+            cmd = new NpgsqlCommand("SELECT id, contrasena, id_rol FROM usuario WHERE cedula = " + NuevoUsuario.Cedula + " " +
                                     "AND contrasena = '" + NuevoUsuario.Contraseña + "' AND id_estado = 1 ",
                                     ConexionRetorno);
 
@@ -30,6 +30,7 @@ namespace Conexion
                 {
                     Id = dr.GetInt32(0),
                     Contraseña = dr.GetString(1),
+                    Rol = dr.GetInt32(2)
                 };
             }
 

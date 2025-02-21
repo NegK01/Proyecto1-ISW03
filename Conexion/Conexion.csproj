@@ -114,6 +114,7 @@
     <Compile Include="BDUsuarios.cs" />
     <Compile Include="BDProductos.cs" />
     <Compile Include="BDRoles.cs" />
+    <Compile Include="BDOrdenes.cs" />
     <Compile Include="ConexionSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -11,21 +11,16 @@ namespace Negocio
     {
         BDUsuarios bdUsuarios = new BDUsuarios();
         ConexionSQL conexionSQL = new ConexionSQL();
-
-        public string Tabla = "usuario";
-
-        public bool InicioSecion(ObjUsuario NuevoUsuario)
+        public ObjUsuario InicioSecion(ObjUsuario NuevoUsuario)
         {
-            bool Comprobacion = false;
-
             ObjUsuario UsuarioDado = bdUsuarios.InicioSesion(NuevoUsuario);
 
             if (UsuarioDado.Id != 0 && UsuarioDado.Contraseña != null)
             {
-                Comprobacion = true;
+                return UsuarioDado;
             }
 
-            return Comprobacion;
+            return new ObjUsuario();
         }
 
         public bool InsertarUsuario(ObjUsuario NuevoUsuario)
@@ -40,26 +35,22 @@ namespace Negocio
 
         public bool EliminarUsuario(int Id)
         {
-            return conexionSQL.CambiarEstadoCRUD(Id, Tabla);
+            return conexionSQL.CambiarEstadoCRUD(Id, "usuario");
         }
 
         public int BuscarSiguienteId()
         {
-            return conexionSQL.BuscarSiguienteId(Tabla);
+            return conexionSQL.BuscarSiguienteId("usuario");
         }
 
         public int BuscarIdEstado(string Nombre)
         {
-            string TablaEstado = "estado";
-
-            return conexionSQL.BuscarIdEstado(TablaEstado, Nombre);
+            return conexionSQL.BuscarIdEstado("estado", Nombre);
         }
 
         public string BuscarNombreEstado(int Id)
         {
-            string TablaEstado = "estado";
-
-            return conexionSQL.BuscarNombreEstado(TablaEstado, Id);
+            return conexionSQL.BuscarNombreEstado("estado", Id);
         }
 
         public List<ObjUsuario> CargarUsuarios()

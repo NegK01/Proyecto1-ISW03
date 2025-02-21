@@ -10,8 +10,6 @@ namespace Negocio
         BDRoles bdRoles = new BDRoles();
         ConexionSQL conexionSQL = new ConexionSQL();
 
-        public string Tabla = "rol";
-
         public bool InsertarRol(ObjRol NuevoRol)
         {
             return bdRoles.InsertarRol(NuevoRol);
@@ -29,12 +27,12 @@ namespace Negocio
                 return false;
             }
 
-            return conexionSQL.CambiarEstadoCRUD(Id, Tabla);
+            return conexionSQL.CambiarEstadoCRUD(Id, "rol");
         }
 
         public int BuscarSiguienteId()
         {
-            return conexionSQL.BuscarSiguienteId(Tabla);
+            return conexionSQL.BuscarSiguienteId("rol");
         }
 
         public int BuscarIdRol(string Nombre)
@@ -49,16 +47,12 @@ namespace Negocio
 
         public int BuscarIdEstado(string Nombre)
         {
-            string TablaEstado = "estado";
-
-            return conexionSQL.BuscarIdEstado(TablaEstado, Nombre);
+            return conexionSQL.BuscarIdEstado("estado", Nombre);
         }
 
         public string BuscarNombreEstado(int Id)
         {
-            string TablaEstado = "estado";
-
-            return conexionSQL.BuscarNombreEstado(TablaEstado, Id);
+            return conexionSQL.BuscarNombreEstado("estado", Id);
         }
 
         public List<ObjRol> CargarRoles()

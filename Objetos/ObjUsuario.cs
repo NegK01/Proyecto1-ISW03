@@ -1,4 +1,6 @@
-﻿namespace Objetos
+﻿using System.Diagnostics.Contracts;
+
+namespace Objetos
 {
     public class ObjUsuario
     {
@@ -21,5 +23,12 @@
         public int Rol { get; set; }
 
         public int Estado { get; set; }
+
+        public ObjUsuario()
+        {
+            Id = 0;
+            Contraseña = "";
+            Rol = 0;
+        }
     }
 }
