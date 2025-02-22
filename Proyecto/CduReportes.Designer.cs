@@ -35,7 +35,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "CduReportes";
-            this.Size = new System.Drawing.Size(700, 429);
+            this.Size = new System.Drawing.Size(700, 432);
             this.ResumeLayout(false);
 
         }
