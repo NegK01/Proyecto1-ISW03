@@ -235,11 +235,11 @@
             this.IdR,
             this.NombreR,
             this.EstadoR});
-            this.DgvTablaRoles.Location = new System.Drawing.Point(30, 19);
+            this.DgvTablaRoles.Location = new System.Drawing.Point(19, 19);
             this.DgvTablaRoles.Margin = new System.Windows.Forms.Padding(2);
             this.DgvTablaRoles.Name = "DgvTablaRoles";
             this.DgvTablaRoles.RowTemplate.Height = 28;
-            this.DgvTablaRoles.Size = new System.Drawing.Size(646, 305);
+            this.DgvTablaRoles.Size = new System.Drawing.Size(673, 305);
             this.DgvTablaRoles.TabIndex = 21;
             // 
             // IdR

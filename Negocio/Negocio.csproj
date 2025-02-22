@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Reportes.cs" />
     <Compile Include="Imagenes.cs" />
     <Compile Include="Ordenes.cs" />
     <Compile Include="Roles.cs" />
