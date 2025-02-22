@@ -16,10 +16,11 @@ namespace Conexion
         {
             ConexionRetorno = conexion.ConexionBD();
 
-            cmd = new NpgsqlCommand("INSERT INTO rol (id, tipo_rol, id_estado) VALUES (" +
+            NuevoRol.Id = conexion.BuscarSiguienteId("rol");
+
+            cmd = new NpgsqlCommand("INSERT INTO rol (id, tipo_rol) VALUES (" +
                                     NuevoRol.Id + " , '" +
-                                    NuevoRol.Nombre + "'," +
-                                    NuevoRol.Estado + ")", ConexionRetorno);
+                                    NuevoRol.Nombre + "')", ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();
 
@@ -41,6 +42,24 @@ namespace Conexion
             ConexionRetorno.Close();
 
             return affectedRows > 0;
+        }
+
+        public bool ComprobarNombreRol(string Nombre)
+        {
+            ConexionRetorno = conexion.ConexionBD();
+
+            cmd = new NpgsqlCommand("SELECT COUNT(*) FROM rol WHERE tipo_rol = '" + Nombre + "'", ConexionRetorno);
+            var dr = cmd.ExecuteReader();
+            int Cantidad = 0;
+
+            while (dr.Read())
+            {
+                Cantidad = dr.GetInt32(0);
+            }
+
+            ConexionRetorno.Close();
+
+            return Cantidad > 0;
         }
 
         public List<ObjRol> CargarRoles(string Condicion)

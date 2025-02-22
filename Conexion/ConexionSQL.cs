@@ -16,7 +16,7 @@ namespace Conexion
             string Servidor = "localhost";
             int Puerto = 5432;
             string Usuario = "postgres";
-            string Clave = "password";
+            string Clave = "Mortadela010203";
             string BaseDatos = "tienda";
 
             string CadenaConexion = "Server=" + Servidor + ";" + "Port=" + Puerto + ";" +
@@ -35,7 +35,7 @@ namespace Conexion
 
             ConexionRetorno = ConexionBD();
 
-            cmd = new NpgsqlCommand("SELECT MAX(id) + 1 FROM " + Tabla, ConexionRetorno);
+            cmd = new NpgsqlCommand("SELECT COALESCE(MAX(id) + 1, 1) FROM " + Tabla, ConexionRetorno);
             var dr = cmd.ExecuteReader();
 
             while (dr.Read())

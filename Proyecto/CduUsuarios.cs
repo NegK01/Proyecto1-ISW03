@@ -17,19 +17,24 @@ namespace Proyecto
         {
             InitializeComponent();
             CargarUsuarios();
-            CargarRoles();
             CargarComboRoles();
+            CargarRoles();
         }
 
-        private void CargarComboRoles()
+        public void CargarComboRoles()
         {
             DataGridViewComboBoxColumn CbxRoles = DgvTablaUsuarios.Columns["RolU"] as DataGridViewComboBoxColumn;
 
-            List<ObjRol> ListaRoles = Roles.CargarComboRoles();
-
-            foreach (ObjRol rol in ListaRoles)
+            if (CbxRoles != null)
             {
-                CbxRoles.Items.Add(rol.Nombre);
+                CbxRoles.Items.Clear();
+
+                List<ObjRol> ListaRoles = Roles.CargarComboRoles();
+
+                foreach (ObjRol rol in ListaRoles)
+                {
+                    CbxRoles.Items.Add(rol.Nombre);
+                }
             }
         }
 
@@ -86,7 +91,7 @@ namespace Proyecto
             }
         }
 
-        private bool ValidarCamposUsuario(int id)
+        public bool ValidarCamposUsuario(int id)
         {
             if (DgvTablaUsuarios.CurrentRow == null)
             {
@@ -165,7 +170,7 @@ namespace Proyecto
             return true;
         }
 
-        private bool ValidarCamposRol(int id)
+        public bool ValidarCamposRol(int id)
         {
             if (DgvTablaRoles.CurrentRow == null)
             {
@@ -214,7 +219,6 @@ namespace Proyecto
 
             ObjUsuario NuevoUsuario = new ObjUsuario
             {
-                Id = Usuarios.BuscarSiguienteId(),
                 Cedula = Convert.ToInt32(row.Cells["CedulaU"].Value),
                 Nombre = (string)row.Cells["NombreU"].Value,
                 Apellido = (string)row.Cells["ApellidoU"].Value,
@@ -223,8 +227,10 @@ namespace Proyecto
                 Direccion = (string)row.Cells["DireccionU"].Value,
                 Contraseña = Usuarios.EncriptarMD5((string)row.Cells["ContraseñaU"].Value),
                 Rol = Roles.BuscarIdRol((string)row.Cells["RolU"].Value),
-                Estado = 1
             };
+
+            Console.WriteLine(Roles.BuscarIdRol((string)row.Cells["RolU"].Value));
+
 
             if (Usuarios.InsertarUsuario(NuevoUsuario))
             {
@@ -311,9 +317,7 @@ namespace Proyecto
 
             ObjRol NuevoRol = new ObjRol
             {
-                Id = Convert.ToInt32(Roles.BuscarSiguienteId()),
                 Nombre = (string)row.Cells["NombreR"].Value,
-                Estado = 1
             };
 
             if (Roles.InsertarRol(NuevoRol))
@@ -322,6 +326,7 @@ namespace Proyecto
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 CargarRoles();
+                CargarComboRoles();
             }
             else
             {
@@ -329,6 +334,7 @@ namespace Proyecto
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 CargarRoles();
+                CargarComboRoles();
             }
         }
 
@@ -349,6 +355,7 @@ namespace Proyecto
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 CargarRoles();
+                CargarComboRoles();
             }
             else
             {
@@ -356,6 +363,7 @@ namespace Proyecto
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 CargarRoles();
+                CargarComboRoles();
             }
         }
 
@@ -378,6 +386,7 @@ namespace Proyecto
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 CargarRoles();
+                CargarComboRoles();
             }
             else
             {
@@ -385,6 +394,7 @@ namespace Proyecto
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 CargarRoles();
+                CargarComboRoles();
             }
         }
 

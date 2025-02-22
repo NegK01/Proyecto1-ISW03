@@ -56,11 +56,11 @@ namespace Conexion
             }
         }
 
-        public List<ObjProducto> ObtenerProductosBD()
+        public List<ObjProducto> ObtenerProductosBD(string Condicion)
         {
             List<ObjProducto> productos = new List<ObjProducto>();
             conexionRetorno = conexion.ConexionBD();
-            cmd = new NpgsqlCommand("SELECT * FROM producto", conexionRetorno);
+            cmd = new NpgsqlCommand("SELECT * FROM producto " + Condicion, conexionRetorno);
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {

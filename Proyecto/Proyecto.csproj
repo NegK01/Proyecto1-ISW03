@@ -39,6 +39,9 @@
     <Reference Include="DataGridViewDateTimePickerColumn">
       <HintPath>..\..\Librerias\DataGridViewDateTimePickerColumn.dll</HintPath>
     </Reference>
+    <Reference Include="DataGridViewNumericUpDownColumn">
+      <HintPath>..\..\Librerias\DataGridViewNumericUpDownColumn.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />

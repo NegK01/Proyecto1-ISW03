@@ -44,7 +44,6 @@ namespace Proyecto
 
                 };
                 string Contraseña = Usuarios.EncriptarMD5(TxtContraseña.Text);
-                Console.WriteLine(Contraseña);
 
                 UsuarioDado = Usuarios.InicioSecion(NuevoUsuario);
             }

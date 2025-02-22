@@ -1,4 +1,6 @@
-﻿namespace Objetos
+﻿using System;
+
+namespace Objetos
 {
     public class ObjOrden
     {
@@ -6,7 +8,7 @@
 
         public int Id_Cliente { get; set; }
 
-        public string Fecha_Orden { get; set; }
+        public DateTime Fecha_Orden { get; set; }
 
         public decimal Precio_Total { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using Objetos;
+using System;
 using System.Collections.Generic;
 
 namespace Conexion
@@ -15,13 +16,13 @@ namespace Conexion
         {
             ConexionRetorno = conexion.ConexionBD();
 
-            cmd = new NpgsqlCommand("INSERT INTO orden (id, id_cliente, fecha_orden, " +
-                                    "monto_total, id_estado) VALUES (" +
+            Orden.Id = conexion.BuscarSiguienteId("orden");
+
+            cmd = new NpgsqlCommand("INSERT INTO orden (id, id_cliente, fecha_orden, monto_total) VALUES (" +
                                     Orden.Id + " ,  " +
                                     Orden.Id_Cliente + " , '" +
-                                    Orden.Fecha_Orden + "',  " +
-                                    Orden.Precio_Total + " ,  " +
-                                    Orden.Id_Estado + " )", ConexionRetorno);
+                                    Orden.Fecha_Orden.ToString("yyyy-MM-dd") + "',  " +
+                                    Orden.Precio_Total + ")", ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();
 
@@ -34,12 +35,10 @@ namespace Conexion
         {
             ConexionRetorno = conexion.ConexionBD();
 
-            cmd = new NpgsqlCommand("UPDATE orden SET " +
-                                    "id_cliente  =  " + Orden.Id_Cliente + " , " +
-                                    "fecha_orden = '" + Orden.Fecha_Orden + "', " +
-                                    "monto_total =  " + Orden.Precio_Total + " , " +
-                                    "id_estado   =  " + Orden.Id_Estado + ", " +
-                                    "WHERE id    =  " + Orden.Id, ConexionRetorno);
+            cmd = new NpgsqlCommand("UPDATE orden o SET monto_total = (" +
+                                    "SELECT SUM((p.precio * d.cantidad)) FROM detalle_orden d " +
+                                    "JOIN producto p ON p.id = d.id_producto WHERE d.id_orden = o.id" +
+                                    ") WHERE id = " + Orden.Id, ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();
 
@@ -48,32 +47,29 @@ namespace Conexion
             return affectedRows > 0;
         }
 
-        public List<ObjOrden> CargarOrdenes()
+        public List<ObjOrden> CargarOrdenCarrito(int Id_Orden)
         {
             ConexionRetorno = conexion.ConexionBD();
 
-            List<ObjOrden> ListaOrdenes = new List<ObjOrden>();
+            List<ObjOrden> ListaOrden = new List<ObjOrden>();
 
-            cmd = new NpgsqlCommand("SELECT * FROM orden", ConexionRetorno);
-
+            cmd = new NpgsqlCommand("SELECT * FROM orden WHERE id = " + Id_Orden, ConexionRetorno);
             var dr = cmd.ExecuteReader();
-
             while (dr.Read())
             {
                 ObjOrden Orden = new ObjOrden
                 {
                     Id = dr.GetInt32(0),
                     Id_Cliente = dr.GetInt32(1),
-                    Fecha_Orden = dr.GetString(2),
-                    Precio_Total = dr.GetDecimal(3),
-                    Id_Estado = dr.GetInt32(4)
+                    Fecha_Orden = dr.GetDateTime(2),
+                    Precio_Total = dr.GetDecimal(3)
                 };
-                ListaOrdenes.Add(Orden);
-            }
 
+                ListaOrden.Add(Orden);
+            }
             ConexionRetorno.Close();
 
-            return ListaOrdenes;
+            return ListaOrden;
         }
 
         //-----------------------------------------------------------------------------------
@@ -82,13 +78,13 @@ namespace Conexion
         {
             ConexionRetorno = conexion.ConexionBD();
 
-            cmd = new NpgsqlCommand("INSERT INTO detalle_orden (id, id_orden, id_producto, " +
-                                    "cantidad, precio_unitario) VALUES (" +
+            Detalle.Id = conexion.BuscarSiguienteId("detalle_orden");
+
+            cmd = new NpgsqlCommand("INSERT INTO detalle_orden (id, id_orden, id_producto, cantidad) VALUES (" +
                                      Detalle.Id + " ,  " +
-                                     Detalle.Id_Orden + " , '" +
-                                     Detalle.Id_Producto + " ,  " +
-                                     Detalle.Cantidad + " ,  " +
-                                     Detalle.Precio + " )", ConexionRetorno);
+                                     Detalle.Id_Orden + " , " +
+                                     Detalle.Id_Producto + ",  " +
+                                     Detalle.Cantidad + ")", ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();
 
@@ -102,10 +98,7 @@ namespace Conexion
             ConexionRetorno = conexion.ConexionBD();
 
             cmd = new NpgsqlCommand("UPDATE detalle_orden SET " +
-                                    "id_orden        =  " + Detalle.Id_Orden + " , " +
-                                    "id_producto     =  " + Detalle.Id_Producto + " , " +
-                                    "cantidad        =  " + Detalle.Cantidad + " , " +
-                                    "precio_unitario =  " + Detalle.Precio + " , " +
+                                    "cantidad        =  " + Detalle.Cantidad + " " +
                                     "WHERE id        =  " + Detalle.Id, ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();
@@ -115,16 +108,16 @@ namespace Conexion
             return affectedRows > 0;
         }
 
-        public List<ObjDetalle> CargarDetalles()
+        public List<ObjDetalle> CargarDetallesCarrito(int Id_Orden)
         {
             ConexionRetorno = conexion.ConexionBD();
 
-            List<ObjDetalle> ListaDetalles = new List<ObjDetalle>();
+            List<ObjDetalle> ListaDetalle = new List<ObjDetalle>();
 
-            cmd = new NpgsqlCommand("SELECT * FROM orden", ConexionRetorno);
+            cmd = new NpgsqlCommand("SELECT d.*, p.precio FROM detalle_orden d JOIN producto p ON p.id = " +
+                                    "d.id_producto WHERE id_orden = " + Id_Orden, ConexionRetorno);
 
             var dr = cmd.ExecuteReader();
-
             while (dr.Read())
             {
                 ObjDetalle Detalle = new ObjDetalle
@@ -135,12 +128,36 @@ namespace Conexion
                     Cantidad = dr.GetInt32(3),
                     Precio = dr.GetDecimal(4)
                 };
-                ListaDetalles.Add(Detalle);
+
+                ListaDetalle.Add(Detalle);
             }
+            ConexionRetorno.Close();
+
+            return ListaDetalle;
+        }
+
+        //-----------------------------------------------------------------------------------
+
+        public int BuscarOrdenActiva(int Id_Cliente)
+        {
+            ConexionRetorno = conexion.ConexionBD();
+
+            cmd = new NpgsqlCommand("SELECT id FROM orden WHERE id_cliente = " + Id_Cliente +
+                                    " AND id_Estado = 1", ConexionRetorno);
+
+            var dr = cmd.ExecuteReader();
+            int Id_Orden = 0;
+
+            while (dr.Read())
+            {
+                Id_Orden = dr.GetInt32(0);
+            }
+
+            Console.WriteLine(Id_Orden);
 
             ConexionRetorno.Close();
 
-            return ListaDetalles;
+            return Id_Orden;
         }
     }
 }

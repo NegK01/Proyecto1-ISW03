@@ -43,8 +43,10 @@ namespace Conexion
         {
             ConexionRetorno = conexion.ConexionBD();
 
+            NuevoUsuario.Id = conexion.BuscarSiguienteId("usuario");
+
             cmd = new NpgsqlCommand("INSERT INTO usuario (id, cedula, nombre, apellido, correo, " +
-                "                   telefono, direccion, contrasena, id_rol, id_estado) VALUES (" +
+                                    "telefono, direccion, contrasena, id_rol) VALUES (" +
                                     NuevoUsuario.Id + " ,  " +
                                     NuevoUsuario.Cedula + " , '" +
                                     NuevoUsuario.Nombre + "', '" +
@@ -53,8 +55,7 @@ namespace Conexion
                                     NuevoUsuario.Telefono + "', '" +
                                     NuevoUsuario.Direccion + "', '" +
                                     NuevoUsuario.Contraseña + "',  " +
-                                    NuevoUsuario.Rol + " ,  " +
-                                    NuevoUsuario.Estado + " )", ConexionRetorno);
+                                    NuevoUsuario.Rol + ")", ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();
 
@@ -75,8 +76,7 @@ namespace Conexion
                                     "telefono   = '" + NuevoUsuario.Telefono + "', " +
                                     "direccion  = '" + NuevoUsuario.Direccion + "', " +
                                     "contrasena = '" + NuevoUsuario.Contraseña + "', " +
-                                    "id_rol     =  " + NuevoUsuario.Rol + " , " +
-                                    "id_estado  =  " + NuevoUsuario.Estado + "   " +
+                                    "id_rol     =  " + NuevoUsuario.Rol + " " +
                                     "WHERE id   =  " + NuevoUsuario.Id, ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();

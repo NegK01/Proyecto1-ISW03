@@ -12,11 +12,21 @@ namespace Negocio
 
         public bool InsertarRol(ObjRol NuevoRol)
         {
+            if (bdRoles.ComprobarNombreRol(NuevoRol.Nombre))
+            {
+                return false;
+            }
+
             return bdRoles.InsertarRol(NuevoRol);
         }
 
         public bool ModificarRol(ObjRol NuevoRol)
         {
+            if (bdRoles.ComprobarNombreRol(NuevoRol.Nombre))
+            {
+                return false;
+            }
+
             return bdRoles.ModificarRol(NuevoRol);
         }
 

@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.Contracts;
-
-namespace Objetos
+﻿namespace Objetos
 {
     public class ObjUsuario
     {

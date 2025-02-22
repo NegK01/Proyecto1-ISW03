@@ -1,12 +1,13 @@
 ﻿using Conexion;
 using Objetos;
+using System.Collections.Generic;
 
 namespace Negocio
 {
     public class Ordenes
     {
-        BDOrdenes bdOrdenes;
-        ConexionSQL conexionSQL;
+        BDOrdenes bdOrdenes = new BDOrdenes();
+        ConexionSQL conexionSQL = new ConexionSQL();
 
         public bool InsertarOrden(ObjOrden Orden)
         {
@@ -28,6 +29,11 @@ namespace Negocio
             return conexionSQL.CambiarEstadoCRUD(id, "orden");
         }
 
+        public List<ObjOrden> CargarOrdenCarrito(int Id_Cliente)
+        {
+            return bdOrdenes.CargarOrdenCarrito(Id_Cliente);
+        }
+
         //-----------------------------------------------------------------------------------
 
         public bool InsertarDetalle(ObjDetalle Detalle)
@@ -43,6 +49,28 @@ namespace Negocio
         public bool EliminarDetalle(int id)
         {
             return conexionSQL.CambiarEstadoCRUD(id, "detalle_orden");
+        }
+
+        public List<ObjDetalle> CargarDetallesCarrito(int Id_Cliente)
+        {
+            return bdOrdenes.CargarDetallesCarrito(Id_Cliente);
+        }
+
+        //-----------------------------------------------------------------------------------
+
+        public int BuscarOrdenActiva(int Id_Cliente)
+        {
+            return bdOrdenes.BuscarOrdenActiva(Id_Cliente);
+        }
+
+        public string BuscarNombreCliente(int id)
+        {
+            return conexionSQL.BuscarNombreXIdBD("usuario", id);
+        }
+
+        public string BuscarNombreProducto(int id)
+        {
+            return conexionSQL.BuscarNombreXIdBD("Producto", id);
         }
 
         public int BuscarIdEstado(string Nombre)

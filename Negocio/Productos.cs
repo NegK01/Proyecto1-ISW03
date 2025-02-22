@@ -33,7 +33,18 @@ namespace Negocio
 
         public List<ObjProducto> ObtenerProductos()
         {
-            return bdProductos.ObtenerProductosBD();
+            return bdProductos.ObtenerProductosBD("");
+        }
+
+        public ObjProducto ObtenerUnProducto(int Id)
+        {
+            string Condicion = "WHERE id = " + Id;
+
+            List<ObjProducto> Lista = bdProductos.ObtenerProductosBD(Condicion);
+
+            ObjProducto Producto = Lista[0];
+
+            return Producto;
         }
 
         public int BuscarIdEstado(string Nombre)
