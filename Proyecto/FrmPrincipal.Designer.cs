@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDashboard = new System.Windows.Forms.Button();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.btnReportes = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -42,7 +42,6 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnDashboard = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -68,9 +67,19 @@
             this.panel1.Size = new System.Drawing.Size(218, 477);
             this.panel1.TabIndex = 0;
             // 
+            // btnDashboard
+            // 
+            this.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDashboard.Location = new System.Drawing.Point(12, 92);
+            this.btnDashboard.Name = "btnDashboard";
+            this.btnDashboard.Size = new System.Drawing.Size(146, 28);
+            this.btnDashboard.TabIndex = 8;
+            this.btnDashboard.Text = "Dashboard";
+            this.btnDashboard.UseVisualStyleBackColor = true;
+            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
+            // 
             // btnCerrarSesion
             // 
-            this.btnCerrarSesion.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarSesion.Image")));
             this.btnCerrarSesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCerrarSesion.Location = new System.Drawing.Point(12, 438);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
@@ -82,7 +91,6 @@
             // 
             // btnReportes
             // 
-            this.btnReportes.Image = ((System.Drawing.Image)(resources.GetObject("btnReportes.Image")));
             this.btnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReportes.Location = new System.Drawing.Point(12, 404);
             this.btnReportes.Name = "btnReportes";
@@ -94,27 +102,26 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(181, 3);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(24, 25);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Tag = "logoIconMenu";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(3, -1);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(156, 29);
+            this.pictureBox1.Size = new System.Drawing.Size(155, 29);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Tag = "logoMenu";
             // 
             // btnDistribuidores
             // 
-            this.btnDistribuidores.Image = ((System.Drawing.Image)(resources.GetObject("btnDistribuidores.Image")));
             this.btnDistribuidores.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDistribuidores.Location = new System.Drawing.Point(12, 288);
             this.btnDistribuidores.Name = "btnDistribuidores";
@@ -126,7 +133,6 @@
             // 
             // btnOrdenes
             // 
-            this.btnOrdenes.Image = ((System.Drawing.Image)(resources.GetObject("btnOrdenes.Image")));
             this.btnOrdenes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOrdenes.Location = new System.Drawing.Point(12, 239);
             this.btnOrdenes.Name = "btnOrdenes";
@@ -138,7 +144,6 @@
             // 
             // btnProductos
             // 
-            this.btnProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnProductos.Image")));
             this.btnProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProductos.Location = new System.Drawing.Point(12, 190);
             this.btnProductos.Name = "btnProductos";
@@ -152,7 +157,6 @@
             // 
             this.btnUsuarios.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnUsuarios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnUsuarios.Image = ((System.Drawing.Image)(resources.GetObject("btnUsuarios.Image")));
             this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUsuarios.Location = new System.Drawing.Point(12, 141);
             this.btnUsuarios.Name = "btnUsuarios";
@@ -164,24 +168,24 @@
             // 
             // btnExpandirMenu
             // 
-            this.btnExpandirMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnExpandirMenu.Image")));
             this.btnExpandirMenu.Location = new System.Drawing.Point(123, 34);
             this.btnExpandirMenu.Name = "btnExpandirMenu";
             this.btnExpandirMenu.Size = new System.Drawing.Size(36, 28);
             this.btnExpandirMenu.TabIndex = 0;
+            this.btnExpandirMenu.Text = "~";
             this.btnExpandirMenu.UseVisualStyleBackColor = true;
             this.btnExpandirMenu.Click += new System.EventHandler(this.btnExpandirMenu_Click);
             // 
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.White;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(39, 69);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(660, 300);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Tag = "bannerDashboard";
             // 
             // panel2
             // 
@@ -200,18 +204,6 @@
             this.panel3.Size = new System.Drawing.Size(54, 475);
             this.panel3.TabIndex = 6;
             // 
-            // btnDashboard
-            // 
-            this.btnDashboard.Image = ((System.Drawing.Image)(resources.GetObject("btnDashboard.Image")));
-            this.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDashboard.Location = new System.Drawing.Point(12, 92);
-            this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(146, 28);
-            this.btnDashboard.TabIndex = 8;
-            this.btnDashboard.Text = "Dashboard";
-            this.btnDashboard.UseVisualStyleBackColor = true;
-            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
-            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -227,6 +219,7 @@
             this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmPrincipal_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

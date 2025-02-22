@@ -1,4 +1,5 @@
-﻿using Objetos;
+﻿using Negocio;
+using Objetos;
 using System.Windows.Forms;
 
 namespace Proyecto
@@ -18,7 +19,8 @@ namespace Proyecto
             InitializeComponent();
             Usuario = UsuarioDado;
             InicializarControles();
-            RestringuirAcceso();
+            InicializarImagenes();
+            RestringirAcceso();
             InicializarClases();
         }
 
@@ -30,23 +32,26 @@ namespace Proyecto
             cduDistribuidores = new CduDistribuidores();
         }
 
-        private void InicializarClases()
+        public void InicializarImagenes()
         {
-            animador = new AnimarPanel(panel1, panel2, panel3, btnExpandirMenu, btnDashboard, btnUsuarios, btnProductos, btnOrdenes, btnDistribuidores, btnReportes, btnCerrarSesion);
+            Imagenes.AsignarImagenes(pictureBox1, pictureBox2, pictureBox3, btnExpandirMenu, btnDashboard, btnUsuarios, btnProductos, btnOrdenes, btnDistribuidores, btnReportes, btnCerrarSesion);
         }
 
-        public void RestringuirAcceso()
+        public void RestringirAcceso()
         {
             if (Usuario.Rol != 1)
             {
-                //btnDashboard.SetBounds(13, 190, 146, 28);
-                //btnOrdenes.SetBounds(12, 239, 146, 28);
                 btnOrdenes.SetBounds(13, 141, 146, 28);
                 panel1.Controls.Remove(btnUsuarios);
                 panel1.Controls.Remove(btnProductos);
                 panel1.Controls.Remove(btnDistribuidores);
                 panel1.Controls.Remove(btnReportes);
             }
+        }
+
+        private void InicializarClases()
+        {
+            animador = new AnimarPanel(panel1, panel2, panel3, btnExpandirMenu, btnDashboard, btnUsuarios, btnProductos, btnOrdenes, btnDistribuidores, btnReportes, btnCerrarSesion);
         }
 
         private void btnExpandirMenu_Click(object sender, System.EventArgs e)
@@ -99,6 +104,11 @@ namespace Proyecto
             FrmLogin login = new FrmLogin();
             login.Visible = true;
             Visible = false;
+        }
+
+        private void FrmPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

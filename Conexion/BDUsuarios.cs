@@ -121,5 +121,20 @@ namespace Conexion
 
             return ListaUsuarios;
         }
+
+        public Dictionary<string, byte[]> CargarImagenesBD()
+        {
+            using (ConexionRetorno = conexion.ConexionBD())
+            {
+                Dictionary<string, byte[]> Imagenes = new Dictionary<string, byte[]>();
+                cmd = new NpgsqlCommand("SELECT nombre, imagen FROM imagenes", ConexionRetorno);
+                var dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Imagenes.Add(dr.GetString(0), (byte[])dr[1]);
+                }
+                return Imagenes;
+            }
+        }
     }
 }

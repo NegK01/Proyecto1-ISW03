@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ObjDetalle.cs" />
+    <Compile Include="ObjImagen.cs" />
     <Compile Include="ObjOrden.cs" />
     <Compile Include="ObjRol.cs" />
     <Compile Include="ObjCategoria.cs" />
