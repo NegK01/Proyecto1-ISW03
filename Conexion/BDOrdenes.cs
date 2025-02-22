@@ -2,6 +2,8 @@
 using Objetos;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Windows.Forms;
 
 namespace Conexion
 {
@@ -171,6 +173,37 @@ namespace Conexion
             ConexionRetorno.Close();
 
             return Id_Orden;
+        }
+
+        public void Reporte1(DataGridView Tabla)
+        {
+            ConexionRetorno = conexion.ConexionBD();
+
+            DataTable dataTable = new DataTable();
+            NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(
+
+            @"SELECT 
+                c.nombre                      AS ""Nombre categoria"",
+                COUNT(DISTINCT d.id_producto) AS ""Cantidad de productos"",
+                SUM(d.cantidad)               AS ""Cantidad de productos vendidos"",
+                SUM(d.cantidad * p.precio)    AS ""Ventas totales""
+            FROM 
+                detalle_orden d
+            JOIN 
+                producto p        ON p.id = d.id_producto
+            JOIN 
+                categoria c       ON c.id = p.id_categoria
+            JOIN
+                orden o           ON o.id = d.id_orden
+            JOIN
+                pago pa           ON o.id = pa.id_orden
+            GROUP BY 
+                ""Nombre categoria""
+            ORDER BY 
+                ""Ventas totales"" DESC;", ConexionRetorno);
+
+            adapter.Fill(dataTable);
+            Tabla.DataSource = dataTable;
         }
     }
 }

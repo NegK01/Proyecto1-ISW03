@@ -21,8 +21,8 @@ namespace Proyecto
                 Rol = 1
             };
 
-            Application.Run(new FrmPrincipal(a));
-            //Application.Run(new FrmLogin());
+            //Application.Run(new FrmPrincipal(a));
+            Application.Run(new FrmLogin());
             //Application.Run(new Form { Controls = { new CduUsuarios() } });
         }
     }

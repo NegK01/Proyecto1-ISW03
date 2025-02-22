@@ -152,7 +152,7 @@ namespace Proyecto
         {
             foreach (DataGridViewRow Fila in DgvDetalleCarrito.Rows)
             {
-                if (Convert.ToInt32(Fila.Cells["CantidadDC"].Value) == 0) 
+                if (Convert.ToInt32(Fila.Cells["CantidadDC"].Value) == 0)
                 {
                     int Id_Detalle = Convert.ToInt32(Fila.Cells["IdDC"].Value);
 
