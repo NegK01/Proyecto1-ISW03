@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Objetos;
+using System;
 using System.Windows.Forms;
 
 namespace Proyecto
@@ -11,9 +12,17 @@ namespace Proyecto
         [STAThread]
         static void Main()
         {
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmLogin());
+
+            ObjUsuario a = new ObjUsuario()
+            {
+                Rol = 1
+            };
+
+            Application.Run(new FrmPrincipal(a));
+            //Application.Run(new FrmLogin());
             //Application.Run(new Form { Controls = { new CduUsuarios() } });
         }
     }

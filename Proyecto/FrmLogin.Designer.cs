@@ -28,12 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.TxtCedula = new System.Windows.Forms.TextBox();
             this.TxtContraseña = new System.Windows.Forms.TextBox();
-            this.BtnIngresar = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btnIngresar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -60,38 +57,31 @@
             this.TxtContraseña.TabIndex = 1;
             this.TxtContraseña.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtContraseña_KeyPress);
             // 
-            // BtnIngresar
+            // btnIngresar
             // 
-            this.BtnIngresar.BackColor = System.Drawing.Color.Transparent;
-            this.BtnIngresar.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-            this.BtnIngresar.FlatAppearance.BorderSize = 0;
-            this.BtnIngresar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.BtnIngresar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.BtnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnIngresar.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnIngresar.Image = ((System.Drawing.Image)(resources.GetObject("BtnIngresar.Image")));
-            this.BtnIngresar.Location = new System.Drawing.Point(274, 308);
-            this.BtnIngresar.Margin = new System.Windows.Forms.Padding(2);
-            this.BtnIngresar.Name = "BtnIngresar";
-            this.BtnIngresar.Size = new System.Drawing.Size(359, 64);
-            this.BtnIngresar.TabIndex = 3;
-            this.BtnIngresar.UseVisualStyleBackColor = false;
-            this.BtnIngresar.Click += new System.EventHandler(this.BtnIngresar_Click);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.btnIngresar.BackColor = System.Drawing.Color.Transparent;
+            this.btnIngresar.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnIngresar.FlatAppearance.BorderSize = 0;
+            this.btnIngresar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.btnIngresar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.btnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIngresar.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIngresar.Location = new System.Drawing.Point(274, 308);
+            this.btnIngresar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnIngresar.Name = "btnIngresar";
+            this.btnIngresar.Size = new System.Drawing.Size(359, 64);
+            this.btnIngresar.TabIndex = 3;
+            this.btnIngresar.UseVisualStyleBackColor = false;
+            this.btnIngresar.Click += new System.EventHandler(this.BtnIngresar_Click);
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(311, 62);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(284, 50);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Tag = "logoLogin";
             // 
             // label1
             // 
@@ -121,13 +111,14 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.BtnIngresar);
+            this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.TxtContraseña);
             this.Controls.Add(this.TxtCedula);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmLogin_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -138,8 +129,7 @@
 
         private System.Windows.Forms.TextBox TxtCedula;
         private System.Windows.Forms.TextBox TxtContraseña;
-        private System.Windows.Forms.Button BtnIngresar;
-        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

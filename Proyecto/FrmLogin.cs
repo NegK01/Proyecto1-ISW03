@@ -2,6 +2,7 @@
 using Negocio;
 using Objetos;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Proyecto
@@ -9,9 +10,16 @@ namespace Proyecto
     public partial class FrmLogin : Form
     {
         Usuarios Usuarios = new Usuarios();
+
         public FrmLogin()
         {
             InitializeComponent();
+            InicializarImagenes();
+        }
+
+        public void InicializarImagenes()
+        {
+            Imagenes.AsignarImagenes(pictureBox1, btnIngresar);
         }
 
         public void RestringirTexto(object sender, KeyPressEventArgs Tecla)
@@ -91,5 +99,9 @@ namespace Proyecto
             InicioSesion();
         }
 
+        private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

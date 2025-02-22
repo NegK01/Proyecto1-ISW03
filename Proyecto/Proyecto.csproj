@@ -78,6 +78,12 @@
     <Compile Include="CduProductos.Designer.cs">
       <DependentUpon>CduProductos.cs</DependentUpon>
     </Compile>
+    <Compile Include="CduReportes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CduReportes.Designer.cs">
+      <DependentUpon>CduReportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CduProductos.resx">
       <DependentUpon>CduProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CduReportes.resx">
+      <DependentUpon>CduReportes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CduUsuarios.resx">
       <DependentUpon>CduUsuarios.cs</DependentUpon>

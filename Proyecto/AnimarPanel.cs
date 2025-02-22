@@ -8,6 +8,7 @@ public class AnimarPanel
     private Timer timer;
     private Panel panel;
     private Panel panelContenedor;
+    private Panel panelOcultarLogo;
     private Button expMenu;
     private Button[] botones;
     private bool expandido = true;
@@ -21,15 +22,16 @@ public class AnimarPanel
     private string[] posicionesNombres;
 
     // Configuración de animación
-    private const int velocidad = 15;
+    private const int velocidad = 15;  
     private const int margenError = 2;
-    private const int posicionVertical = 137;
+    private const int posicionVertical = 137;  
     private const int offsetDerecha = 20;
 
-    public AnimarPanel(Panel panel, Panel panelContenedor, Button expMenu, params Button[] botones)
+    public AnimarPanel(Panel panel, Panel panelContenedor, Panel panelOcultarLogo, Button expMenu, params Button[] botones)
     {
         this.panel = panel;
         this.panelContenedor = panelContenedor;
+        this.panelOcultarLogo = panelOcultarLogo;
         this.expMenu = expMenu;
         this.botones = botones;
 
@@ -50,22 +52,21 @@ public class AnimarPanel
             );
         }
 
-        posicionesVerticalesContraido = new int[]
-        {
-            137,  // Posición Y para el primer botón
-            205, // Posición Y para el segundo botón
-            273, // Y así sucesivamente...
-            341
-        };
 
-        posicionesNombres = new String[]
-        {
-            "Usuarios",  // Posición Y para el primer botón
-            "Productos", // Posición Y para el segundo botón
-            "Órdenes", // Y así sucesivamente...
-            "Distribuidores"
-        };
+        //posicionesVerticalesContraido = new int[]
+        //{
+        //    137,  // Posición Y para el primer botón
+        //    205, // Posición Y para el segundo botón
+        //    273, // Y así sucesivamente...
+        //    341,
+        //    404,
+        //    438
+        //};
+        posicionesVerticalesContraido = botones.Select(b => b.Bounds.Y).ToArray();
 
+
+        // Obtener nombres de los botones
+        posicionesNombres = botones.Select(b => b.Text).ToArray();
 
         timer = new Timer { Interval = 16 };
         timer.Tick += Animacion;
@@ -82,11 +83,13 @@ public class AnimarPanel
         //int objetivoPanel = expandido ? -panelAnchoOriginal + expMenu.Width : 0;
         // Versión modificada para mostrar la mitad
         int objetivoPanel = expandido ? -(panelAnchoOriginal * 75 / 100) : 0; // 50% del ancho
-        int objetivoPanelContenedor = expandido ? 55 : panel.Width - 55; // 55 para poder esconder el logo detras del panel contenedor
-
+        int objetivoPanelOcultarLogo = expandido ? 55 : panel.Width-55;
+        int objetivoPanelContenedor = expandido ? 100 : panelOcultarLogo.Width+110; // 55 para poder esconder el logo detras del panel contenedor
+        
         // Mover el panel principal
         panel.Left = Suavizar(panel.Left, objetivoPanel, velocidad);
         panel.SendToBack();
+        panelOcultarLogo.Left = Suavizar(panelOcultarLogo.Left, objetivoPanelOcultarLogo, velocidad);
         panelContenedor.Left = Suavizar(panelContenedor.Left, objetivoPanelContenedor, velocidad);
 
 
@@ -119,7 +122,7 @@ public class AnimarPanel
 
             // Mantenemos el ajuste de ancho si es necesario
             boton.Width = Suavizar(boton.Width, expandido ? expMenu.Width : botonesOriginales[i].Width, velocidad);
-
+            
         }
 
         // Verificar finalización
@@ -144,7 +147,8 @@ public class AnimarPanel
         //panel.Left = expandido ? 0 : -panelAnchoOriginal + expMenu.Width;
         // Ajuste preciso final para el panel (mitad del ancho)
         panel.Left = expandido ? 0 : -(panelAnchoOriginal * 75 / 100);
-        panelContenedor.Left = !expandido ? 55 : panel.Width - 55;
+        panelOcultarLogo.Left = !expandido ? 55 : panel.Width - 55;
+        panelContenedor.Left = !expandido ? 100 : panelOcultarLogo.Width + 110;
 
         // Ajuste preciso para los botones
         foreach (var (boton, i) in botones.Select((b, i) => (b, i)))
