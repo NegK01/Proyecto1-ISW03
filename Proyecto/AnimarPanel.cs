@@ -22,9 +22,9 @@ public class AnimarPanel
     private string[] posicionesNombres;
 
     // Configuración de animación
-    private const int velocidad = 15;  
+    private const int velocidad = 15;
     private const int margenError = 2;
-    private const int posicionVertical = 137;  
+    private const int posicionVertical = 137;
     private const int offsetDerecha = 20;
 
     public AnimarPanel(Panel panel, Panel panelContenedor, Panel panelOcultarLogo, Button expMenu, params Button[] botones)
@@ -83,9 +83,9 @@ public class AnimarPanel
         //int objetivoPanel = expandido ? -panelAnchoOriginal + expMenu.Width : 0;
         // Versión modificada para mostrar la mitad
         int objetivoPanel = expandido ? -(panelAnchoOriginal * 75 / 100) : 0; // 50% del ancho
-        int objetivoPanelOcultarLogo = expandido ? 55 : panel.Width-55;
-        int objetivoPanelContenedor = expandido ? 100 : panelOcultarLogo.Width+110; // 55 para poder esconder el logo detras del panel contenedor
-        
+        int objetivoPanelOcultarLogo = expandido ? 55 : panel.Width - 55;
+        int objetivoPanelContenedor = expandido ? 100 : panelOcultarLogo.Width + 110; // 55 para poder esconder el logo detras del panel contenedor
+
         // Mover el panel principal
         panel.Left = Suavizar(panel.Left, objetivoPanel, velocidad);
         panel.SendToBack();
@@ -122,7 +122,7 @@ public class AnimarPanel
 
             // Mantenemos el ajuste de ancho si es necesario
             boton.Width = Suavizar(boton.Width, expandido ? expMenu.Width : botonesOriginales[i].Width, velocidad);
-            
+
         }
 
         // Verificar finalización

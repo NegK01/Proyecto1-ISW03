@@ -2,7 +2,6 @@
 using Negocio;
 using Objetos;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Proyecto

@@ -64,6 +64,7 @@
             // 
             // dgvTablaProductos
             // 
+            this.dgvTablaProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTablaProductos.BackgroundColor = System.Drawing.Color.White;
             this.dgvTablaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTablaProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -78,7 +79,7 @@
             this.dgvFechaExpiracion});
             this.dgvTablaProductos.Location = new System.Drawing.Point(16, 35);
             this.dgvTablaProductos.Name = "dgvTablaProductos";
-            this.dgvTablaProductos.Size = new System.Drawing.Size(701, 349);
+            this.dgvTablaProductos.Size = new System.Drawing.Size(708, 349);
             this.dgvTablaProductos.TabIndex = 0;
             // 
             // dgvIdPro
@@ -86,7 +87,6 @@
             this.dgvIdPro.HeaderText = "Código";
             this.dgvIdPro.Name = "dgvIdPro";
             this.dgvIdPro.ReadOnly = true;
-            this.dgvIdPro.Width = 50;
             // 
             // dgvNombreProducto
             // 
@@ -97,7 +97,6 @@
             // 
             this.dgvPrecio.HeaderText = "Precio";
             this.dgvPrecio.Name = "dgvPrecio";
-            this.dgvPrecio.Width = 50;
             // 
             // dgvCaracteristicas
             // 
@@ -113,14 +112,12 @@
             // 
             this.dgvIdCategoria.HeaderText = "Categoria";
             this.dgvIdCategoria.Name = "dgvIdCategoria";
-            this.dgvIdCategoria.Width = 50;
             // 
             // dgvIdDistribuidor
             // 
             this.dgvIdDistribuidor.HeaderText = "Distribuidor";
             this.dgvIdDistribuidor.Name = "dgvIdDistribuidor";
             this.dgvIdDistribuidor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIdDistribuidor.Width = 50;
             // 
             // dgvIdEstado
             // 
@@ -129,7 +126,6 @@
             this.dgvIdEstado.ReadOnly = true;
             this.dgvIdEstado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvIdEstado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dgvIdEstado.Width = 50;
             // 
             // dgvFechaExpiracion
             // 

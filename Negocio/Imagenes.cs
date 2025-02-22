@@ -1,10 +1,7 @@
-﻿using Objetos;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using System.Linq;
-using System.Drawing;
 
 namespace Negocio
 {
