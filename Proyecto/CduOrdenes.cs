@@ -291,7 +291,7 @@ namespace Proyecto
 
         private void DgvDetalleCarrito_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            CambiarTotalCarrito(e);
+            //    CambiarTotalCarrito(e);
         }
     }
 }
