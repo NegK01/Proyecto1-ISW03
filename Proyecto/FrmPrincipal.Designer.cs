@@ -172,7 +172,6 @@
             this.btnExpandirMenu.Name = "btnExpandirMenu";
             this.btnExpandirMenu.Size = new System.Drawing.Size(36, 28);
             this.btnExpandirMenu.TabIndex = 0;
-            this.btnExpandirMenu.Text = "~";
             this.btnExpandirMenu.UseVisualStyleBackColor = true;
             this.btnExpandirMenu.Click += new System.EventHandler(this.btnExpandirMenu_Click);
             // 

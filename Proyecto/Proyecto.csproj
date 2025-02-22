@@ -36,11 +36,13 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DataGridViewDateTimePickerColumn">
-      <HintPath>..\..\Librerias\DataGridViewDateTimePickerColumn.dll</HintPath>
+    <Reference Include="DataGridViewDateTimePickerColumn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Downloads\DataGridViewDateTimePickerColumn.dll</HintPath>
     </Reference>
-    <Reference Include="DataGridViewNumericUpDownColumn">
-      <HintPath>..\..\Librerias\DataGridViewNumericUpDownColumn.dll</HintPath>
+    <Reference Include="DataGridViewNumericUpDownColumn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Downloads\DataGridViewNumericUpDownColumn.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

@@ -1,5 +1,6 @@
 ﻿using Conexion;
 using Objetos;
+using System;
 using System.Collections.Generic;
 
 namespace Negocio
@@ -54,6 +55,13 @@ namespace Negocio
         public List<ObjDetalle> CargarDetallesCarrito(int Id_Cliente)
         {
             return bdOrdenes.CargarDetallesCarrito(Id_Cliente);
+        }
+
+        //-----------------------------------------------------------------------------------
+
+        public bool InsertarPago(ObjPago obj)
+        {
+            return bdOrdenes.InsertarPagoBD(obj);
         }
 
         //-----------------------------------------------------------------------------------

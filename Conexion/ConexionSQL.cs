@@ -16,7 +16,7 @@ namespace Conexion
             string Servidor = "localhost";
             int Puerto = 5432;
             string Usuario = "postgres";
-            string Clave = "Mortadela010203";
+            string Clave = "password";
             string BaseDatos = "tienda";
 
             string CadenaConexion = "Server=" + Servidor + ";" + "Port=" + Puerto + ";" +

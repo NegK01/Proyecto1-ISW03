@@ -152,7 +152,7 @@ namespace Proyecto
         {
             foreach (DataGridViewRow Fila in DgvDetalleCarrito.Rows)
             {
-                if (Convert.ToInt32(Fila.Cells["CantidadDC"].Value) == 0) 
+                if (Convert.ToInt32(Fila.Cells["CantidadDC"].Value) == 0)
                 {
                     int Id_Detalle = Convert.ToInt32(Fila.Cells["IdDC"].Value);
 
@@ -270,6 +270,7 @@ namespace Proyecto
         {
             TabControlOrdenes.TabPages.Remove(TabDetalles);
             TabControlOrdenes.TabPages.Remove(TabCarrito);
+            TabControlOrdenes.TabPages.Remove(TabPago);
 
             switch (Pestaña)
             {
@@ -277,6 +278,7 @@ namespace Proyecto
 
                     TabControlOrdenes.TabPages.Remove(TabDetalles);
                     TabControlOrdenes.TabPages.Remove(TabCarrito);
+                    TabControlOrdenes.TabPages.Remove(TabPago);
                     TabControlOrdenes.TabPages.Add(TabOrdenes);
 
                     TabControlOrdenes.SelectedTab = TabOrdenes;
@@ -286,6 +288,7 @@ namespace Proyecto
 
                     TabControlOrdenes.TabPages.Remove(TabOrdenes);
                     TabControlOrdenes.TabPages.Remove(TabCarrito);
+                    TabControlOrdenes.TabPages.Remove(TabPago);
                     TabControlOrdenes.TabPages.Add(TabDetalles);
 
                     TabControlOrdenes.SelectedTab = TabDetalles;
@@ -295,12 +298,22 @@ namespace Proyecto
 
                     TabControlOrdenes.TabPages.Remove(TabOrdenes);
                     TabControlOrdenes.TabPages.Remove(TabDetalles);
+                    TabControlOrdenes.TabPages.Remove(TabPago);
                     TabControlOrdenes.TabPages.Add(TabCarrito);
 
                     TabControlOrdenes.SelectedTab = TabCarrito;
 
                     CargarOrdenCarrito();
                     CargarDetallesCarrito();
+                    break;
+                case "Pago":
+
+                    TabControlOrdenes.TabPages.Remove(TabOrdenes);
+                    TabControlOrdenes.TabPages.Remove(TabDetalles);
+                    TabControlOrdenes.TabPages.Remove(TabCarrito);
+                    TabControlOrdenes.TabPages.Add(TabPago);
+
+                    TabControlOrdenes.SelectedTab = TabPago;
                     break;
             }
         }
@@ -366,6 +379,51 @@ namespace Proyecto
         private void DgvDetalleCarrito_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             EliminarDetalle(e);
+        }
+
+        private void btnFinalizarPago_Click(object sender, EventArgs e)
+        {
+            if (chkTerminosYCondiciones.Checked)
+            {
+                ObjPago objPago = new ObjPago()
+                {
+                    Id_Orden = Id_Orden,
+                    Metodo_Pago = rdbtnTransferencia.Checked ? rdbtnTransferencia.Text : rdbtnTarjetaCredDebit.Text,
+                    Fecha_Pago = DateTime.Now
+                };
+
+                ModificarDetalle();
+                ModificarOrden();
+
+                if (objPago.Id_Orden != 0 && ordenes.InsertarPago(objPago))
+                {
+                    MessageBox.Show("Compra exitosa.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ObtenerIdOrden();
+                    CargarOrdenCarrito();
+                    CargarDetallesCarrito();
+                    AlternarPestañas("Ordenes");
+                }
+                else
+                {
+                    MessageBox.Show("Error al realizar la compra.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, acepte los términos y condiciones antes de finalizar el pago.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCancelarPago_Click(object sender, EventArgs e)
+        {
+            AlternarPestañas("Carrito");
+        }
+
+        private void btnPagarCarrito_Click(object sender, EventArgs e)
+        {
+            AlternarPestañas("Pago");
+            txtIdOrdenPago.Text = Id_Orden.ToString();
+            txtFechaHoraPago.Text = DateTime.Now.ToString("g");
         }
     }
 }

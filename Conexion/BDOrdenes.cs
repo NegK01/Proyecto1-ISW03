@@ -53,7 +53,8 @@ namespace Conexion
 
             List<ObjOrden> ListaOrden = new List<ObjOrden>();
 
-            cmd = new NpgsqlCommand("SELECT * FROM orden WHERE id = " + Id_Orden, ConexionRetorno);
+            cmd = new NpgsqlCommand("SELECT * FROM orden WHERE id = " + Id_Orden + " " +
+                                    "AND id_estado = 1", ConexionRetorno);
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -147,6 +148,26 @@ namespace Conexion
             ConexionRetorno.Close();
 
             return ListaDetalle;
+        }
+
+        //-----------------------------------------------------------------------------------
+
+        public bool InsertarPagoBD(ObjPago obj)
+        {
+            obj.Id = conexion.BuscarSiguienteId("pago");
+
+            using (ConexionRetorno = conexion.ConexionBD())
+            {
+                cmd = new NpgsqlCommand("INSERT INTO pago (id, id_orden, metodo_pago, fecha_pago) VALUES (" +
+                                        obj.Id + " ,  " +
+                                        obj.Id_Orden + " , '" +
+                                        obj.Metodo_Pago + "','" +
+                                        obj.Fecha_Pago.ToString("dd-MM-yyyy") + "')", ConexionRetorno);
+                int affectedRows = cmd.ExecuteNonQuery();
+                cmd = new NpgsqlCommand("UPDATE orden SET id_estado = 2 WHERE id = " + obj.Id_Orden, ConexionRetorno);
+                int affectedRows2 = cmd.ExecuteNonQuery();
+                return affectedRows > 0 && affectedRows2 > 0;
+            }
         }
 
         //-----------------------------------------------------------------------------------
