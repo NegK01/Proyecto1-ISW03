@@ -35,10 +35,10 @@ namespace Conexion
         {
             ConexionRetorno = conexion.ConexionBD();
 
-            cmd = new NpgsqlCommand("UPDATE orden o SET monto_total = (" +
+            cmd = new NpgsqlCommand("UPDATE orden o SET monto_total = COALESCE((" +
                                     "SELECT SUM((p.precio * d.cantidad)) FROM detalle_orden d " +
                                     "JOIN producto p ON p.id = d.id_producto WHERE d.id_orden = o.id" +
-                                    ") WHERE id = " + Orden.Id, ConexionRetorno);
+                                    "), 0) WHERE id = " + Orden.Id, ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();
 
@@ -100,6 +100,19 @@ namespace Conexion
             cmd = new NpgsqlCommand("UPDATE detalle_orden SET " +
                                     "cantidad        =  " + Detalle.Cantidad + " " +
                                     "WHERE id        =  " + Detalle.Id, ConexionRetorno);
+
+            int affectedRows = cmd.ExecuteNonQuery();
+
+            ConexionRetorno.Close();
+
+            return affectedRows > 0;
+        }
+
+        public bool EliminarDetalle(int Id_Detalle)
+        {
+            ConexionRetorno = conexion.ConexionBD();
+
+            cmd = new NpgsqlCommand("DELETE FROM detalle_orden WHERE id = " + Id_Detalle, ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();
 

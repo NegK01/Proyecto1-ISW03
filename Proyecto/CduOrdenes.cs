@@ -146,8 +146,66 @@ namespace Proyecto
                 MessageBox.Show("Error al añadir el producto.", "Error",
                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
 
-            AlternarPestañas("Ordenes");
+        public void ModificarDetalle()
+        {
+            foreach (DataGridViewRow Fila in DgvDetalleCarrito.Rows)
+            {
+                if (Convert.ToInt32(Fila.Cells["CantidadDC"].Value) == 0) 
+                {
+                    int Id_Detalle = Convert.ToInt32(Fila.Cells["IdDC"].Value);
+
+                    ordenes.EliminarDetalle(Id_Detalle);
+                }
+                else
+                {
+                    ObjDetalle Detalle = new ObjDetalle()
+                    {
+                        Id = Convert.ToInt32(Fila.Cells["IdDC"].Value),
+                        Cantidad = Convert.ToInt32(Fila.Cells["CantidadDC"].Value),
+                    };
+
+                    ordenes.ModificarDetalle(Detalle);
+                }
+            }
+        }
+
+        public void EliminarDetalle(DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = DgvDetalleCarrito.CurrentRow;
+
+            if (row == null)
+            {
+                return;
+            }
+
+            bool Condicion1 = DgvDetalleCarrito.Columns[e.ColumnIndex].Name == "EliminarDC";
+            bool Condicion2 = row.Cells[1].Value != null && row.Cells[1].Value.ToString() != null;
+
+            if (Condicion1 && Condicion2)
+            {
+                int Id_Detalle = Convert.ToInt32(DgvDetalleCarrito.CurrentRow.Cells["IdDC"].Value);
+
+                if (ordenes.EliminarDetalle(Id_Detalle))
+                {
+                    MessageBox.Show("Producto eliminado del carrito correctamente.", "Producto eliminado",
+                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ModificarOrden();
+                    CargarDetallesCarrito();
+                    CargarOrdenCarrito();
+                }
+                else
+                {
+                    MessageBox.Show("Error al eliminar el producto.", "Error",
+                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor seleccione un producto.", "Error",
+                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         //-----------------------------------------------------------------------------------
@@ -182,23 +240,29 @@ namespace Proyecto
             TxtPrecioTotal.Text = Total.ToString();
         }
 
-        public void CambiarTotalCarrito(DataGridViewCellEventArgs Celda) 
+        public void CambiarTotalCarrito()
         {
-            if (DgvDetalleCarrito.Columns[Celda.ColumnIndex].Name == "CantidadDC")
+            DataGridViewRow row = DgvDetalleCarrito.CurrentRow;
+
+            if (row != null)
             {
-                DataGridViewRow row = DgvDetalleCarrito.CurrentRow;
+                decimal Id = Convert.ToInt32(row.Cells["IdDC"].Value);
+                decimal Cantidad = Convert.ToInt32(row.Cells["CantidadDC"].Value);
+                decimal Total = Convert.ToDecimal(row.Cells["PrecioUniDC"].Value) * Cantidad;
+                row.Cells["TotalDC"].Value = Total;
 
-                ObjDetalle Detalle = new ObjDetalle()
+                decimal MontoTotal = 0;
+
+                foreach (DataGridViewRow Fila in DgvDetalleCarrito.Rows)
                 {
-                    Id = Convert.ToInt32(row.Cells["IdDC"].Value),
-                    Cantidad = Convert.ToInt32(row.Cells["CantidadDC"].Value),
-                };
+                    if (Fila.Cells["TotalDC"].Value != null)
+                    {
+                        MontoTotal += Convert.ToDecimal(Fila.Cells["TotalDC"].Value);
+                    }
+                }
 
-                ordenes.ModificarDetalle(Detalle);
-                ModificarOrden();
+                DgvOrdenCarrito.Rows[0].Cells["MontoOC"].Value = MontoTotal.ToString();
 
-                CargarDetallesCarrito();
-                CargarDetallesCarrito();
             }
         }
 
@@ -275,6 +339,9 @@ namespace Proyecto
 
         private void BtnRetroceder_Click(object sender, EventArgs e)
         {
+            ModificarDetalle();
+            ModificarOrden();
+
             AlternarPestañas("Ordenes");
         }
 
@@ -282,6 +349,8 @@ namespace Proyecto
         {
             InsertarOrden();
             InsertarDetalle();
+
+            AlternarPestañas("Ordenes");
         }
 
         private void SpCantidad_Click(object sender, EventArgs e)
@@ -289,9 +358,14 @@ namespace Proyecto
             CalcularTotal();
         }
 
-        private void DgvDetalleCarrito_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvDetalleCarrito_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            //    CambiarTotalCarrito(e);
+            CambiarTotalCarrito();
+        }
+
+        private void DgvDetalleCarrito_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            EliminarDetalle(e);
         }
     }
 }

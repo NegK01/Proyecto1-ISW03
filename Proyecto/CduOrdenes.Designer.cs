@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TabControlOrdenes = new System.Windows.Forms.TabControl();
             this.TabOrdenes = new System.Windows.Forms.TabPage();
             this.BtnCarrito = new System.Windows.Forms.Button();
             this.DgvTablaOrdenes = new System.Windows.Forms.DataGridView();
             this.AgregarO = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.DescartarO = new System.Windows.Forms.DataGridViewButtonColumn();
             this.IdO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioO = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,18 +68,18 @@
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.TabCarrito = new System.Windows.Forms.TabPage();
             this.DgvDetalleCarrito = new System.Windows.Forms.DataGridView();
-            this.IdDC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreDC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioUniDC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadDC = new DataGridViewNumericUpDownColumn.DataGridViewNumericUpDownColumn();
-            this.TotalDC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DgvOrdenCarrito = new System.Windows.Forms.DataGridView();
             this.IdOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MontoOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnRetroceder = new System.Windows.Forms.Button();
-            this.BtnActualizar = new System.Windows.Forms.Button();
+            this.EliminarDC = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.IdDC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreDC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioUniDC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantidadDC = new DataGridViewNumericUpDownColumn.DataGridViewNumericUpDownColumn();
+            this.TotalDC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControlOrdenes.SuspendLayout();
             this.TabOrdenes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTablaOrdenes)).BeginInit();
@@ -130,7 +130,6 @@
             this.DgvTablaOrdenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvTablaOrdenes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.AgregarO,
-            this.DescartarO,
             this.IdO,
             this.NombreO,
             this.PrecioO,
@@ -143,46 +142,38 @@
             // 
             // AgregarO
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AgregarO.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AgregarO.DefaultCellStyle = dataGridViewCellStyle12;
             this.AgregarO.FillWeight = 30F;
             this.AgregarO.HeaderText = "";
             this.AgregarO.Name = "AgregarO";
             // 
-            // DescartarO
-            // 
-            this.DescartarO.FillWeight = 30F;
-            this.DescartarO.HeaderText = "";
-            this.DescartarO.Name = "DescartarO";
-            this.DescartarO.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DescartarO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // IdO
             // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdO.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdO.DefaultCellStyle = dataGridViewCellStyle13;
             this.IdO.HeaderText = "Codigo";
             this.IdO.Name = "IdO";
             // 
             // NombreO
             // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NombreO.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NombreO.DefaultCellStyle = dataGridViewCellStyle14;
             this.NombreO.HeaderText = "Nombre";
             this.NombreO.Name = "NombreO";
             // 
             // PrecioO
             // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PrecioO.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrecioO.DefaultCellStyle = dataGridViewCellStyle15;
             this.PrecioO.HeaderText = "Precio";
             this.PrecioO.Name = "PrecioO";
             // 
             // FechaO
             // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FechaO.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaO.DefaultCellStyle = dataGridViewCellStyle16;
             this.FechaO.HeaderText = "Fecha de expiracion";
             this.FechaO.Name = "FechaO";
             // 
@@ -385,7 +376,6 @@
             // 
             // TabCarrito
             // 
-            this.TabCarrito.Controls.Add(this.BtnActualizar);
             this.TabCarrito.Controls.Add(this.DgvDetalleCarrito);
             this.TabCarrito.Controls.Add(this.DgvOrdenCarrito);
             this.TabCarrito.Controls.Add(this.BtnRetroceder);
@@ -402,6 +392,7 @@
             this.DgvDetalleCarrito.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvDetalleCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvDetalleCarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.EliminarDC,
             this.IdDC,
             this.NombreDC,
             this.PrecioUniDC,
@@ -411,7 +402,70 @@
             this.DgvDetalleCarrito.Name = "DgvDetalleCarrito";
             this.DgvDetalleCarrito.Size = new System.Drawing.Size(628, 195);
             this.DgvDetalleCarrito.TabIndex = 3;
-            this.DgvDetalleCarrito.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDetalleCarrito_CellClick);
+            this.DgvDetalleCarrito.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDetalleCarrito_CellContentClick);
+            this.DgvDetalleCarrito.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDetalleCarrito_CellValueChanged);
+            // 
+            // DgvOrdenCarrito
+            // 
+            this.DgvOrdenCarrito.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvOrdenCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvOrdenCarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdOC,
+            this.NombreOC,
+            this.FechaOC,
+            this.MontoOC});
+            this.DgvOrdenCarrito.Location = new System.Drawing.Point(46, 49);
+            this.DgvOrdenCarrito.Name = "DgvOrdenCarrito";
+            this.DgvOrdenCarrito.Size = new System.Drawing.Size(628, 72);
+            this.DgvOrdenCarrito.TabIndex = 2;
+            // 
+            // IdOC
+            // 
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdOC.DefaultCellStyle = dataGridViewCellStyle17;
+            this.IdOC.HeaderText = "Codigo de orden";
+            this.IdOC.Name = "IdOC";
+            // 
+            // NombreOC
+            // 
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NombreOC.DefaultCellStyle = dataGridViewCellStyle18;
+            this.NombreOC.HeaderText = "Nombre del cliente";
+            this.NombreOC.Name = "NombreOC";
+            // 
+            // FechaOC
+            // 
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaOC.DefaultCellStyle = dataGridViewCellStyle19;
+            this.FechaOC.HeaderText = "Fecha de creacion";
+            this.FechaOC.Name = "FechaOC";
+            // 
+            // MontoOC
+            // 
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MontoOC.DefaultCellStyle = dataGridViewCellStyle20;
+            this.MontoOC.HeaderText = "Monto Total";
+            this.MontoOC.Name = "MontoOC";
+            // 
+            // BtnRetroceder
+            // 
+            this.BtnRetroceder.Location = new System.Drawing.Point(46, 381);
+            this.BtnRetroceder.Name = "BtnRetroceder";
+            this.BtnRetroceder.Size = new System.Drawing.Size(114, 37);
+            this.BtnRetroceder.TabIndex = 1;
+            this.BtnRetroceder.Text = "Retroceder";
+            this.BtnRetroceder.UseVisualStyleBackColor = true;
+            this.BtnRetroceder.Click += new System.EventHandler(this.BtnRetroceder_Click);
+            // 
+            // EliminarDC
+            // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.NullValue = "-";
+            this.EliminarDC.DefaultCellStyle = dataGridViewCellStyle11;
+            this.EliminarDC.FillWeight = 20F;
+            this.EliminarDC.HeaderText = "";
+            this.EliminarDC.Name = "EliminarDC";
             // 
             // IdDC
             // 
@@ -439,67 +493,6 @@
             // 
             this.TotalDC.HeaderText = "Total";
             this.TotalDC.Name = "TotalDC";
-            // 
-            // DgvOrdenCarrito
-            // 
-            this.DgvOrdenCarrito.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DgvOrdenCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvOrdenCarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IdOC,
-            this.NombreOC,
-            this.FechaOC,
-            this.MontoOC});
-            this.DgvOrdenCarrito.Location = new System.Drawing.Point(46, 49);
-            this.DgvOrdenCarrito.Name = "DgvOrdenCarrito";
-            this.DgvOrdenCarrito.Size = new System.Drawing.Size(628, 72);
-            this.DgvOrdenCarrito.TabIndex = 2;
-            // 
-            // IdOC
-            // 
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdOC.DefaultCellStyle = dataGridViewCellStyle6;
-            this.IdOC.HeaderText = "Codigo de orden";
-            this.IdOC.Name = "IdOC";
-            // 
-            // NombreOC
-            // 
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NombreOC.DefaultCellStyle = dataGridViewCellStyle7;
-            this.NombreOC.HeaderText = "Nombre del cliente";
-            this.NombreOC.Name = "NombreOC";
-            // 
-            // FechaOC
-            // 
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FechaOC.DefaultCellStyle = dataGridViewCellStyle8;
-            this.FechaOC.HeaderText = "Fecha de creacion";
-            this.FechaOC.Name = "FechaOC";
-            // 
-            // MontoOC
-            // 
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MontoOC.DefaultCellStyle = dataGridViewCellStyle9;
-            this.MontoOC.HeaderText = "Monto Total";
-            this.MontoOC.Name = "MontoOC";
-            // 
-            // BtnRetroceder
-            // 
-            this.BtnRetroceder.Location = new System.Drawing.Point(46, 381);
-            this.BtnRetroceder.Name = "BtnRetroceder";
-            this.BtnRetroceder.Size = new System.Drawing.Size(114, 37);
-            this.BtnRetroceder.TabIndex = 1;
-            this.BtnRetroceder.Text = "Retroceder";
-            this.BtnRetroceder.UseVisualStyleBackColor = true;
-            this.BtnRetroceder.Click += new System.EventHandler(this.BtnRetroceder_Click);
-            // 
-            // BtnActualizar
-            // 
-            this.BtnActualizar.Location = new System.Drawing.Point(560, 381);
-            this.BtnActualizar.Name = "BtnActualizar";
-            this.BtnActualizar.Size = new System.Drawing.Size(114, 37);
-            this.BtnActualizar.TabIndex = 4;
-            this.BtnActualizar.Text = "Actualizar";
-            this.BtnActualizar.UseVisualStyleBackColor = true;
             // 
             // CduOrdenes
             // 
@@ -529,12 +522,6 @@
         private System.Windows.Forms.DataGridView DgvTablaOrdenes;
         private System.Windows.Forms.Button BtnCancelar;
         private System.Windows.Forms.Button BtnAgregar;
-        private System.Windows.Forms.DataGridViewButtonColumn AgregarO;
-        private System.Windows.Forms.DataGridViewButtonColumn DescartarO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombreO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaO;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -560,11 +547,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreOC;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaOC;
         private System.Windows.Forms.DataGridViewTextBoxColumn MontoOC;
+        private System.Windows.Forms.DataGridViewButtonColumn AgregarO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaO;
+        private System.Windows.Forms.DataGridViewButtonColumn EliminarDC;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdDC;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreDC;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioUniDC;
         private DataGridViewNumericUpDownColumn.DataGridViewNumericUpDownColumn CantidadDC;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalDC;
-        private System.Windows.Forms.Button BtnActualizar;
     }
 }

@@ -46,9 +46,9 @@ namespace Negocio
             return bdOrdenes.ModificarDetalle(Detalle);
         }
 
-        public bool EliminarDetalle(int id)
+        public bool EliminarDetalle(int Id_Detalle)
         {
-            return conexionSQL.CambiarEstadoCRUD(id, "detalle_orden");
+            return bdOrdenes.EliminarDetalle(Id_Detalle);
         }
 
         public List<ObjDetalle> CargarDetallesCarrito(int Id_Cliente)
