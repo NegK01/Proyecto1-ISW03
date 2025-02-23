@@ -320,6 +320,11 @@ namespace Proyecto
 
         private void DgvTablaOrdenes_CellContentClick(object sender, DataGridViewCellEventArgs Celda)
         {
+            if (Celda.RowIndex < 0 || Celda.RowIndex >= DgvTablaOrdenes.Rows.Count)
+            {
+                return;
+            }
+
             bool TocoAgregar = DgvTablaOrdenes.Columns[Celda.ColumnIndex].Name == "AgregarO";
             bool TocoDescartar = DgvTablaOrdenes.Columns[Celda.ColumnIndex].Name == "DesacartarO";
             bool HayCodigo = DgvTablaOrdenes.Rows[Celda.RowIndex].Cells["IdO"].Value == null;

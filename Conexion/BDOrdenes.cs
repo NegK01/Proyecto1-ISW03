@@ -116,7 +116,7 @@ namespace Conexion
             ConexionRetorno = conexion.ConexionBD();
 
             cmd = new NpgsqlCommand("UPDATE detalle_orden d SET cantidad = cantidad + " + Detalle.Cantidad + 
-                                   "WHERE id_producto = " + Detalle.Id_Producto + " AND id_orden = " + 
+                                   " WHERE id_producto = " + Detalle.Id_Producto + " AND id_orden = " + 
                                     Detalle.Id_Orden, ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();

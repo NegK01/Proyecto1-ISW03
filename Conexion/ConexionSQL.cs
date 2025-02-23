@@ -1,6 +1,7 @@
 ﻿//Using Añadidos
 using Npgsql;
 using System;
+using System.Collections.Generic;
 
 namespace Conexion
 {
@@ -16,7 +17,7 @@ namespace Conexion
             string Servidor = "localhost";
             int Puerto = 5432;
             string Usuario = "postgres";
-            string Clave = "Mortadela010203";
+            string Clave = "password";
             string BaseDatos = "tienda";
 
             string CadenaConexion = "Server=" + Servidor + ";" + "Port=" + Puerto + ";" +
@@ -148,6 +149,20 @@ namespace Conexion
                 cmd = new NpgsqlCommand(query, ConexionRetorno);
                 long count = Convert.ToInt64(cmd.ExecuteScalar() ?? 0);
                 return count > 0; // True (Duplicados) - False (Sin Duplicidad)
+            }
+        }
+        public Dictionary<string, byte[]> CargarImagenesBD()
+        {
+            using (ConexionRetorno = ConexionBD())
+            {
+                Dictionary<string, byte[]> Imagenes = new Dictionary<string, byte[]>();
+                cmd = new NpgsqlCommand("SELECT nombre, imagen FROM imagenes", ConexionRetorno);
+                var dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Imagenes.Add(dr.GetString(0), (byte[])dr[1]);
+                }
+                return Imagenes;
             }
         }
     }

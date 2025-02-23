@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Conexion;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -8,14 +9,17 @@ namespace Negocio
     public static class Imagenes
     {
         static Usuarios Usuarios = new Usuarios();
+        static ConexionSQL conexionSQL = new ConexionSQL();
 
-        static Dictionary<string, byte[]> imagenes = Usuarios.CargarImagenes(); // Cargar las imagenes de la base de datos en el objeto imagenes
+        static Dictionary<string, byte[]> imagenes = CargarImagenes(); // Cargar las imagenes de la base de datos en el objeto imagenes
 
 
         public static byte[] ObtenerImagen(string nombre)
         {
             return imagenes.ContainsKey(nombre) ? imagenes[nombre] : null;
         }
+
+        
 
         public static void AsignarImagenes(params Control[] controles)
         {
@@ -47,6 +51,11 @@ namespace Negocio
                     }
                 }
             }
+        }
+
+        public static Dictionary<string, byte[]> CargarImagenes()
+        {
+            return conexionSQL.CargarImagenesBD();
         }
     }
 }

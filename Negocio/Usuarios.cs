@@ -74,10 +74,5 @@ namespace Negocio
 
             return ContraEncryptada.ToString();
         }
-
-        public Dictionary<string, byte[]> CargarImagenes()
-        {
-            return bdUsuarios.CargarImagenesBD();
-        }
     }
 }
