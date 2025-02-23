@@ -111,6 +111,21 @@ namespace Conexion
             return affectedRows > 0;
         }
 
+        public bool ModificarCantidadDetalle(ObjDetalle Detalle)
+        {
+            ConexionRetorno = conexion.ConexionBD();
+
+            cmd = new NpgsqlCommand("UPDATE detalle_orden d SET cantidad = cantidad + " + Detalle.Cantidad + 
+                                   "WHERE id_producto = " + Detalle.Id_Producto + " AND id_orden = " + 
+                                    Detalle.Id_Orden, ConexionRetorno);
+
+            int affectedRows = cmd.ExecuteNonQuery();
+
+            ConexionRetorno.Close();
+
+            return affectedRows > 0;
+        }
+
         public bool EliminarDetalle(int Id_Detalle)
         {
             ConexionRetorno = conexion.ConexionBD();
@@ -194,6 +209,26 @@ namespace Conexion
             ConexionRetorno.Close();
 
             return Id_Orden;
+        }
+
+        public bool ComprobarProductoExistente(ObjDetalle Detalle)
+        {
+            ConexionRetorno = conexion.ConexionBD();
+            cmd = new NpgsqlCommand("SELECT COUNT(*) FROM detalle_orden WHERE id_producto = " + 
+                                    Detalle.Id_Producto + " AND id_orden = " + Detalle.Id_Orden, ConexionRetorno);
+
+            var dr = cmd.ExecuteReader();
+
+            int Cantidad = 0;
+
+            while (dr.Read())
+            {
+                Cantidad = dr.GetInt32(0);
+            }
+
+            ConexionRetorno.Close();
+
+            return Cantidad > 0;
         }
 
         public void Reporte_1(DataGridView Tabla)

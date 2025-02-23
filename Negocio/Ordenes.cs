@@ -39,6 +39,11 @@ namespace Negocio
 
         public bool InsertarDetalle(ObjDetalle Detalle)
         {
+            if (bdOrdenes.ComprobarProductoExistente(Detalle))
+            {
+                return bdOrdenes.ModificarCantidadDetalle(Detalle);
+            }
+
             return bdOrdenes.InsertarDetalle(Detalle);
         }
 
