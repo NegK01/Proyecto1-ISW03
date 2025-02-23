@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TabControlOrdenes = new System.Windows.Forms.TabControl();
             this.TabOrdenes = new System.Windows.Forms.TabPage();
             this.BtnCarrito = new System.Windows.Forms.Button();
@@ -68,18 +68,30 @@
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.TabCarrito = new System.Windows.Forms.TabPage();
             this.DgvDetalleCarrito = new System.Windows.Forms.DataGridView();
-            this.DgvOrdenCarrito = new System.Windows.Forms.DataGridView();
-            this.IdOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MontoOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BtnRetroceder = new System.Windows.Forms.Button();
             this.EliminarDC = new System.Windows.Forms.DataGridViewButtonColumn();
             this.IdDC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreDC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioUniDC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CantidadDC = new DataGridViewNumericUpDownColumn.DataGridViewNumericUpDownColumn();
             this.TotalDC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgvOrdenCarrito = new System.Windows.Forms.DataGridView();
+            this.IdOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MontoOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtnRetroceder = new System.Windows.Forms.Button();
+            this.TabPago = new System.Windows.Forms.TabPage();
+            this.txtFechaHoraPago = new System.Windows.Forms.TextBox();
+            this.btnCancelarPago = new System.Windows.Forms.Button();
+            this.btnFinalizarPago = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtIdOrdenPago = new System.Windows.Forms.TextBox();
+            this.chkTerminosYCondiciones = new System.Windows.Forms.CheckBox();
+            this.rdbtnTarjetaCredDebit = new System.Windows.Forms.RadioButton();
+            this.rdbtnTransferencia = new System.Windows.Forms.RadioButton();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnPagarCarrito = new System.Windows.Forms.Button();
             this.TabControlOrdenes.SuspendLayout();
             this.TabOrdenes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTablaOrdenes)).BeginInit();
@@ -118,7 +130,7 @@
             // 
             // BtnCarrito
             // 
-            this.BtnCarrito.Location = new System.Drawing.Point(620, 36);
+            this.BtnCarrito.Location = new System.Drawing.Point(601, 24);
             this.BtnCarrito.Name = "BtnCarrito";
             this.BtnCarrito.Size = new System.Drawing.Size(82, 34);
             this.BtnCarrito.TabIndex = 1;
@@ -136,46 +148,46 @@
             this.NombreO,
             this.PrecioO,
             this.FechaO});
-            this.DgvTablaOrdenes.Location = new System.Drawing.Point(20, 76);
+            this.DgvTablaOrdenes.Location = new System.Drawing.Point(45, 76);
             this.DgvTablaOrdenes.Name = "DgvTablaOrdenes";
-            this.DgvTablaOrdenes.Size = new System.Drawing.Size(682, 342);
+            this.DgvTablaOrdenes.Size = new System.Drawing.Size(638, 342);
             this.DgvTablaOrdenes.TabIndex = 0;
             this.DgvTablaOrdenes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvTablaOrdenes_CellContentClick);
             // 
             // AgregarO
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AgregarO.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AgregarO.DefaultCellStyle = dataGridViewCellStyle21;
             this.AgregarO.FillWeight = 30F;
             this.AgregarO.HeaderText = "";
             this.AgregarO.Name = "AgregarO";
             // 
             // IdO
             // 
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdO.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdO.DefaultCellStyle = dataGridViewCellStyle22;
             this.IdO.HeaderText = "Codigo";
             this.IdO.Name = "IdO";
             // 
             // NombreO
             // 
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NombreO.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NombreO.DefaultCellStyle = dataGridViewCellStyle23;
             this.NombreO.HeaderText = "Nombre";
             this.NombreO.Name = "NombreO";
             // 
             // PrecioO
             // 
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PrecioO.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrecioO.DefaultCellStyle = dataGridViewCellStyle24;
             this.PrecioO.HeaderText = "Precio";
             this.PrecioO.Name = "PrecioO";
             // 
             // FechaO
             // 
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FechaO.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaO.DefaultCellStyle = dataGridViewCellStyle25;
             this.FechaO.HeaderText = "Fecha de expiracion";
             this.FechaO.Name = "FechaO";
             // 
@@ -401,71 +413,19 @@
             this.PrecioUniDC,
             this.CantidadDC,
             this.TotalDC});
-            this.DgvDetalleCarrito.Location = new System.Drawing.Point(29, 155);
+            this.DgvDetalleCarrito.Location = new System.Drawing.Point(46, 155);
             this.DgvDetalleCarrito.Name = "DgvDetalleCarrito";
-            this.DgvDetalleCarrito.Size = new System.Drawing.Size(677, 195);
+            this.DgvDetalleCarrito.Size = new System.Drawing.Size(628, 195);
             this.DgvDetalleCarrito.TabIndex = 3;
             this.DgvDetalleCarrito.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDetalleCarrito_CellContentClick);
             this.DgvDetalleCarrito.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDetalleCarrito_CellValueChanged);
             // 
-            // DgvOrdenCarrito
-            // 
-            this.DgvOrdenCarrito.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DgvOrdenCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvOrdenCarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IdOC,
-            this.NombreOC,
-            this.FechaOC,
-            this.MontoOC});
-            this.DgvOrdenCarrito.Location = new System.Drawing.Point(38, 51);
-            this.DgvOrdenCarrito.Name = "DgvOrdenCarrito";
-            this.DgvOrdenCarrito.Size = new System.Drawing.Size(668, 72);
-            this.DgvOrdenCarrito.TabIndex = 2;
-            // 
-            // IdOC
-            // 
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdOC.DefaultCellStyle = dataGridViewCellStyle17;
-            this.IdOC.HeaderText = "Codigo de orden";
-            this.IdOC.Name = "IdOC";
-            // 
-            // NombreOC
-            // 
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NombreOC.DefaultCellStyle = dataGridViewCellStyle18;
-            this.NombreOC.HeaderText = "Nombre del cliente";
-            this.NombreOC.Name = "NombreOC";
-            // 
-            // FechaOC
-            // 
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FechaOC.DefaultCellStyle = dataGridViewCellStyle19;
-            this.FechaOC.HeaderText = "Fecha de creacion";
-            this.FechaOC.Name = "FechaOC";
-            // 
-            // MontoOC
-            // 
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MontoOC.DefaultCellStyle = dataGridViewCellStyle20;
-            this.MontoOC.HeaderText = "Monto Total";
-            this.MontoOC.Name = "MontoOC";
-            // 
-            // BtnRetroceder
-            // 
-            this.BtnRetroceder.Location = new System.Drawing.Point(29, 380);
-            this.BtnRetroceder.Name = "BtnRetroceder";
-            this.BtnRetroceder.Size = new System.Drawing.Size(114, 37);
-            this.BtnRetroceder.TabIndex = 1;
-            this.BtnRetroceder.Text = "Retroceder";
-            this.BtnRetroceder.UseVisualStyleBackColor = true;
-            this.BtnRetroceder.Click += new System.EventHandler(this.BtnRetroceder_Click);
-            // 
             // EliminarDC
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.NullValue = "-";
-            this.EliminarDC.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle26.NullValue = "-";
+            this.EliminarDC.DefaultCellStyle = dataGridViewCellStyle26;
             this.EliminarDC.FillWeight = 20F;
             this.EliminarDC.HeaderText = "";
             this.EliminarDC.Name = "EliminarDC";
@@ -496,6 +456,191 @@
             // 
             this.TotalDC.HeaderText = "Total";
             this.TotalDC.Name = "TotalDC";
+            // 
+            // DgvOrdenCarrito
+            // 
+            this.DgvOrdenCarrito.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvOrdenCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvOrdenCarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdOC,
+            this.NombreOC,
+            this.FechaOC,
+            this.MontoOC});
+            this.DgvOrdenCarrito.Location = new System.Drawing.Point(46, 49);
+            this.DgvOrdenCarrito.Name = "DgvOrdenCarrito";
+            this.DgvOrdenCarrito.Size = new System.Drawing.Size(628, 72);
+            this.DgvOrdenCarrito.TabIndex = 2;
+            // 
+            // IdOC
+            // 
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdOC.DefaultCellStyle = dataGridViewCellStyle27;
+            this.IdOC.HeaderText = "Codigo de orden";
+            this.IdOC.Name = "IdOC";
+            // 
+            // NombreOC
+            // 
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NombreOC.DefaultCellStyle = dataGridViewCellStyle28;
+            this.NombreOC.HeaderText = "Nombre del cliente";
+            this.NombreOC.Name = "NombreOC";
+            // 
+            // FechaOC
+            // 
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaOC.DefaultCellStyle = dataGridViewCellStyle29;
+            this.FechaOC.HeaderText = "Fecha de creacion";
+            this.FechaOC.Name = "FechaOC";
+            // 
+            // MontoOC
+            // 
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MontoOC.DefaultCellStyle = dataGridViewCellStyle30;
+            this.MontoOC.HeaderText = "Monto Total";
+            this.MontoOC.Name = "MontoOC";
+            // 
+            // BtnRetroceder
+            // 
+            this.BtnRetroceder.Location = new System.Drawing.Point(46, 381);
+            this.BtnRetroceder.Name = "BtnRetroceder";
+            this.BtnRetroceder.Size = new System.Drawing.Size(114, 37);
+            this.BtnRetroceder.TabIndex = 1;
+            this.BtnRetroceder.Text = "Retroceder";
+            this.BtnRetroceder.UseVisualStyleBackColor = true;
+            this.BtnRetroceder.Click += new System.EventHandler(this.BtnRetroceder_Click);
+            // 
+            // TabPago
+            // 
+            this.TabPago.Controls.Add(this.txtFechaHoraPago);
+            this.TabPago.Controls.Add(this.btnCancelarPago);
+            this.TabPago.Controls.Add(this.btnFinalizarPago);
+            this.TabPago.Controls.Add(this.label12);
+            this.TabPago.Controls.Add(this.txtIdOrdenPago);
+            this.TabPago.Controls.Add(this.chkTerminosYCondiciones);
+            this.TabPago.Controls.Add(this.rdbtnTarjetaCredDebit);
+            this.TabPago.Controls.Add(this.rdbtnTransferencia);
+            this.TabPago.Controls.Add(this.label11);
+            this.TabPago.Controls.Add(this.label10);
+            this.TabPago.Location = new System.Drawing.Point(4, 23);
+            this.TabPago.Name = "TabPago";
+            this.TabPago.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPago.Size = new System.Drawing.Size(722, 463);
+            this.TabPago.TabIndex = 3;
+            this.TabPago.Text = "Pago";
+            this.TabPago.UseVisualStyleBackColor = true;
+            // 
+            // txtFechaHoraPago
+            // 
+            this.txtFechaHoraPago.Enabled = false;
+            this.txtFechaHoraPago.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFechaHoraPago.Location = new System.Drawing.Point(160, 96);
+            this.txtFechaHoraPago.Name = "txtFechaHoraPago";
+            this.txtFechaHoraPago.Size = new System.Drawing.Size(187, 26);
+            this.txtFechaHoraPago.TabIndex = 13;
+            // 
+            // btnCancelarPago
+            // 
+            this.btnCancelarPago.Location = new System.Drawing.Point(512, 344);
+            this.btnCancelarPago.Name = "btnCancelarPago";
+            this.btnCancelarPago.Size = new System.Drawing.Size(123, 37);
+            this.btnCancelarPago.TabIndex = 12;
+            this.btnCancelarPago.Text = "Cancelar";
+            this.btnCancelarPago.UseVisualStyleBackColor = true;
+            this.btnCancelarPago.Click += new System.EventHandler(this.btnCancelarPago_Click);
+            // 
+            // btnFinalizarPago
+            // 
+            this.btnFinalizarPago.Location = new System.Drawing.Point(45, 344);
+            this.btnFinalizarPago.Name = "btnFinalizarPago";
+            this.btnFinalizarPago.Size = new System.Drawing.Size(123, 37);
+            this.btnFinalizarPago.TabIndex = 11;
+            this.btnFinalizarPago.Text = "Finalizar compra";
+            this.btnFinalizarPago.UseVisualStyleBackColor = true;
+            this.btnFinalizarPago.Click += new System.EventHandler(this.btnFinalizarPago_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(42, 156);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(140, 18);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "Metodo de Pago";
+            // 
+            // txtNoOrdenPago
+            // 
+            this.txtIdOrdenPago.Enabled = false;
+            this.txtIdOrdenPago.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIdOrdenPago.Location = new System.Drawing.Point(139, 64);
+            this.txtIdOrdenPago.Name = "txtNoOrdenPago";
+            this.txtIdOrdenPago.Size = new System.Drawing.Size(208, 26);
+            this.txtIdOrdenPago.TabIndex = 7;
+            // 
+            // chkTerminosYCondiciones
+            // 
+            this.chkTerminosYCondiciones.AutoSize = true;
+            this.chkTerminosYCondiciones.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkTerminosYCondiciones.Location = new System.Drawing.Point(45, 304);
+            this.chkTerminosYCondiciones.Name = "chkTerminosYCondiciones";
+            this.chkTerminosYCondiciones.Size = new System.Drawing.Size(562, 22);
+            this.chkTerminosYCondiciones.TabIndex = 5;
+            this.chkTerminosYCondiciones.Text = "He leído y estoy de acuerdo con los Términos y condiciones de la tienda";
+            this.chkTerminosYCondiciones.UseVisualStyleBackColor = true;
+            // 
+            // rdbtnTarjetaCredDebit
+            // 
+            this.rdbtnTarjetaCredDebit.AutoSize = true;
+            this.rdbtnTarjetaCredDebit.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbtnTarjetaCredDebit.Location = new System.Drawing.Point(45, 207);
+            this.rdbtnTarjetaCredDebit.Name = "rdbtnTarjetaCredDebit";
+            this.rdbtnTarjetaCredDebit.Size = new System.Drawing.Size(232, 22);
+            this.rdbtnTarjetaCredDebit.TabIndex = 4;
+            this.rdbtnTarjetaCredDebit.Text = "Tarjeta de Crédito o Débito ";
+            this.rdbtnTarjetaCredDebit.UseVisualStyleBackColor = true;
+            // 
+            // rdbtnTransferencia
+            // 
+            this.rdbtnTransferencia.AutoSize = true;
+            this.rdbtnTransferencia.Checked = true;
+            this.rdbtnTransferencia.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbtnTransferencia.Location = new System.Drawing.Point(45, 183);
+            this.rdbtnTransferencia.Name = "rdbtnTransferencia";
+            this.rdbtnTransferencia.Size = new System.Drawing.Size(191, 22);
+            this.rdbtnTransferencia.TabIndex = 3;
+            this.rdbtnTransferencia.TabStop = true;
+            this.rdbtnTransferencia.Text = "Transferencia bancaria";
+            this.rdbtnTransferencia.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(42, 99);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(112, 18);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Fecha y hora:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(42, 67);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(91, 18);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "No. Orden:";
+            // 
+            // btnPagarCarrito
+            // 
+            this.btnPagarCarrito.Location = new System.Drawing.Point(560, 381);
+            this.btnPagarCarrito.Name = "btnPagarCarrito";
+            this.btnPagarCarrito.Size = new System.Drawing.Size(114, 37);
+            this.btnPagarCarrito.TabIndex = 4;
+            this.btnPagarCarrito.Text = "Pagar";
+            this.btnPagarCarrito.UseVisualStyleBackColor = true;
+            this.btnPagarCarrito.Click += new System.EventHandler(this.btnPagarCarrito_Click);
             // 
             // CduOrdenes
             // 
