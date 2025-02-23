@@ -196,7 +196,7 @@ namespace Conexion
             return Id_Orden;
         }
 
-        public void Reporte1(DataGridView Tabla)
+        public void Reporte_1(DataGridView Tabla)
         {
             ConexionRetorno = conexion.ConexionBD();
 

@@ -20,12 +20,12 @@ namespace Proyecto
 
         public void Reporte_2()
         {
-
+            reportes.Reporte_2(DgvTablaReportes);
         }
 
         public void Reporte_3()
         {
-
+            reportes.Reporte_3(DgvTablaReportes);
         }
 
         private void CbxTipoReportes_SelectedIndexChanged(object sender, EventArgs e)

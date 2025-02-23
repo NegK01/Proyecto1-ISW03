@@ -2,6 +2,8 @@
 using Npgsql;
 using Objetos;
 using System.Collections.Generic;
+using System.Data;
+using System.Windows.Forms;
 
 namespace Conexion
 {
@@ -135,6 +137,44 @@ namespace Conexion
                 }
                 return Imagenes;
             }
+        }
+
+        public void Reporte_2(DataGridView Tabla)
+        {
+            ConexionRetorno = conexion.ConexionBD();
+
+            DataTable dataTable = new DataTable();
+            NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(
+
+            @"SELECT 
+                CONCAT(u.nombre, ' ', u.apellido) AS ""Nombre del cliente"",
+                COUNT(DISTINCT d.id_producto)     AS ""Diferentes productos comprados"",
+                SUM(d.cantidad)                   AS ""Cantidad de productos vendidos"",
+	            p.metodo_pago                     AS ""Metodo de pago"",
+                o.monto_total                     AS ""Monto total""
+            FROM 
+                usuario u
+            JOIN 
+                orden o           ON u.id = o.id_cliente
+            JOIN 
+                detalle_orden d   ON o.id = d.id_orden
+            JOIN
+                pago p            ON o.id = p.id_orden
+            JOIN
+                estado e          ON e.id = o.id_estado
+            WHERE
+	            o.id_estado = 2
+            GROUP BY 
+                u.nombre, 
+                u.apellido, 
+                p.metodo_pago, 
+                o.monto_total
+            ORDER BY 
+                ""Nombre del cliente"" ASC,
+                ""Monto total"" DESC;", ConexionRetorno);
+
+            adapter.Fill(dataTable);
+            Tabla.DataSource = dataTable;
         }
     }
 }
