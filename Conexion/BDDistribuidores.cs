@@ -104,24 +104,23 @@ namespace Conexion
             NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(
 
             @"SELECT 
-                c.nombre                      AS ""Nombre categoria"",
-                COUNT(DISTINCT d.id_producto) AS ""Cantidad de productos"",
-                SUM(d.cantidad)               AS ""Cantidad de productos vendidos"",
-                SUM(d.cantidad * p.precio)    AS ""Ventas totales""
-            FROM 
-                detalle_orden d
-            JOIN 
-                producto p        ON p.id = d.id_producto
-            JOIN 
-                categoria c       ON c.id = p.id_categoria
+                di.nombre                      AS ""Nombre de distribuidor"",
+                p.nombre                       AS ""Nombre del producto mas vendido"",
+                SUM(dt.cantidad)               AS ""Cantidad de productos vendidos"" 
+            FROM distribuidor di
             JOIN
-                orden o           ON o.id = d.id_orden
+                producto p        ON di.id = p.id_distribuidor
+            JOIN 
+                detalle_orden dt   ON p.id = dt.id_producto
+            JOIN 
+                orden o           ON dt.id_orden = o.id
             JOIN
                 pago pa           ON o.id = pa.id_orden
             GROUP BY 
-                ""Nombre categoria""
+                p.nombre, 
+	            di.nombre
             ORDER BY 
-                ""Ventas totales"" DESC;", conexionRetorno);
+                ""Cantidad de productos vendidos""  DESC;", conexionRetorno);
 
             adapter.Fill(dataTable);
             Tabla.DataSource = dataTable;

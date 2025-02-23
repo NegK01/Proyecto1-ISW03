@@ -361,6 +361,9 @@ namespace Proyecto
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             InsertarOrden();
+
+            //ASSDASDASD
+
             InsertarDetalle();
 
             AlternarPestañas("Ordenes");

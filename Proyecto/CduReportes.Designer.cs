@@ -62,11 +62,11 @@
             this.CbxTipoReportes.Items.AddRange(new object[] {
             "Informacion de ventas por categoria",
             "Informacion de ordenes de usuarios",
-            "Item 3"});
+            "Informacion cantidad de ventas por distribuidor"});
             this.CbxTipoReportes.Location = new System.Drawing.Point(54, 128);
             this.CbxTipoReportes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CbxTipoReportes.Name = "CbxTipoReportes";
-            this.CbxTipoReportes.Size = new System.Drawing.Size(432, 22);
+            this.CbxTipoReportes.Size = new System.Drawing.Size(552, 22);
             this.CbxTipoReportes.TabIndex = 1;
             this.CbxTipoReportes.SelectedIndexChanged += new System.EventHandler(this.CbxTipoReportes_SelectedIndexChanged);
             // 
