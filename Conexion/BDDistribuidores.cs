@@ -19,16 +19,16 @@ namespace Conexion
 
         public bool InsertarDistribuidorBD(ObjDistribuidor obj)
         {
-            if (conexion.ConfirmarDuplicidad("distribuidor", "nombre", obj.Nombre))
+            if (conexion.ConfirmarDuplicidad("almacenes.proveedores", "nombre", obj.Nombre))
             {
                 return false;
             }
 
-            obj.Id = conexion.BuscarSiguienteId("distribuidor");
+            obj.Id = conexion.BuscarSiguienteId("almacenes.proveedores");
 
             using (conexionRetorno = conexion.ConexionBD())
             {
-                cmd = new NpgsqlCommand("INSERT INTO distribuidor (id, nombre, info_contacto) VALUES (" +
+                cmd = new NpgsqlCommand("INSERT INTO almacenes.proveedores (id, nombre, info_contacto) VALUES (" +
                                         obj.Id + ", '" +
                                         obj.Nombre + "', '" +
                                         obj.Contacto + "')", conexionRetorno);
@@ -39,14 +39,14 @@ namespace Conexion
 
         public bool ActualizarDistribuidorBD(ObjDistribuidor obj)
         {
-            if (conexion.ConfirmarDuplicidad("distribuidor", "nombre", obj.Nombre, obj.Id))
+            if (conexion.ConfirmarDuplicidad("almacenes.proveedores", "nombre", obj.Nombre, obj.Id))
             {
                 return false;
             }
 
             using (conexionRetorno = conexion.ConexionBD())
             {
-                cmd = new NpgsqlCommand("UPDATE distribuidor SET " +
+                cmd = new NpgsqlCommand("UPDATE almacenes.proveedores SET " +
                                         "nombre = '" + obj.Nombre + "', " +
                                         "info_contacto = '" + obj.Contacto + "' " +
                                         "WHERE id = " + obj.Id, conexionRetorno);
@@ -59,7 +59,7 @@ namespace Conexion
         {
             List<ObjDistribuidor> distribuidores = new List<ObjDistribuidor>();
             conexionRetorno = conexion.ConexionBD();
-            cmd = new NpgsqlCommand("SELECT id, nombre, info_contacto, id_estado FROM distribuidor", conexionRetorno);
+            cmd = new NpgsqlCommand("SELECT id, nombre, correo_contacto, numero_contacto, estado FROM almacenes.proveedores", conexionRetorno);
             var dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -69,7 +69,8 @@ namespace Conexion
                     Id = dr.GetInt32(0),
                     Nombre = dr.GetString(1),
                     Contacto = dr.GetString(2),
-                    Id_Estado = dr.GetInt32(3)
+                    Numero = dr.GetInt32(3),
+                    Estado = dr.GetBoolean(4)
                 };
                 distribuidores.Add(distribuidor);
             }
@@ -82,7 +83,7 @@ namespace Conexion
         {
             List<ObjDistribuidor> distribuidores = new List<ObjDistribuidor>();
             conexionRetorno = conexion.ConexionBD();
-            cmd = new NpgsqlCommand("SELECT nombre FROM distribuidor where id_estado = 1", conexionRetorno);
+            cmd = new NpgsqlCommand("SELECT nombre FROM almacenes.proveedores where estado = true", conexionRetorno);
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {

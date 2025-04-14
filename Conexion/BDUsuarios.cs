@@ -1,6 +1,7 @@
 ﻿//Using Añadidos
 using Npgsql;
 using Objetos;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
@@ -16,30 +17,62 @@ namespace Conexion
 
         public ObjUsuario InicioSesion(ObjUsuario NuevoUsuario)
         {
-            ObjUsuario UsuarioDado = new ObjUsuario();
+            ObjUsuario UsuarioDado = null;
 
-            ConexionRetorno = conexion.ConexionBD();
+            bool esCliente = char.IsDigit(NuevoUsuario.Identificador[0]);
 
-            cmd = new NpgsqlCommand("SELECT id, contrasena, id_rol FROM usuario WHERE cedula = " + NuevoUsuario.Cedula + " " +
-                                    "AND contrasena = '" + NuevoUsuario.Contraseña + "' AND id_estado = 1 ",
-                                    ConexionRetorno);
+            string consultaSQL;
 
-            var dr = cmd.ExecuteReader();
-
-            while (dr.Read())
+            if (esCliente)
             {
-                UsuarioDado = new ObjUsuario
-                {
-                    Id = dr.GetInt32(0),
-                    Contraseña = dr.GetString(1),
-                    Rol = dr.GetInt32(2)
-                };
+                consultaSQL = "SELECT cedula, contrasena FROM clientes.clientes " +
+                              $"WHERE cedula = {NuevoUsuario.Identificador}";
+            }
+            else
+            {
+                consultaSQL = "SELECT usuario, id_rol, contrasena FROM empleados.empleados " +
+                              $"WHERE usuario = '{NuevoUsuario.Identificador}'";
             }
 
-            ConexionRetorno.Close();
+            using (NpgsqlConnection conexionActual = new ConexionSQL().ConexionBD())
+            using (NpgsqlCommand cmd = new NpgsqlCommand(consultaSQL, conexionActual))
+            {
+                //cmd.Parameters.AddWithValue("identificador", NuevoUsuario.Identificador);
+                //cmd.Parameters.AddWithValue("contrasena", NuevoUsuario.Contraseña);
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        UsuarioDado = new ObjUsuario();
+
+                        if (esCliente)
+                        {
+                            UsuarioDado.Identificador = Convert.ToString(dr.GetInt32(0)); // cedula
+                            UsuarioDado.Contraseña = dr.GetString(1);
+                            UsuarioDado.Rol = 0; // sin rol pq como sale de la tabla de clientes, se asume que lo es
+                            //conexion = new ConexionSQL(UsuarioDado.Identificador, "Cliente");
+                            Console.WriteLine($"Cliente: {UsuarioDado.Identificador}, Contraseña: {UsuarioDado.Contraseña}");
+                        }
+                        else
+                        {
+                            UsuarioDado.Identificador = dr.GetString(0); // usuario
+                            UsuarioDado.Rol = dr.GetInt32(1);
+                            UsuarioDado.Contraseña = dr.GetString(2);
+                            //conexion = new ConexionSQL(UsuarioDado.Identificador, "Empleado");
+                            Console.WriteLine($"Empleado: {UsuarioDado.Identificador}, Rol: {UsuarioDado.Rol}, Contraseña: {UsuarioDado.Contraseña}");
+                        }
+                    }
+                    else
+                    {
+                        //Console.WriteLine("No se encontró el usuario.");
+                    }
+                }
+            }
 
             return UsuarioDado;
         }
+
 
         public bool InsertarUsuario(ObjUsuario NuevoUsuario)
         {

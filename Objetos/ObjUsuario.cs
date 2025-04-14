@@ -1,8 +1,12 @@
-﻿namespace Objetos
+﻿using System.Globalization;
+
+namespace Objetos
 {
     public class ObjUsuario
     {
         public int Id { get; set; }
+
+        public string Identificador { get; set; }
 
         public int Cedula { get; set; }
 

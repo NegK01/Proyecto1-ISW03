@@ -10,6 +10,14 @@ namespace Conexion
         public NpgsqlConnection ConexionRetorno;
         public NpgsqlConnection Conexion;
         public NpgsqlCommand cmd;
+        public string UsuarioApp;
+        public string TipoUsuarioApp;
+
+        public ConexionSQL(string UsuarioApp = "Sistema", string TipoUsuarioApp = "Sistema")
+        {
+            this.UsuarioApp = UsuarioApp;
+            this.TipoUsuarioApp = TipoUsuarioApp;
+        }
 
         public NpgsqlConnection ConexionBD()
         {
@@ -18,7 +26,7 @@ namespace Conexion
             int Puerto = 5432;
             string Usuario = "postgres";
             string Clave = "password";
-            string BaseDatos = "tienda";
+            string BaseDatos = "tienda2";
 
             string CadenaConexion = "Server=" + Servidor + ";" + "Port=" + Puerto + ";" +
                                     "User Id=" + Usuario + ";" + "Password=" + Clave + ";" +
@@ -26,6 +34,19 @@ namespace Conexion
 
             Conexion = new NpgsqlConnection(CadenaConexion);
             Conexion.Open();
+
+            // Iniciar la transaccion
+            var tx = Conexion.BeginTransaction();
+
+            using (var cmd1 = new NpgsqlCommand($"SET LOCAL app.usuario = '{UsuarioApp.Replace("'", "''")}'", Conexion, tx))
+            {
+                cmd1.ExecuteNonQuery();
+            }
+
+            using (var cmd2 = new NpgsqlCommand($"SET LOCAL app.tipo_usuario = '{TipoUsuarioApp.Replace("'", "''")}'", Conexion, tx))
+            {
+                cmd2.ExecuteNonQuery();
+            }
 
             return Conexion;
         }

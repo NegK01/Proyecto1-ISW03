@@ -13,7 +13,7 @@ namespace Proyecto
         public FrmLogin()
         {
             InitializeComponent();
-            InicializarImagenes();
+            //InicializarImagenes();
         }
 
         public void InicializarImagenes()
@@ -23,7 +23,7 @@ namespace Proyecto
 
         public void RestringirTexto(object sender, KeyPressEventArgs Tecla)
         {
-            System.Windows.Forms.TextBox textBox = sender as System.Windows.Forms.TextBox;
+            TextBox textBox = sender as TextBox;
 
             if (textBox.Name == "TxtContraseña")
             {
@@ -46,13 +46,13 @@ namespace Proyecto
             {
                 ObjUsuario NuevoUsuario = new ObjUsuario
                 {
-                    Cedula = Convert.ToInt32(TxtCedula.Text),
-                    Contraseña = Usuarios.EncriptarMD5(TxtContraseña.Text)
-
+                    Identificador = TxtCedula.Text,
+                    //Cedula = Convert.ToInt32(TxtCedula.Text),
+                    Contraseña = TxtContraseña.Text
                 };
-                string Contraseña = Usuarios.EncriptarMD5(TxtContraseña.Text);
 
-                UsuarioDado = Usuarios.InicioSecion(NuevoUsuario);
+                //string Contraseña = TxtContraseña.Text;
+                UsuarioDado = Usuarios.InicioSesion(NuevoUsuario);
             }
             else
             {
@@ -62,8 +62,18 @@ namespace Proyecto
                 return;
             }
 
-            if (UsuarioDado.Id != 0)
+            if (UsuarioDado != null && UsuarioDado.Identificador != "0" && UsuarioDado.Identificador != null)
             {
+                if (UsuarioDado.Contraseña != TxtContraseña.Text)
+                {
+
+                    Console.WriteLine(UsuarioDado.Contraseña);
+                    Console.WriteLine(TxtContraseña.Text);
+                    MessageBox.Show("La contraseña es incorrecta.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 Visible = false;
 
                 FrmPrincipal Principal = new FrmPrincipal(UsuarioDado);
@@ -80,17 +90,17 @@ namespace Proyecto
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs Tecla)
         {
-            RestringirTexto(sender, Tecla);
+            //RestringirTexto(sender, Tecla);
         }
 
         private void TxtId_KeyPress(object sender, KeyPressEventArgs Tecla)
         {
-            RestringirTexto(sender, Tecla);
+            //RestringirTexto(sender, Tecla);
         }
 
         private void TxtContraseña_KeyPress(object sender, KeyPressEventArgs Tecla)
         {
-            RestringirTexto(sender, Tecla);
+            //RestringirTexto(sender, Tecla);
         }
 
         private void BtnIngresar_Click(object sender, EventArgs e)

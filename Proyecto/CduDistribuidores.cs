@@ -80,16 +80,16 @@ namespace Proyecto
 
         public void CargarTablaDistribuidores()
         {
-            listaObjDistribuidors = distribuidor.ObtenerDistribuidores();
-            DgvTablaDistribuidores.Rows.Clear();
-            foreach (ObjDistribuidor obj in listaObjDistribuidors)
-            {
+            //listaObjDistribuidors = distribuidor.ObtenerDistribuidores();
+            //DgvTablaDistribuidores.Rows.Clear();
+            //foreach (ObjDistribuidor obj in listaObjDistribuidors)
+            //{
 
-                string nombreEstado = distribuidor.BuscarNombreEstado(obj.Id_Estado);
+            //    //string nombreEstado = distribuidor.BuscarNombreEstado(obj.Id_Estado);
 
-                DgvTablaDistribuidores.Rows.Add(obj.Id, obj.Nombre, obj.Contacto, nombreEstado);
-            }
-            DgvTablaDistribuidores.Sort(DgvTablaDistribuidores.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
+            //    DgvTablaDistribuidores.Rows.Add(obj.Id, obj.Nombre, obj.Contacto, obj.Numero, obj.Estado);
+            //}
+            //DgvTablaDistribuidores.Sort(DgvTablaDistribuidores.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
         }
 
         private void RecogerDatosDgv()

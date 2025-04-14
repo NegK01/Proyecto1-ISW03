@@ -6,12 +6,12 @@ namespace Negocio
 {
     public class Distribuidores
     {
-        BDDistribuidores bdDistribuidor;
+        //BDDistribuidores bdDistribuidor;
         ConexionSQL conexionSQL;
 
         public Distribuidores()
         {
-            bdDistribuidor = new BDDistribuidores();
+            //bdDistribuidor = new BDDistribuidores();
             conexionSQL = new ConexionSQL();
         }
 
@@ -37,6 +37,7 @@ namespace Negocio
 
         public List<ObjDistribuidor> ObtenerDistribuidores()
         {
+            BDDistribuidores bdDistribuidor = new BDDistribuidores();
             return bdDistribuidor.ObtenerDistribuidoresBD();
         }
 

@@ -18,10 +18,11 @@ namespace Proyecto
         {
             InitializeComponent();
             Usuario = UsuarioDado;
-            InicializarControles();
-            InicializarImagenes();
+            //InicializarControles();
+            //InicializarImagenes();
             RestringirAcceso();
             InicializarClases();
+            cduDistribuidores = new CduDistribuidores();
         }
 
         private void InicializarControles()
@@ -39,7 +40,7 @@ namespace Proyecto
 
         public void RestringirAcceso()
         {
-            if (Usuario.Rol != 1)
+            if (Usuario.Rol == 0) // si es un cliente, no mostrar los botones de administracion
             {
                 btnOrdenes.SetBounds(13, 141, 146, 28);
                 panel1.Controls.Remove(btnUsuarios);
