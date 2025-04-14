@@ -11,14 +11,15 @@ namespace Conexion
         public NpgsqlConnection ConexionRetorno;
         public NpgsqlConnection Conexion;
         public NpgsqlCommand cmd;
-        public string UsuarioApp { get; private set; }
-        public string TipoUsuarioApp { get; private set; }
+        public static string UsuarioApp { get;  set; }
+        public static string TipoUsuarioApp { get;  set; }
 
 
-        public ConexionSQL(string user = "Sistema", string tipoUser = "Sistema")
+        public ConexionSQL()
         {
-            UsuarioApp = user;
-            TipoUsuarioApp = tipoUser;
+            Console.WriteLine(UsuarioApp);
+            UsuarioApp = "Sistema";
+            TipoUsuarioApp = "Sistema";
         }
 
         public NpgsqlConnection ConexionBD()

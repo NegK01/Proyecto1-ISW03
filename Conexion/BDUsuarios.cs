@@ -56,7 +56,9 @@ namespace Conexion
                             UsuarioDado.Contraseña = dr.GetString(1);
                             UsuarioDado.Rol = 0; // sin rol pq como sale de la tabla de clientes, se asume que lo es
                             UsuarioDado.NombreRol = "Cliente";
-                            conexion = new ConexionSQL(UsuarioDado.Identificador, UsuarioDado.NombreRol);
+                            //conexion = new ConexionSQL(UsuarioDado.Identificador, UsuarioDado.NombreRol);
+                            ConexionSQL.UsuarioApp = UsuarioDado.Identificador;
+                            ConexionSQL.TipoUsuarioApp = UsuarioDado.NombreRol;
                             Console.WriteLine($"Cliente: {UsuarioDado.Identificador}, Contraseña: {UsuarioDado.Contraseña}");
                         }
                         else
@@ -65,7 +67,9 @@ namespace Conexion
                             UsuarioDado.Rol = dr.GetInt32(1);
                             UsuarioDado.Contraseña = dr.GetString(2);
                             UsuarioDado.NombreRol = ObtenerNombreRolPorID(UsuarioDado.Rol);
-                            conexion = new ConexionSQL(UsuarioDado.Identificador, UsuarioDado.NombreRol);
+                            //conexion = new ConexionSQL(UsuarioDado.Identificador, UsuarioDado.NombreRol);
+                            ConexionSQL.UsuarioApp = UsuarioDado.Identificador;
+                            ConexionSQL.TipoUsuarioApp = UsuarioDado.NombreRol;
                             Console.WriteLine($"Empleado: {UsuarioDado.Identificador}, Rol: {UsuarioDado.NombreRol}, Contraseña: {UsuarioDado.Contraseña}");
                         }
                     }

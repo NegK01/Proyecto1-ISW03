@@ -1,5 +1,6 @@
 ﻿using Conexion;
 using Objetos;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -13,7 +14,10 @@ namespace Negocio
         public Distribuidores(ObjUsuario usr)
         {
             bdDistribuidor = new BDDistribuidores();
-            conexionSQL = new ConexionSQL(usr.Nombre, usr.NombreRol);
+            conexionSQL = new ConexionSQL();
+            Console.WriteLine("SDFsdfsdfsd");
+            Console.WriteLine(ConexionSQL.UsuarioApp);
+            Console.WriteLine("SDFsdfsdfsd");
         }
 
         public bool InsertarDistribuidor(ObjDistribuidor obj)
