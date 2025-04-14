@@ -27,14 +27,14 @@ namespace Negocio
             return bdDistribuidor.ActualizarDistribuidorBD(obj);
         }
 
-        public bool EliminarDistribuidor(int id)
+        public bool EliminarDistribuidor(int id, bool estado)
         {
             if (conexionSQL.ConfirmarDuplicidad("almacenes.productos", "id_proveedor", id.ToString()))
             {
                 return false;
             }
-
-            return conexionSQL.CambiarEstadoCRUD(id, "almacenes.proveedores");
+            // como el estado debe cambiar, solo enviamos el contrario con !
+            return conexionSQL.CambiarEstadoCRUD(id, !estado, "almacenes", "proveedores");
         }
 
         public DataTable ObtenerDistribuidores()

@@ -29,15 +29,20 @@ namespace Conexion
 
             using (conexionRetorno = conexion.ConexionBD())
             {
-                cmd = new NpgsqlCommand("INSERT INTO almacenes.proveedores VALUES (" +
-                                        obj.Id + ", '" +
-                                        obj.Nombre + "', '" +
-                                        obj.Correo + "', " +
-                                        obj.Estado + ", " +
-                                        obj.Numero + ")", conexionRetorno);
-                int affectedRows = cmd.ExecuteNonQuery();
-                conexion.Transaccion.Commit();
-                return affectedRows > 0;
+                try
+                {
+                    cmd = new NpgsqlCommand(
+                        $"SELECT almacenes.insertar_proveedores({obj.Id}, '{obj.Nombre}', '{obj.Correo}', {obj.Numero}, true)",
+                        conexionRetorno);
+                    cmd.ExecuteNonQuery();
+                    conexion.Transaccion.Commit();
+                    return true;
+                }
+                catch
+                {
+                    conexion.Transaccion.Rollback();
+                    return false;
+                }
             }
         }
 
@@ -50,12 +55,20 @@ namespace Conexion
 
             using (conexionRetorno = conexion.ConexionBD())
             {
-                cmd = new NpgsqlCommand("UPDATE almacenes.proveedores SET " +
-                                        "nombre = '" + obj.Nombre + "', " +
-                                        "info_contacto = '" + obj.Correo + "' " +
-                                        "WHERE id = " + obj.Id, conexionRetorno);
-                int affectedRows = cmd.ExecuteNonQuery();
-                return affectedRows > 0;
+                try
+                {
+                    cmd = new NpgsqlCommand(
+                        $"SELECT almacenes.modificar_proveedores({obj.Id}, '{obj.Nombre}', '{obj.Correo}', {obj.Numero})",
+                        conexionRetorno);
+                    cmd.ExecuteNonQuery();
+                    conexion.Transaccion.Commit();
+                    return true;
+                }
+                catch
+                {
+                    conexion.Transaccion.Rollback();
+                    return false;
+                }
             }
         }
 

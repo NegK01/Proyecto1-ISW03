@@ -36,7 +36,8 @@ namespace Negocio
 
         public bool EliminarUsuario(int Id)
         {
-            return conexionSQL.CambiarEstadoCRUD(Id, "usuario");
+            //return conexionSQL.CambiarEstadoCRUD(Id, "usuario");
+            return false;
         }
 
         public int BuscarSiguienteId()

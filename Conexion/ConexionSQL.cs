@@ -70,36 +70,51 @@ namespace Conexion
             return Conexion;
         }
 
-        public bool CambiarEstadoCRUD(int Id, string Tabla)
+        public bool CambiarEstadoCRUD(int Id, bool Estado, string Schema, string Tabla)
         {
-            Conexion = ConexionBD(); 
-            
-            cmd = new NpgsqlCommand($"UPDATE {Tabla} SET estado = NOT estado WHERE id = {Id}", Conexion, Transaccion);
-            cmd = new NpgsqlCommand($"SELECT modificar_estado_tablas({Id}, )", Conexion, Transaccion);
+            Conexion = ConexionBD();
 
-            int affectedRows = cmd.ExecuteNonQuery();
+            cmd = new NpgsqlCommand(
+                $"SELECT modificar_estado_tablas({Id}, {Estado}, '{Schema}', '{Tabla}', '{UsuarioApp}', '{TipoUsuarioApp}')",
+                Conexion,
+                Transaccion
+            );
 
-            Transaccion.Commit();
-            Conexion.Close();
-
-            return affectedRows > 0;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                Transaccion.Commit();
+                return true;
+            }
+            catch
+            {
+                Transaccion.Rollback();
+                return false;
+            }
+            finally
+            {
+                Conexion.Close();
+            }
         }
 
         public int BuscarSiguienteId(string Tabla)
         {
             int UltimoId = 0;
 
-            ConexionRetorno = ConexionBD();
-
-            cmd = new NpgsqlCommand("SELECT COALESCE(MAX(id) + 1, 1) FROM " + Tabla, ConexionRetorno);
-            var dr = cmd.ExecuteReader();
-
-            while (dr.Read())
+            using (ConexionRetorno = ConexionBD())
             {
-                UltimoId = dr.GetInt32(0);
-            }
+                cmd = new NpgsqlCommand("SELECT COALESCE(MAX(id) + 1, 1) FROM " + Tabla, ConexionRetorno);
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        UltimoId = dr.GetInt32(0);
+                    }
+                }
 
-            ConexionRetorno.Close();
+                Transaccion.Commit();
+                ConexionRetorno.Close();
+            }
 
             return UltimoId;
         }

@@ -27,7 +27,8 @@ namespace Negocio
                 return false;
             }
 
-            return conexionSQL.CambiarEstadoCRUD(id, "orden");
+            //return conexionSQL.CambiarEstadoCRUD(id, "orden");
+            return false;
         }
 
         public List<ObjOrden> CargarOrdenCarrito(int Id_Cliente)

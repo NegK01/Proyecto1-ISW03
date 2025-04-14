@@ -32,7 +32,8 @@ namespace Negocio
                 return false;
             }
 
-            return conexionSQL.CambiarEstadoCRUD(id, "categoria");
+            //return conexionSQL.CambiarEstadoCRUD(id, "categoria");
+            return false;
         }
 
         public List<ObjCategoria> ObtenerCategorias()

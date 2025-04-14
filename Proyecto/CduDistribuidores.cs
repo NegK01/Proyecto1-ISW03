@@ -65,7 +65,7 @@ namespace Proyecto
             if (ValidarCampos())
             {
                 RecogerDatosDgv();
-                if (distribuidor.EliminarDistribuidor(objDistribuidor.Id))
+                if (distribuidor.EliminarDistribuidor(objDistribuidor.Id, objDistribuidor.Estado))
                 {
                     MessageBox.Show("Distribuidor eliminado correctamente.", "Distribuidor eliminado",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
