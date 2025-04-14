@@ -12,8 +12,12 @@ namespace Conexion
     {
         public NpgsqlConnection ConexionRetorno;
         public NpgsqlCommand cmd;
+        public static ConexionSQL conexion;
 
-        ConexionSQL conexion = new ConexionSQL();
+        public BDUsuarios()
+        {
+            conexion = new ConexionSQL();
+        }
 
         public ObjUsuario InicioSesion(ObjUsuario NuevoUsuario)
         {
@@ -22,7 +26,7 @@ namespace Conexion
             bool esCliente = char.IsDigit(NuevoUsuario.Identificador[0]);
 
             string consultaSQL;
-
+             
             if (esCliente)
             {
                 consultaSQL = "SELECT cedula, contrasena FROM clientes.clientes " +
@@ -51,7 +55,8 @@ namespace Conexion
                             UsuarioDado.Identificador = Convert.ToString(dr.GetInt32(0)); // cedula
                             UsuarioDado.Contraseña = dr.GetString(1);
                             UsuarioDado.Rol = 0; // sin rol pq como sale de la tabla de clientes, se asume que lo es
-                            //conexion = new ConexionSQL(UsuarioDado.Identificador, "Cliente");
+                            UsuarioDado.NombreRol = "Cliente";
+                            conexion = new ConexionSQL(UsuarioDado.Identificador, UsuarioDado.NombreRol);
                             Console.WriteLine($"Cliente: {UsuarioDado.Identificador}, Contraseña: {UsuarioDado.Contraseña}");
                         }
                         else
@@ -59,8 +64,9 @@ namespace Conexion
                             UsuarioDado.Identificador = dr.GetString(0); // usuario
                             UsuarioDado.Rol = dr.GetInt32(1);
                             UsuarioDado.Contraseña = dr.GetString(2);
-                            //conexion = new ConexionSQL(UsuarioDado.Identificador, "Empleado");
-                            Console.WriteLine($"Empleado: {UsuarioDado.Identificador}, Rol: {UsuarioDado.Rol}, Contraseña: {UsuarioDado.Contraseña}");
+                            UsuarioDado.NombreRol = ObtenerNombreRolPorID(UsuarioDado.Rol);
+                            conexion = new ConexionSQL(UsuarioDado.Identificador, UsuarioDado.NombreRol);
+                            Console.WriteLine($"Empleado: {UsuarioDado.Identificador}, Rol: {UsuarioDado.NombreRol}, Contraseña: {UsuarioDado.Contraseña}");
                         }
                     }
                     else
@@ -73,6 +79,20 @@ namespace Conexion
             return UsuarioDado;
         }
 
+        public string ObtenerNombreRolPorID(int id)
+        {
+            string nombreRol = "";
+            ConexionRetorno = conexion.ConexionBD();
+            cmd = new NpgsqlCommand("SELECT tipo_rol FROM empleados.roles WHERE id = " + id, ConexionRetorno);
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                nombreRol = dr.GetString(0);
+            }
+            //conexion.Transaccion.Commit();
+            ConexionRetorno.Close();
+            return nombreRol;
+        }
 
         public bool InsertarUsuario(ObjUsuario NuevoUsuario)
         {

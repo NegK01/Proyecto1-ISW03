@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using Objetos;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
@@ -55,28 +56,31 @@ namespace Conexion
             }
         }
 
-        public List<ObjDistribuidor> ObtenerDistribuidoresBD()
+        public DataTable ObtenerDistribuidoresBD()
         {
-            List<ObjDistribuidor> distribuidores = new List<ObjDistribuidor>();
-            conexionRetorno = conexion.ConexionBD();
-            cmd = new NpgsqlCommand("SELECT id, nombre, correo_contacto, numero_contacto, estado FROM almacenes.proveedores", conexionRetorno);
-            var dr = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
 
-            while (dr.Read())
+            try
             {
-                ObjDistribuidor distribuidor = new ObjDistribuidor
+                using (var conexionRetorno = conexion.ConexionBD())
                 {
-                    Id = dr.GetInt32(0),
-                    Nombre = dr.GetString(1),
-                    Contacto = dr.GetString(2),
-                    Numero = dr.GetInt32(3),
-                    Estado = dr.GetBoolean(4)
-                };
-                distribuidores.Add(distribuidor);
+                    string query = "SELECT id, nombre, correo_contacto, numero_contacto, estado FROM almacenes.proveedores";
+
+                    using (var cmd = new NpgsqlCommand(query, conexionRetorno))
+                    {
+                        using (var da = new NpgsqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al cargar los datos: " + ex.Message);
             }
 
-            conexionRetorno.Close();
-            return distribuidores;
+            return dt;
         }
 
         public List<ObjDistribuidor> ObtenerNombresDistribuidoresBD()

@@ -23,6 +23,7 @@ namespace Objetos
         public string Contraseña { get; set; }
 
         public int Rol { get; set; }
+        public string NombreRol { get; set; }
 
         public int Estado { get; set; }
 

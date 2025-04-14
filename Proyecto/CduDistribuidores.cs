@@ -2,6 +2,7 @@
 using Objetos;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -17,7 +18,7 @@ namespace Proyecto
         {
             InitializeComponent();
             objDistribuidor = new ObjDistribuidor();
-            distribuidor = new Distribuidores();
+            distribuidor = new Distribuidores(FrmPrincipal.Usuario);
             CargarTablaDistribuidores();
         }
 
@@ -80,16 +81,14 @@ namespace Proyecto
 
         public void CargarTablaDistribuidores()
         {
-            //listaObjDistribuidors = distribuidor.ObtenerDistribuidores();
-            //DgvTablaDistribuidores.Rows.Clear();
-            //foreach (ObjDistribuidor obj in listaObjDistribuidors)
-            //{
+            DataTable dt = distribuidor.ObtenerDistribuidores();
+            DgvTablaDistribuidores.Rows.Clear();
 
-            //    //string nombreEstado = distribuidor.BuscarNombreEstado(obj.Id_Estado);
-
-            //    DgvTablaDistribuidores.Rows.Add(obj.Id, obj.Nombre, obj.Contacto, obj.Numero, obj.Estado);
-            //}
-            //DgvTablaDistribuidores.Sort(DgvTablaDistribuidores.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
+            foreach (DataRow row in dt.Rows)
+            {
+                DgvTablaDistribuidores.Rows.Add(row["id"].ToString(), row["nombre"].ToString(), row["correo_contacto"].ToString(), row["numero_contacto"].ToString(), row["estado"].ToString());
+            }
+            DgvTablaDistribuidores.Sort(DgvTablaDistribuidores.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
         }
 
         private void RecogerDatosDgv()
@@ -97,7 +96,8 @@ namespace Proyecto
             objDistribuidor.Id = Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[0].Value);
             objDistribuidor.Nombre = DgvTablaDistribuidores.CurrentRow.Cells[1].Value.ToString();
             objDistribuidor.Contacto = DgvTablaDistribuidores.CurrentRow.Cells[2].Value.ToString();
-            objDistribuidor.Id_Estado = Convert.ToInt32(distribuidor.BuscarIdEstado(DgvTablaDistribuidores.CurrentRow.Cells[3].Value.ToString()));
+            objDistribuidor.Numero = Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[3].Value.ToString());
+            objDistribuidor.Estado = DgvTablaDistribuidores.CurrentRow != null && DgvTablaDistribuidores.CurrentRow.Cells[4].Value != null && (bool)DgvTablaDistribuidores.CurrentRow.Cells[4].FormattedValue;
         }
 
         private bool ValidarCampos()

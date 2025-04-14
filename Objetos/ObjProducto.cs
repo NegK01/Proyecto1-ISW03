@@ -24,7 +24,7 @@ namespace Objetos
             DescripcionProducto = "";
             Id_Categoria = 0;
             Id_Distribuidor = 0;
-            Estado = 0;
+            Estado = false;
             FechaExpiracion = DateTime.Now;
         }
     }

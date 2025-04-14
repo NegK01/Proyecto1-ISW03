@@ -1,18 +1,19 @@
 ﻿using Conexion;
 using Objetos;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Negocio
 {
     public class Distribuidores
     {
-        //BDDistribuidores bdDistribuidor;
+        BDDistribuidores bdDistribuidor;
         ConexionSQL conexionSQL;
 
-        public Distribuidores()
+        public Distribuidores(ObjUsuario usr)
         {
-            //bdDistribuidor = new BDDistribuidores();
-            conexionSQL = new ConexionSQL();
+            bdDistribuidor = new BDDistribuidores();
+            conexionSQL = new ConexionSQL(usr.Nombre, usr.NombreRol);
         }
 
         public bool InsertarDistribuidor(ObjDistribuidor obj)
@@ -27,17 +28,16 @@ namespace Negocio
 
         public bool EliminarDistribuidor(int id)
         {
-            if (conexionSQL.ConfirmarDuplicidad("producto", "id_distribuidor", id.ToString()))
+            if (conexionSQL.ConfirmarDuplicidad("almacenes.productos", "id_proveedor", id.ToString()))
             {
                 return false;
             }
 
-            return conexionSQL.CambiarEstadoCRUD(id, "distribuidor");
+            return conexionSQL.CambiarEstadoCRUD(id, "almacenes.proveedores");
         }
 
-        public List<ObjDistribuidor> ObtenerDistribuidores()
+        public DataTable ObtenerDistribuidores()
         {
-            BDDistribuidores bdDistribuidor = new BDDistribuidores();
             return bdDistribuidor.ObtenerDistribuidoresBD();
         }
 

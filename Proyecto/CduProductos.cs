@@ -29,7 +29,7 @@ namespace Proyecto
             objCategoria = new ObjCategoria();
             productos = new Productos();
             categorias = new Categorias();
-            distribuidores = new Distribuidores();
+            //distribuidores = new Distribuidores();
         }
 
         private void btnAgregarPro_Click(object sender, System.EventArgs e)

@@ -7,16 +7,18 @@ namespace Conexion
 {
     public class ConexionSQL
     {
+        public NpgsqlTransaction Transaccion { get; private set; }
         public NpgsqlConnection ConexionRetorno;
         public NpgsqlConnection Conexion;
         public NpgsqlCommand cmd;
-        public string UsuarioApp;
-        public string TipoUsuarioApp;
+        public string UsuarioApp { get; private set; }
+        public string TipoUsuarioApp { get; private set; }
 
-        public ConexionSQL(string UsuarioApp = "Sistema", string TipoUsuarioApp = "Sistema")
+
+        public ConexionSQL(string user = "Sistema", string tipoUser = "Sistema")
         {
-            this.UsuarioApp = UsuarioApp;
-            this.TipoUsuarioApp = TipoUsuarioApp;
+            UsuarioApp = user;
+            TipoUsuarioApp = tipoUser;
         }
 
         public NpgsqlConnection ConexionBD()
@@ -36,19 +38,42 @@ namespace Conexion
             Conexion.Open();
 
             // Iniciar la transaccion
-            var tx = Conexion.BeginTransaction();
+            Transaccion = Conexion.BeginTransaction();
 
-            using (var cmd1 = new NpgsqlCommand($"SET LOCAL app.usuario = '{UsuarioApp.Replace("'", "''")}'", Conexion, tx))
+            using (var cmd1 = new NpgsqlCommand($"SET LOCAL app.usuario = '{UsuarioApp.Replace("'", "''")}'", Conexion, Transaccion))
             {
                 cmd1.ExecuteNonQuery();
+                using (var check = new NpgsqlCommand("SELECT current_setting('app.usuario')", Conexion, Transaccion))
+                {
+                    var result = check.ExecuteScalar();
+                    Console.WriteLine($"Usuario seteado en la sesión actual: {result}");
+                }
+
             }
 
-            using (var cmd2 = new NpgsqlCommand($"SET LOCAL app.tipo_usuario = '{TipoUsuarioApp.Replace("'", "''")}'", Conexion, tx))
+            using (var cmd2 = new NpgsqlCommand($"SET LOCAL app.tipo_usuario = '{TipoUsuarioApp.Replace("'", "''")}'", Conexion, Transaccion))
             {
                 cmd2.ExecuteNonQuery();
             }
 
             return Conexion;
+        }
+        
+        public bool CambiarEstadoCRUD(int Id, string Tabla)
+        {
+            Conexion = ConexionBD(); 
+            
+            Console.WriteLine($"SET LOCAL app.usuario = '{UsuarioApp}'");
+            Console.WriteLine($"SET LOCAL app.tipo_usuario = '{TipoUsuarioApp}'");
+
+            cmd = new NpgsqlCommand($"UPDATE {Tabla} SET estado = NOT estado WHERE id = {Id}", Conexion, Transaccion);
+
+            int affectedRows = cmd.ExecuteNonQuery();
+
+            Transaccion.Commit();
+            Conexion.Close();
+
+            return affectedRows > 0;
         }
 
         public int BuscarSiguienteId(string Tabla)
@@ -70,19 +95,6 @@ namespace Conexion
             return UltimoId;
         }
 
-        public bool CambiarEstadoCRUD(int Id, string Tabla)
-        {
-            ConexionRetorno = ConexionBD();
-
-            cmd = new NpgsqlCommand("UPDATE " + Tabla + " SET id_estado = CASE WHEN id_estado = 1 " +
-                                    "THEN 2 ELSE 1 END WHERE id = " + Id, ConexionRetorno);
-
-            int affectedRows = cmd.ExecuteNonQuery();
-
-            ConexionRetorno.Close();
-
-            return affectedRows > 0;
-        }
 
         public int BuscarIdEstado(string Tabla, string Nombre)
         {
