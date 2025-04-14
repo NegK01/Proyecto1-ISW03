@@ -18,7 +18,7 @@ namespace Proyecto
         {
             InitializeComponent();
             objDistribuidor = new ObjDistribuidor();
-            distribuidor = new Distribuidores(FrmPrincipal.Usuario);
+            distribuidor = new Distribuidores();
             CargarTablaDistribuidores();
         }
 
@@ -95,7 +95,7 @@ namespace Proyecto
         {
             objDistribuidor.Id = Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[0].Value);
             objDistribuidor.Nombre = DgvTablaDistribuidores.CurrentRow.Cells[1].Value.ToString();
-            objDistribuidor.Contacto = DgvTablaDistribuidores.CurrentRow.Cells[2].Value.ToString();
+            objDistribuidor.Correo = DgvTablaDistribuidores.CurrentRow.Cells[2].Value.ToString();
             objDistribuidor.Numero = Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[3].Value.ToString());
             objDistribuidor.Estado = DgvTablaDistribuidores.CurrentRow != null && DgvTablaDistribuidores.CurrentRow.Cells[4].Value != null && (bool)DgvTablaDistribuidores.CurrentRow.Cells[4].FormattedValue;
         }

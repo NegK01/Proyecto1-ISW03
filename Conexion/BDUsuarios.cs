@@ -59,7 +59,7 @@ namespace Conexion
                             //conexion = new ConexionSQL(UsuarioDado.Identificador, UsuarioDado.NombreRol);
                             ConexionSQL.UsuarioApp = UsuarioDado.Identificador;
                             ConexionSQL.TipoUsuarioApp = UsuarioDado.NombreRol;
-                            Console.WriteLine($"Cliente: {UsuarioDado.Identificador}, Contraseña: {UsuarioDado.Contraseña}");
+                            Console.WriteLine($"Cliente: {UsuarioDado.Identificador}, Rol: {UsuarioDado.NombreRol}, Contraseña: {UsuarioDado.Contraseña}");
                         }
                         else
                         {

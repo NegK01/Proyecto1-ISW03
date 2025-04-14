@@ -11,13 +11,10 @@ namespace Negocio
         BDDistribuidores bdDistribuidor;
         ConexionSQL conexionSQL;
 
-        public Distribuidores(ObjUsuario usr)
+        public Distribuidores()
         {
             bdDistribuidor = new BDDistribuidores();
             conexionSQL = new ConexionSQL();
-            Console.WriteLine("SDFsdfsdfsd");
-            Console.WriteLine(ConexionSQL.UsuarioApp);
-            Console.WriteLine("SDFsdfsdfsd");
         }
 
         public bool InsertarDistribuidor(ObjDistribuidor obj)

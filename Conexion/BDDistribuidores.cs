@@ -29,11 +29,14 @@ namespace Conexion
 
             using (conexionRetorno = conexion.ConexionBD())
             {
-                cmd = new NpgsqlCommand("INSERT INTO almacenes.proveedores (id, nombre, info_contacto) VALUES (" +
+                cmd = new NpgsqlCommand("INSERT INTO almacenes.proveedores VALUES (" +
                                         obj.Id + ", '" +
                                         obj.Nombre + "', '" +
-                                        obj.Contacto + "')", conexionRetorno);
+                                        obj.Correo + "', " +
+                                        obj.Estado + ", " +
+                                        obj.Numero + ")", conexionRetorno);
                 int affectedRows = cmd.ExecuteNonQuery();
+                conexion.Transaccion.Commit();
                 return affectedRows > 0;
             }
         }
@@ -49,7 +52,7 @@ namespace Conexion
             {
                 cmd = new NpgsqlCommand("UPDATE almacenes.proveedores SET " +
                                         "nombre = '" + obj.Nombre + "', " +
-                                        "info_contacto = '" + obj.Contacto + "' " +
+                                        "info_contacto = '" + obj.Correo + "' " +
                                         "WHERE id = " + obj.Id, conexionRetorno);
                 int affectedRows = cmd.ExecuteNonQuery();
                 return affectedRows > 0;
