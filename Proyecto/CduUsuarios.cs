@@ -23,72 +23,72 @@ namespace Proyecto
 
         public void CargarComboRoles()
         {
-            DataGridViewComboBoxColumn CbxRoles = DgvTablaUsuarios.Columns["RolU"] as DataGridViewComboBoxColumn;
+            //DataGridViewComboBoxColumn CbxRoles = DgvTablaUsuarios.Columns["RolU"] as DataGridViewComboBoxColumn;
 
-            if (CbxRoles != null)
-            {
-                CbxRoles.Items.Clear();
+            //if (CbxRoles != null)
+            //{
+            //    CbxRoles.Items.Clear();
 
-                List<ObjRol> ListaRoles = Roles.CargarComboRoles();
+            //    List<ObjRol> ListaRoles = Roles.CargarComboRoles();
 
-                foreach (ObjRol rol in ListaRoles)
-                {
-                    CbxRoles.Items.Add(rol.Nombre);
-                }
-            }
+            //    foreach (ObjRol rol in ListaRoles)
+            //    {
+            //        CbxRoles.Items.Add(rol.Nombre);
+            //    }
+            //}
         }
 
         public void CargarUsuarios()
         {
-            List<ObjUsuario> ListaUsuarios = Usuarios.CargarUsuarios();
-            DgvTablaUsuarios.Rows.Clear();
+            //List<ObjUsuario> ListaUsuarios = Usuarios.CargarUsuarios();
+            //DgvTablaUsuarios.Rows.Clear();
 
-            int Contador = 0;
+            //int Contador = 0;
 
-            foreach (ObjUsuario Usuario in ListaUsuarios)
-            {
-                DgvTablaUsuarios.Rows.Add();
+            //foreach (ObjUsuario Usuario in ListaUsuarios)
+            //{
+            //    DgvTablaUsuarios.Rows.Add();
 
-                DgvTablaUsuarios.Rows[Contador].Cells["IdU"].Value = Usuario.Id.ToString();
-                DgvTablaUsuarios.Rows[Contador].Cells["CedulaU"].Value = Usuario.Cedula.ToString();
-                DgvTablaUsuarios.Rows[Contador].Cells["NombreU"].Value = Usuario.Nombre.ToString();
-                DgvTablaUsuarios.Rows[Contador].Cells["ApellidoU"].Value = Usuario.Apellido.ToString();
-                DgvTablaUsuarios.Rows[Contador].Cells["CorreoU"].Value = Usuario.Correo.ToString();
-                DgvTablaUsuarios.Rows[Contador].Cells["TelefonoU"].Value = Usuario.Telefono.ToString();
-                DgvTablaUsuarios.Rows[Contador].Cells["DireccionU"].Value = Usuario.Direccion.ToString();
-                DgvTablaUsuarios.Rows[Contador].Cells["ContraseñaU"].Value = Usuario.Contraseña.ToString();
+            //    DgvTablaUsuarios.Rows[Contador].Cells["IdU"].Value = Usuario.Id.ToString();
+            //    DgvTablaUsuarios.Rows[Contador].Cells["CedulaU"].Value = Usuario.Cedula.ToString();
+            //    DgvTablaUsuarios.Rows[Contador].Cells["NombreU"].Value = Usuario.Nombre.ToString();
+            //    DgvTablaUsuarios.Rows[Contador].Cells["ApellidoU"].Value = Usuario.Apellido.ToString();
+            //    DgvTablaUsuarios.Rows[Contador].Cells["CorreoU"].Value = Usuario.Correo.ToString();
+            //    DgvTablaUsuarios.Rows[Contador].Cells["TelefonoU"].Value = Usuario.Telefono.ToString();
+            //    DgvTablaUsuarios.Rows[Contador].Cells["DireccionU"].Value = Usuario.Direccion.ToString();
+            //    DgvTablaUsuarios.Rows[Contador].Cells["ContraseñaU"].Value = Usuario.Contraseña.ToString();
 
-                string Rol = Roles.BuscarNombreRol(Usuario.Rol);
+            //    string Rol = Roles.BuscarNombreRol(Usuario.Rol);
 
-                string Estado = Usuarios.BuscarNombreEstado(Usuario.Estado);
+            //    string Estado = Usuarios.BuscarNombreEstado(Usuario.Estado);
 
-                DgvTablaUsuarios.Rows[Contador].Cells["RolU"].Value = Rol;
-                DgvTablaUsuarios.Rows[Contador].Cells["EstadoU"].Value = Estado;
+            //    DgvTablaUsuarios.Rows[Contador].Cells["RolU"].Value = Rol;
+            //    DgvTablaUsuarios.Rows[Contador].Cells["EstadoU"].Value = Estado;
 
-                Contador++;
-            }
+            //    Contador++;
+            //}
         }
 
         public void CargarRoles()
         {
-            List<ObjRol> ListaRoles = Roles.CargarRoles(); ;
-            DgvTablaRoles.Rows.Clear();
+            //List<ObjRol> ListaRoles = Roles.CargarRoles(); ;
+            //DgvTablaRoles.Rows.Clear();
 
-            int Contador = 0;
+            //int Contador = 0;
 
-            foreach (ObjRol Rol in ListaRoles)
-            {
-                DgvTablaRoles.Rows.Add();
+            //foreach (ObjRol Rol in ListaRoles)
+            //{
+            //    DgvTablaRoles.Rows.Add();
 
-                DgvTablaRoles.Rows[Contador].Cells["IdR"].Value = Rol.Id.ToString();
-                DgvTablaRoles.Rows[Contador].Cells["NombreR"].Value = Rol.Nombre.ToString();
+            //    DgvTablaRoles.Rows[Contador].Cells["IdR"].Value = Rol.Id.ToString();
+            //    DgvTablaRoles.Rows[Contador].Cells["NombreR"].Value = Rol.Nombre.ToString();
 
-                string Estado = Roles.BuscarNombreEstado(Rol.Estado);
+            //    string Estado = Roles.BuscarNombreEstado(Rol.Estado);
 
-                DgvTablaRoles.Rows[Contador].Cells["EstadoR"].Value = Estado;
+            //    DgvTablaRoles.Rows[Contador].Cells["EstadoR"].Value = Estado;
 
-                Contador++;
-            }
+            //    Contador++;
+            //}
         }
 
         public bool ValidarCamposUsuario(int id)

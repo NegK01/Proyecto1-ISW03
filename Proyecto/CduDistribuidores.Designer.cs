@@ -34,14 +34,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DgvTablaDistribuidores = new System.Windows.Forms.DataGridView();
-            this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvContacto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvIdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvContacto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvIdEstado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTablaDistribuidores)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,6 +56,7 @@
             this.dgvId,
             this.dgvNombre,
             this.dgvContacto,
+            this.Column1,
             this.dgvIdEstado});
             this.DgvTablaDistribuidores.Location = new System.Drawing.Point(88, 86);
             this.DgvTablaDistribuidores.Margin = new System.Windows.Forms.Padding(1);
@@ -63,45 +65,15 @@
             this.DgvTablaDistribuidores.Size = new System.Drawing.Size(579, 216);
             this.DgvTablaDistribuidores.TabIndex = 18;
             // 
-            // dgvId
-            // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvId.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvId.HeaderText = "Código";
-            this.dgvId.Name = "dgvId";
-            this.dgvId.ReadOnly = true;
-            // 
-            // dgvNombre
-            // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvNombre.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvNombre.HeaderText = "Nombre";
-            this.dgvNombre.Name = "dgvNombre";
-            // 
-            // dgvContacto
-            // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvContacto.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvContacto.HeaderText = "Contacto";
-            this.dgvContacto.Name = "dgvContacto";
-            // 
-            // dgvIdEstado
-            // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvIdEstado.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvIdEstado.HeaderText = "Estado";
-            this.dgvIdEstado.Name = "dgvIdEstado";
-            this.dgvIdEstado.ReadOnly = true;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(85, 67);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 14);
+            this.label3.Size = new System.Drawing.Size(72, 14);
             this.label3.TabIndex = 21;
-            this.label3.Text = "Distribuidor";
+            this.label3.Text = "Proveedor";
             // 
             // btnAgregar
             // 
@@ -136,6 +108,45 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // dgvId
+            // 
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvId.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvId.HeaderText = "Código";
+            this.dgvId.Name = "dgvId";
+            this.dgvId.ReadOnly = true;
+            // 
+            // dgvNombre
+            // 
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvNombre.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvNombre.HeaderText = "Nombre";
+            this.dgvNombre.Name = "dgvNombre";
+            // 
+            // dgvContacto
+            // 
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvContacto.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvContacto.HeaderText = "Contacto Correo";
+            this.dgvContacto.Name = "dgvContacto";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Numero";
+            this.Column1.Name = "Column1";
+            // 
+            // dgvIdEstado
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.NullValue = false;
+            this.dgvIdEstado.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvIdEstado.HeaderText = "Estado";
+            this.dgvIdEstado.Name = "dgvIdEstado";
+            this.dgvIdEstado.ReadOnly = true;
+            this.dgvIdEstado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIdEstado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // CduDistribuidores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -163,6 +174,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvContacto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvIdEstado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvIdEstado;
     }
 }

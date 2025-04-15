@@ -28,7 +28,8 @@ namespace Negocio
         public bool EliminarProducto(int Id)
         {
             string Tabla = "producto";
-            return conexionSQL.CambiarEstadoCRUD(Id, Tabla);
+            //return conexionSQL.CambiarEstadoCRUD(Id, Tabla);
+            return false;
         }
 
         public List<ObjProducto> ObtenerProductos()

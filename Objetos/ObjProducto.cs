@@ -11,7 +11,8 @@ namespace Objetos
         public string DescripcionProducto { get; set; }
         public int Id_Categoria { get; set; }
         public int Id_Distribuidor { get; set; }
-        public int Id_Estado { get; set; }
+        public int Id_Descuento { get; set; }
+        public bool Estado { get; set; }
         public DateTime FechaExpiracion { get; set; }
 
         public ObjProducto()
@@ -23,7 +24,7 @@ namespace Objetos
             DescripcionProducto = "";
             Id_Categoria = 0;
             Id_Distribuidor = 0;
-            Id_Estado = 0;
+            Estado = false;
             FechaExpiracion = DateTime.Now;
         }
     }

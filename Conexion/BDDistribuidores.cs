@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using Objetos;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
@@ -19,70 +20,90 @@ namespace Conexion
 
         public bool InsertarDistribuidorBD(ObjDistribuidor obj)
         {
-            if (conexion.ConfirmarDuplicidad("distribuidor", "nombre", obj.Nombre))
+            if (conexion.ConfirmarDuplicidad("almacenes.proveedores", "nombre", obj.Nombre))
             {
                 return false;
             }
 
-            obj.Id = conexion.BuscarSiguienteId("distribuidor");
+            obj.Id = conexion.BuscarSiguienteId("almacenes.proveedores");
 
             using (conexionRetorno = conexion.ConexionBD())
             {
-                cmd = new NpgsqlCommand("INSERT INTO distribuidor (id, nombre, info_contacto) VALUES (" +
-                                        obj.Id + ", '" +
-                                        obj.Nombre + "', '" +
-                                        obj.Contacto + "')", conexionRetorno);
-                int affectedRows = cmd.ExecuteNonQuery();
-                return affectedRows > 0;
+                try
+                {
+                    cmd = new NpgsqlCommand(
+                        $"SELECT almacenes.insertar_proveedores({obj.Id}, '{obj.Nombre}', '{obj.Correo}', {obj.Numero}, true)",
+                        conexionRetorno);
+                    cmd.ExecuteNonQuery();
+                    conexion.Transaccion.Commit();
+                    return true;
+                }
+                catch
+                {
+                    conexion.Transaccion.Rollback();
+                    return false;
+                }
             }
         }
 
         public bool ActualizarDistribuidorBD(ObjDistribuidor obj)
         {
-            if (conexion.ConfirmarDuplicidad("distribuidor", "nombre", obj.Nombre, obj.Id))
+            if (conexion.ConfirmarDuplicidad("almacenes.proveedores", "nombre", obj.Nombre, obj.Id))
             {
                 return false;
             }
 
             using (conexionRetorno = conexion.ConexionBD())
             {
-                cmd = new NpgsqlCommand("UPDATE distribuidor SET " +
-                                        "nombre = '" + obj.Nombre + "', " +
-                                        "info_contacto = '" + obj.Contacto + "' " +
-                                        "WHERE id = " + obj.Id, conexionRetorno);
-                int affectedRows = cmd.ExecuteNonQuery();
-                return affectedRows > 0;
+                try
+                {
+                    cmd = new NpgsqlCommand(
+                        $"SELECT almacenes.modificar_proveedores({obj.Id}, '{obj.Nombre}', '{obj.Correo}', {obj.Numero})",
+                        conexionRetorno);
+                    cmd.ExecuteNonQuery();
+                    conexion.Transaccion.Commit();
+                    return true;
+                }
+                catch
+                {
+                    conexion.Transaccion.Rollback();
+                    return false;
+                }
             }
         }
 
-        public List<ObjDistribuidor> ObtenerDistribuidoresBD()
+        public DataTable ObtenerDistribuidoresBD()
         {
-            List<ObjDistribuidor> distribuidores = new List<ObjDistribuidor>();
-            conexionRetorno = conexion.ConexionBD();
-            cmd = new NpgsqlCommand("SELECT id, nombre, info_contacto, id_estado FROM distribuidor", conexionRetorno);
-            var dr = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
 
-            while (dr.Read())
+            try
             {
-                ObjDistribuidor distribuidor = new ObjDistribuidor
+                using (var conexionRetorno = conexion.ConexionBD())
                 {
-                    Id = dr.GetInt32(0),
-                    Nombre = dr.GetString(1),
-                    Contacto = dr.GetString(2),
-                    Id_Estado = dr.GetInt32(3)
-                };
-                distribuidores.Add(distribuidor);
+                    string query = "SELECT id, nombre, correo_contacto, numero_contacto, estado FROM almacenes.proveedores";
+
+                    using (var cmd = new NpgsqlCommand(query, conexionRetorno))
+                    {
+                        using (var da = new NpgsqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al cargar los datos: " + ex.Message);
             }
 
-            conexionRetorno.Close();
-            return distribuidores;
+            return dt;
         }
 
         public List<ObjDistribuidor> ObtenerNombresDistribuidoresBD()
         {
             List<ObjDistribuidor> distribuidores = new List<ObjDistribuidor>();
             conexionRetorno = conexion.ConexionBD();
-            cmd = new NpgsqlCommand("SELECT nombre FROM distribuidor where id_estado = 1", conexionRetorno);
+            cmd = new NpgsqlCommand("SELECT nombre FROM almacenes.proveedores where estado = true", conexionRetorno);
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {

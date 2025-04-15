@@ -1,6 +1,7 @@
 ﻿//Using Añadidos
 using Npgsql;
 using Objetos;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
@@ -11,34 +12,90 @@ namespace Conexion
     {
         public NpgsqlConnection ConexionRetorno;
         public NpgsqlCommand cmd;
+        public static ConexionSQL conexion;
 
-        ConexionSQL conexion = new ConexionSQL();
+        public BDUsuarios()
+        {
+            conexion = new ConexionSQL();
+        }
 
         public ObjUsuario InicioSesion(ObjUsuario NuevoUsuario)
         {
-            ObjUsuario UsuarioDado = new ObjUsuario();
+            ObjUsuario UsuarioDado = null;
 
-            ConexionRetorno = conexion.ConexionBD();
+            bool esCliente = char.IsDigit(NuevoUsuario.Identificador[0]);
 
-            cmd = new NpgsqlCommand("SELECT id, contrasena, id_rol FROM usuario WHERE cedula = " + NuevoUsuario.Cedula + " " +
-                                    "AND contrasena = '" + NuevoUsuario.Contraseña + "' AND id_estado = 1 ",
-                                    ConexionRetorno);
-
-            var dr = cmd.ExecuteReader();
-
-            while (dr.Read())
+            string consultaSQL;
+             
+            if (esCliente)
             {
-                UsuarioDado = new ObjUsuario
-                {
-                    Id = dr.GetInt32(0),
-                    Contraseña = dr.GetString(1),
-                    Rol = dr.GetInt32(2)
-                };
+                consultaSQL = "SELECT cedula, contrasena FROM clientes.clientes " +
+                              $"WHERE cedula = {NuevoUsuario.Identificador}";
+            }
+            else
+            {
+                consultaSQL = "SELECT usuario, id_rol, contrasena FROM empleados.empleados " +
+                              $"WHERE usuario = '{NuevoUsuario.Identificador}'";
             }
 
-            ConexionRetorno.Close();
+            using (NpgsqlConnection conexionActual = new ConexionSQL().ConexionBD())
+            using (NpgsqlCommand cmd = new NpgsqlCommand(consultaSQL, conexionActual))
+            {
+                //cmd.Parameters.AddWithValue("identificador", NuevoUsuario.Identificador);
+                //cmd.Parameters.AddWithValue("contrasena", NuevoUsuario.Contraseña);
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        UsuarioDado = new ObjUsuario();
+
+                        if (esCliente)
+                        {
+                            UsuarioDado.Identificador = Convert.ToString(dr.GetInt32(0)); // cedula
+                            UsuarioDado.Contraseña = dr.GetString(1);
+                            UsuarioDado.Rol = 0; // sin rol pq como sale de la tabla de clientes, se asume que lo es
+                            UsuarioDado.NombreRol = "Cliente";
+                            //conexion = new ConexionSQL(UsuarioDado.Identificador, UsuarioDado.NombreRol);
+                            ConexionSQL.UsuarioApp = UsuarioDado.Identificador;
+                            ConexionSQL.TipoUsuarioApp = UsuarioDado.NombreRol;
+                            Console.WriteLine($"Cliente: {UsuarioDado.Identificador}, Rol: {UsuarioDado.NombreRol}, Contraseña: {UsuarioDado.Contraseña}");
+                        }
+                        else
+                        {
+                            UsuarioDado.Identificador = dr.GetString(0); // usuario
+                            UsuarioDado.Rol = dr.GetInt32(1);
+                            UsuarioDado.Contraseña = dr.GetString(2);
+                            UsuarioDado.NombreRol = ObtenerNombreRolPorID(UsuarioDado.Rol);
+                            //conexion = new ConexionSQL(UsuarioDado.Identificador, UsuarioDado.NombreRol);
+                            ConexionSQL.UsuarioApp = UsuarioDado.Identificador;
+                            ConexionSQL.TipoUsuarioApp = UsuarioDado.NombreRol;
+                            Console.WriteLine($"Empleado: {UsuarioDado.Identificador}, Rol: {UsuarioDado.NombreRol}, Contraseña: {UsuarioDado.Contraseña}");
+                        }
+                    }
+                    else
+                    {
+                        //Console.WriteLine("No se encontró el usuario.");
+                    }
+                }
+            }
 
             return UsuarioDado;
+        }
+
+        public string ObtenerNombreRolPorID(int id)
+        {
+            string nombreRol = "";
+            ConexionRetorno = conexion.ConexionBD();
+            cmd = new NpgsqlCommand("SELECT tipo_rol FROM empleados.roles WHERE id = " + id, ConexionRetorno);
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                nombreRol = dr.GetString(0);
+            }
+            //conexion.Transaccion.Commit();
+            ConexionRetorno.Close();
+            return nombreRol;
         }
 
         public bool InsertarUsuario(ObjUsuario NuevoUsuario)

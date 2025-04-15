@@ -18,9 +18,9 @@ namespace Proyecto
         public CduProductos()
         {
             InitializeComponent();
-            InicializarClases();
-            CargarTablaProductos();
-            CargarTablaCategorias();
+            //InicializarClases();
+            //CargarTablaProductos();
+            //CargarTablaCategorias();
         }
 
         private void InicializarClases()
@@ -29,7 +29,7 @@ namespace Proyecto
             objCategoria = new ObjCategoria();
             productos = new Productos();
             categorias = new Categorias();
-            distribuidores = new Distribuidores();
+            //distribuidores = new Distribuidores();
         }
 
         private void btnAgregarPro_Click(object sender, System.EventArgs e)
@@ -159,7 +159,7 @@ namespace Proyecto
 
             objProducto.Id_Categoria = categorias.BuscarIdXNombre(dgvTablaProductos.CurrentRow.Cells["dgvIdCategoria"].Value.ToString());
             objProducto.Id_Distribuidor = distribuidores.BuscarIdXNombre(dgvTablaProductos.CurrentRow.Cells["dgvIdDistribuidor"].Value.ToString());
-            objProducto.Id_Estado = Convert.ToInt32(productos.BuscarIdEstado(dgvTablaProductos.CurrentRow.Cells["dgvIdEstado"].Value.ToString()));
+            //objProducto.Estado = Convert.ToInt32(productos.BuscarIdEstado(dgvTablaProductos.CurrentRow.Cells["dgvIdEstado"].Value.ToString()));
             objProducto.FechaExpiracion = DateTime.Parse(dgvTablaProductos.CurrentRow.Cells["dgvFechaExpiracion"].Value.ToString());
         }
 
@@ -242,12 +242,12 @@ namespace Proyecto
 
         private void CargarTablaProductos()
         {
-            CargarDistribuidores();
-            CargarNombresCategorias();
-            CargarProductos();
+            //CargarProveedores();
+            //CargarNombresCategorias();
+            //CargarProductos();
         }
 
-        private void CargarDistribuidores()
+        private void CargarProveedores()
         {
             DataGridViewComboBoxColumn cbxDistribuidores = dgvTablaProductos.Columns[6] as DataGridViewComboBoxColumn;
 
@@ -282,23 +282,23 @@ namespace Proyecto
         {
             List<ObjProducto> listaObjProductos = productos.ObtenerProductos();
 
-            dgvTablaProductos.Rows.Clear();
-            for (int i = 0; i < listaObjProductos.Count; i++)
-            {
-                ObjProducto obj = listaObjProductos[i];
-                dgvTablaProductos.Rows.Add();
+            //dgvTablaProductos.Rows.Clear();
+            //for (int i = 0; i < listaObjProductos.Count; i++)
+            //{
+            //    ObjProducto obj = listaObjProductos[i];
+            //    dgvTablaProductos.Rows.Add();
 
-                dgvTablaProductos.Rows[i].Cells["dgvIdPro"].Value = obj.Id;
-                dgvTablaProductos.Rows[i].Cells["dgvNombreProducto"].Value = obj.NombreProducto;
-                dgvTablaProductos.Rows[i].Cells["dgvPrecio"].Value = obj.Precio;
-                dgvTablaProductos.Rows[i].Cells["dgvCaracteristicas"].Value = obj.Caracteristicas;
-                dgvTablaProductos.Rows[i].Cells["dgvDescProducto"].Value = obj.DescripcionProducto;
-                dgvTablaProductos.Rows[i].Cells["dgvIdCategoria"].Value = categorias.BuscarNombreXId(obj.Id_Categoria);
-                dgvTablaProductos.Rows[i].Cells["dgvIdDistribuidor"].Value = distribuidores.BuscarNombreXId(obj.Id_Distribuidor);
-                dgvTablaProductos.Rows[i].Cells["dgvIdEstado"].Value = productos.BuscarNombreEstado(obj.Id_Estado);
-                dgvTablaProductos.Rows[i].Cells["dgvFechaExpiracion"].Value = obj.FechaExpiracion;
-            }
-            dgvTablaProductos.Sort(dgvTablaProductos.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
+            //    dgvTablaProductos.Rows[i].Cells["dgvIdPro"].Value = obj.Id;
+            //    dgvTablaProductos.Rows[i].Cells["dgvNombreProducto"].Value = obj.NombreProducto;
+            //    dgvTablaProductos.Rows[i].Cells["dgvPrecio"].Value = obj.Precio;
+            //    dgvTablaProductos.Rows[i].Cells["dgvCaracteristicas"].Value = obj.Caracteristicas;
+            //    dgvTablaProductos.Rows[i].Cells["dgvDescProducto"].Value = obj.DescripcionProducto;
+            //    dgvTablaProductos.Rows[i].Cells["dgvIdCategoria"].Value = categorias.BuscarNombreXId(obj.Id_Categoria);
+            //    dgvTablaProductos.Rows[i].Cells["dgvIdDistribuidor"].Value = distribuidores.BuscarNombreXId(obj.Id_Distribuidor);
+            //    //dgvTablaProductos.Rows[i].Cells["dgvIdEstado"].Value = productos.BuscarNombreEstado(obj.Estado);
+            //    dgvTablaProductos.Rows[i].Cells["dgvFechaExpiracion"].Value = obj.FechaExpiracion;
+            //}
+            //dgvTablaProductos.Sort(dgvTablaProductos.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
         }
 
         private void CargarTablaCategorias()

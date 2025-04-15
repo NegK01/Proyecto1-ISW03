@@ -37,7 +37,8 @@ namespace Negocio
                 return false;
             }
 
-            return conexionSQL.CambiarEstadoCRUD(Id, "rol");
+            //return conexionSQL.CambiarEstadoCRUD(Id, "rol");
+            return false;
         }
 
         public int BuscarSiguienteId()

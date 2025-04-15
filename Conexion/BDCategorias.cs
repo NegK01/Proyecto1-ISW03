@@ -88,7 +88,7 @@ namespace Conexion
 
             using (conexionRetorno = conexion.ConexionBD())
             {
-                cmd = new NpgsqlCommand("SELECT nombre FROM categoria WHERE id_estado = 1", conexionRetorno);
+                cmd = new NpgsqlCommand("SELECT nombre FROM almacenes.categorias WHERE estado = true", conexionRetorno);
                 NpgsqlDataReader dr = cmd.ExecuteReader();
 
                 while (dr.Read())

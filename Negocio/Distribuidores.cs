@@ -1,6 +1,8 @@
 ﻿using Conexion;
 using Objetos;
+using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Negocio
 {
@@ -25,17 +27,17 @@ namespace Negocio
             return bdDistribuidor.ActualizarDistribuidorBD(obj);
         }
 
-        public bool EliminarDistribuidor(int id)
+        public bool EliminarDistribuidor(int id, bool estado)
         {
-            if (conexionSQL.ConfirmarDuplicidad("producto", "id_distribuidor", id.ToString()))
+            if (conexionSQL.ConfirmarDuplicidad("almacenes.productos", "id_proveedor", id.ToString()))
             {
                 return false;
             }
-
-            return conexionSQL.CambiarEstadoCRUD(id, "distribuidor");
+            // como el estado debe cambiar, solo enviamos el contrario con !
+            return conexionSQL.CambiarEstadoCRUD(id, !estado, "almacenes", "proveedores");
         }
 
-        public List<ObjDistribuidor> ObtenerDistribuidores()
+        public DataTable ObtenerDistribuidores()
         {
             return bdDistribuidor.ObtenerDistribuidoresBD();
         }

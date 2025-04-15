@@ -11,11 +11,12 @@ namespace Negocio
     {
         BDUsuarios bdUsuarios = new BDUsuarios();
         ConexionSQL conexionSQL = new ConexionSQL();
-        public ObjUsuario InicioSecion(ObjUsuario NuevoUsuario)
+
+        public ObjUsuario InicioSesion(ObjUsuario NuevoUsuario)
         {
             ObjUsuario UsuarioDado = bdUsuarios.InicioSesion(NuevoUsuario);
 
-            if (UsuarioDado.Id != 0 && UsuarioDado.Contraseña != null)
+            if (UsuarioDado != null && UsuarioDado.Identificador != "0" && UsuarioDado.Contraseña != null)
             {
                 return UsuarioDado;
             }
@@ -35,7 +36,8 @@ namespace Negocio
 
         public bool EliminarUsuario(int Id)
         {
-            return conexionSQL.CambiarEstadoCRUD(Id, "usuario");
+            //return conexionSQL.CambiarEstadoCRUD(Id, "usuario");
+            return false;
         }
 
         public int BuscarSiguienteId()
