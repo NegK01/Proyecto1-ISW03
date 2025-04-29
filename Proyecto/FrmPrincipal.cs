@@ -12,9 +12,9 @@ namespace Proyecto
         private CduOrdenes cduOrdenes;
         private CduDistribuidores cduDistribuidores;
 
-        public static ObjUsuario Usuario;
+        public static ObjCliente Usuario;
 
-        public FrmPrincipal(ObjUsuario UsuarioDado)
+        public FrmPrincipal(ObjCliente UsuarioDado)
         {
             InitializeComponent();
             Usuario = UsuarioDado;
@@ -33,14 +33,9 @@ namespace Proyecto
             cduDistribuidores = new CduDistribuidores();
         }
 
-        public void InicializarImagenes()
-        {
-            Imagenes.AsignarImagenes(pictureBox1, pictureBox2, pictureBox3, btnExpandirMenu, btnDashboard, btnUsuarios, btnProductos, btnOrdenes, btnDistribuidores, btnReportes, btnCerrarSesion);
-        }
-
         public void RestringirAcceso()
-        {
-            if (Usuario.Rol == 0) // si es un cliente, no mostrar los botones de administracion
+        { 
+            if (Usuario.Id == 0) // si es un cliente, no mostrar los botones de administracion
             {
                 btnOrdenes.SetBounds(13, 141, 146, 28);
                 panel1.Controls.Remove(btnUsuarios);

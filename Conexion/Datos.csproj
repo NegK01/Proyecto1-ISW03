@@ -109,13 +109,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BDCategorias.cs" />
-    <Compile Include="BDDistribuidores.cs" />
-    <Compile Include="BDUsuarios.cs" />
-    <Compile Include="BDProductos.cs" />
-    <Compile Include="BDRoles.cs" />
-    <Compile Include="BDOrdenes.cs" />
     <Compile Include="ConexionSQL.cs" />
+    <Compile Include="DAOProveedor - Copia.cs" />
+    <Compile Include="DAORol.cs" />
+    <Compile Include="DAOOrden.cs" />
+    <Compile Include="DAODetalles_Ordenes.cs" />
+    <Compile Include="DAODescuento.cs" />
+    <Compile Include="DAOProducto.cs" />
+    <Compile Include="DAOProveedor.cs" />
+    <Compile Include="DAOCategoria.cs" />
+    <Compile Include="DAOEmpleado.cs" />
+    <Compile Include="DAOCliente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

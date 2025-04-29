@@ -1,18 +1,17 @@
-﻿//Using Añadidos
-using Conexion;
+﻿using Datos;
 using Objetos;
 using System.Collections.Generic;
 
 namespace Negocio
 {
-    public class Roles
+    public class BORol
     {
-        BDRoles bdRoles = new BDRoles();
+        DAORol bdRoles = new DAORol();
         ConexionSQL conexionSQL = new ConexionSQL();
 
         public bool InsertarRol(ObjRol NuevoRol)
         {
-            if (bdRoles.ComprobarNombreRol(NuevoRol.Nombre))
+            if (bdRoles.ComprobarNombreRol(NuevoRol.Tipo_Rol))
             {
                 return false;
             }
@@ -22,7 +21,7 @@ namespace Negocio
 
         public bool ModificarRol(ObjRol NuevoRol)
         {
-            if (bdRoles.ComprobarNombreRol(NuevoRol.Nombre))
+            if (bdRoles.ComprobarNombreRol(NuevoRol.Tipo_Rol))
             {
                 return false;
             }

@@ -1,5 +1,4 @@
-﻿using Objetos;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace Proyecto
@@ -15,15 +14,8 @@ namespace Proyecto
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            ObjUsuario a = new ObjUsuario()
-            {
-                Rol = 1
-            };
-
-            //Application.Run(new FrmPrincipal(a));
-            Application.Run(new FrmLogin());
-            //Application.Run(new Form { Controls = { new CduUsuarios() } });
+            //Application.Run(new FrmLogin());
+            Application.Run(new Form { Controls = { new CduDistribuidores() } });
         }
     }
 }

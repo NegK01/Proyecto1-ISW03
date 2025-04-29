@@ -1,11 +1,11 @@
-﻿//Using Añadidos
+﻿using Datos;
 using Npgsql;
 using Objetos;
 using System.Collections.Generic;
 
-namespace Conexion
+namespace Datos
 {
-    public class BDRoles
+    public class DAORol
     {
         public NpgsqlConnection ConexionRetorno;
         public NpgsqlCommand cmd;
@@ -19,8 +19,8 @@ namespace Conexion
             NuevoRol.Id = conexion.BuscarSiguienteId("rol");
 
             cmd = new NpgsqlCommand("INSERT INTO rol (id, tipo_rol) VALUES (" +
-                                    NuevoRol.Id + " , '" +
-                                    NuevoRol.Nombre + "')", ConexionRetorno);
+                                    NuevoRol.Id + ", '" +
+                                    NuevoRol.Tipo_Rol + "')", ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();
 
@@ -34,8 +34,8 @@ namespace Conexion
             ConexionRetorno = conexion.ConexionBD();
 
             cmd = new NpgsqlCommand("UPDATE rol SET " +
-                                    "tipo_rol     =  '" + NuevoRol.Nombre + "'" +
-                                    "WHERE id   =  " + NuevoRol.Id, ConexionRetorno);
+                                    "tipo_rol = '" + NuevoRol.Tipo_Rol + "' " +
+                                    "WHERE id = " + NuevoRol.Id, ConexionRetorno);
 
             int affectedRows = cmd.ExecuteNonQuery();
 
@@ -77,8 +77,8 @@ namespace Conexion
                 ObjRol Rol = new ObjRol
                 {
                     Id = dr.GetInt32(0),
-                    Nombre = dr.GetString(1),
-                    Estado = dr.GetInt32(2)
+                    Tipo_Rol = dr.GetString(1),
+                    Estado = dr.GetBoolean(2) // Estado ahora es bool
                 };
                 ListaRoles.Add(Rol);
             }

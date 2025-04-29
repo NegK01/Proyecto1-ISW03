@@ -6,7 +6,7 @@ namespace Proyecto
 {
     public partial class CduReportes : UserControl
     {
-        Reportes reportes = new Reportes();
+        //Reportes reportes = new Reportes();
 
         public CduReportes()
         {
@@ -15,17 +15,17 @@ namespace Proyecto
 
         public void Reporte_1()
         {
-            reportes.Reporte_1(DgvTablaReportes);
+            //reportes.Reporte_1(DgvTablaReportes);
         }
 
         public void Reporte_2()
         {
-            reportes.Reporte_2(DgvTablaReportes);
+            //reportes.Reporte_2(DgvTablaReportes);
         }
 
         public void Reporte_3()
         {
-            reportes.Reporte_3(DgvTablaReportes);
+            //reportes.Reporte_3(DgvTablaReportes);
         }
 
         private void CbxTipoReportes_SelectedIndexChanged(object sender, EventArgs e)

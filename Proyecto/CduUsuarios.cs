@@ -10,8 +10,8 @@ namespace Proyecto
 {
     public partial class CduUsuarios : UserControl
     {
-        Roles Roles = new Roles();
-        Usuarios Usuarios = new Usuarios();
+        BORol Roles = new BORol();
+        BOCliente Usuarios = new BOCliente();
 
         public CduUsuarios()
         {
@@ -217,7 +217,7 @@ namespace Proyecto
         {
             DataGridViewRow row = DgvTablaUsuarios.CurrentRow;
 
-            ObjUsuario NuevoUsuario = new ObjUsuario
+            ObjCliente NuevoUsuario = new ObjCliente
             {
                 Cedula = Convert.ToInt32(row.Cells["CedulaU"].Value),
                 Nombre = (string)row.Cells["NombreU"].Value,
@@ -252,7 +252,7 @@ namespace Proyecto
         {
             DataGridViewRow row = DgvTablaUsuarios.CurrentRow;
 
-            ObjUsuario NuevoUsuario = new ObjUsuario
+            ObjCliente NuevoUsuario = new ObjCliente
             {
                 Id = Convert.ToInt32(row.Cells["IdU"].Value),
                 Cedula = Convert.ToInt32(row.Cells["CedulaU"].Value),

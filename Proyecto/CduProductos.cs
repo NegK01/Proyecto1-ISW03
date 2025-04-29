@@ -11,9 +11,9 @@ namespace Proyecto
     {
         ObjProducto objProducto;
         ObjCategoria objCategoria;
-        Productos productos;
-        Categorias categorias;
-        Distribuidores distribuidores;
+        BOProducto productos;
+        BOCategoria categorias;
+        BOProveedor distribuidores;
 
         public CduProductos()
         {
@@ -27,8 +27,8 @@ namespace Proyecto
         {
             objProducto = new ObjProducto();
             objCategoria = new ObjCategoria();
-            productos = new Productos();
-            categorias = new Categorias();
+            productos = new BOProducto();
+            categorias = new BOCategoria();
             //distribuidores = new Distribuidores();
         }
 
@@ -254,9 +254,9 @@ namespace Proyecto
             if (cbxDistribuidores != null)
             {
                 cbxDistribuidores.Items.Clear();
-                List<ObjDistribuidor> listaDistribuidores = distribuidores.ObtenerNombresDistribuidores();
+                List<ObjProveedor> listaDistribuidores = distribuidores.ObtenerNombresDistribuidores();
 
-                foreach (ObjDistribuidor obj in listaDistribuidores)
+                foreach (ObjProveedor obj in listaDistribuidores)
                 {
                     cbxDistribuidores.Items.Add(obj.Nombre);
                 }

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Conexion
+namespace Datos
 {
     public class ConexionSQL
     {

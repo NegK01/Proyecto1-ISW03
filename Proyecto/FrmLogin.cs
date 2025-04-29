@@ -8,17 +8,12 @@ namespace Proyecto
 {
     public partial class FrmLogin : Form
     {
-        Usuarios Usuarios = new Usuarios();
+        BOCliente Usuarios = new BOCliente();
 
         public FrmLogin()
         {
             InitializeComponent();
             //InicializarImagenes();
-        }
-
-        public void InicializarImagenes()
-        {
-            Imagenes.AsignarImagenes(pictureBox1, btnIngresar);
         }
 
         public void RestringirTexto(object sender, KeyPressEventArgs Tecla)
@@ -40,15 +35,15 @@ namespace Proyecto
 
         public void InicioSesion()
         {
-            ObjUsuario UsuarioDado;
+            ObjCliente UsuarioDado;
 
             if (!string.IsNullOrEmpty(TxtCedula.Text) || !string.IsNullOrEmpty(TxtContraseña.Text))
             {
-                ObjUsuario NuevoUsuario = new ObjUsuario
+                ObjCliente NuevoUsuario = new ObjCliente
                 {
-                    Identificador = TxtCedula.Text,
+                    Cedula = Convert.ToInt32(TxtCedula.Text),
                     //Cedula = Convert.ToInt32(TxtCedula.Text),
-                    Contraseña = TxtContraseña.Text
+                    Contrasena = TxtContraseña.Text
                 };
 
                 //string Contraseña = TxtContraseña.Text;
@@ -62,12 +57,12 @@ namespace Proyecto
                 return;
             }
 
-            if (UsuarioDado != null && UsuarioDado.Identificador != "0" && UsuarioDado.Identificador != null)
+            if (UsuarioDado != null && UsuarioDado.Id.ToString() != "0" && UsuarioDado.Id.ToString() != null)
             {
-                if (UsuarioDado.Contraseña != TxtContraseña.Text)
+                if (UsuarioDado.Contrasena != TxtContraseña.Text)
                 {
 
-                    Console.WriteLine(UsuarioDado.Contraseña);
+                    Console.WriteLine(UsuarioDado.Contrasena);
                     Console.WriteLine(TxtContraseña.Text);
                     MessageBox.Show("La contraseña es incorrecta.", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);

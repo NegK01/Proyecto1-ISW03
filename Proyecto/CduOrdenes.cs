@@ -9,8 +9,8 @@ namespace Proyecto
 {
     public partial class CduOrdenes : UserControl
     {
-        Productos productos;
-        Ordenes ordenes;
+        BOProducto productos;
+        BOOrden ordenes;
 
         public int Id_Orden = 0;
 
@@ -27,8 +27,8 @@ namespace Proyecto
 
         private void InicializarClases()
         {
-            productos = new Productos();
-            ordenes = new Ordenes();
+            productos = new BOProducto();
+            ordenes = new BOOrden();
         }
 
         public void ObtenerIdOrden()
@@ -73,13 +73,13 @@ namespace Proyecto
 
         public void CargarDetallesCarrito()
         {
-            List<ObjDetalle> listaDetalles = ordenes.CargarDetallesCarrito(Id_Orden);
+            List<ObjDetalles_Ordenes> listaDetalles = ordenes.CargarDetallesCarrito(Id_Orden);
 
             DgvDetalleCarrito.Rows.Clear();
 
             for (int i = 0; i < listaDetalles.Count; i++)
             {
-                ObjDetalle obj = listaDetalles[i];
+                ObjDetalles_Ordenes obj = listaDetalles[i];
                 DgvDetalleCarrito.Rows.Add();
                 DgvDetalleCarrito.Rows[i].Cells["IdDC"].Value = obj.Id;
                 DgvDetalleCarrito.Rows[i].Cells["NombreDC"].Value = ordenes.BuscarNombreProducto(obj.Id_Producto);
@@ -127,7 +127,7 @@ namespace Proyecto
 
         public void InsertarDetalle()
         {
-            ObjDetalle Detalle = new ObjDetalle()
+            ObjDetalles_Ordenes Detalle = new ObjDetalles_Ordenes()
             {
                 Id_Orden = Id_Orden,
                 Id_Producto = Convert.ToInt32(TxtCodigo.Text),
@@ -160,7 +160,7 @@ namespace Proyecto
                 }
                 else
                 {
-                    ObjDetalle Detalle = new ObjDetalle()
+                    ObjDetalles_Ordenes Detalle = new ObjDetalles_Ordenes()
                     {
                         Id = Convert.ToInt32(Fila.Cells["IdDC"].Value),
                         Cantidad = Convert.ToInt32(Fila.Cells["CantidadDC"].Value),

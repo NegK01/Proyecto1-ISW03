@@ -10,15 +10,15 @@ namespace Proyecto
 {
     public partial class CduDistribuidores : UserControl
     {
-        ObjDistribuidor objDistribuidor;
-        Distribuidores distribuidor;
-        List<ObjDistribuidor> listaObjDistribuidors;
+        ObjProveedor objDistribuidor;
+        BOProveedor distribuidor;
+        List<ObjProveedor> listaObjDistribuidors;
 
         public CduDistribuidores()
         {
             InitializeComponent();
-            objDistribuidor = new ObjDistribuidor();
-            distribuidor = new Distribuidores();
+            objDistribuidor = new ObjProveedor();
+            distribuidor = new BOProveedor();
             CargarTablaDistribuidores();
         }
 
@@ -27,16 +27,16 @@ namespace Proyecto
             if (ValidarCampos())
             {
                 RecogerDatosDgv();
-                if (distribuidor.InsertarDistribuidor(objDistribuidor))
+                try
                 {
+                    distribuidor.InsertarProveedor(objDistribuidor);
                     MessageBox.Show("Distribuidor agregado correctamente.", "Distribuidor agregado",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarTablaDistribuidores();
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Error al agregar el distribuidor.", "Error",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -46,16 +46,16 @@ namespace Proyecto
             if (ValidarCampos())
             {
                 RecogerDatosDgv();
-                if (distribuidor.ActualizarDistribuidor(objDistribuidor))
+                try
                 {
+                    distribuidor.ModificarProveedor(objDistribuidor);
                     MessageBox.Show("Distribuidor actualizado correctamente.", "Distribuidor actualizado",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarTablaDistribuidores();
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Error al actualizar el distribuidor.", "Error",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -65,28 +65,32 @@ namespace Proyecto
             if (ValidarCampos())
             {
                 RecogerDatosDgv();
-                if (distribuidor.EliminarDistribuidor(objDistribuidor.Id, objDistribuidor.Estado))
+                try
                 {
+                    distribuidor.EliminarProveedor(objDistribuidor.Id);
                     MessageBox.Show("Distribuidor eliminado correctamente.", "Distribuidor eliminado",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarTablaDistribuidores();
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Error al eliminar el distribuidor, asegurese de que no haya dependencias.", "Error",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         public void CargarTablaDistribuidores()
         {
-            DataTable dt = distribuidor.ObtenerDistribuidores();
             DgvTablaDistribuidores.Rows.Clear();
+            List<ObjProveedor> listaProveedores = distribuidor.ObtenerListaProveedores();
 
-            foreach (DataRow row in dt.Rows)
+            foreach (ObjProveedor proveedor in listaProveedores)
             {
-                DgvTablaDistribuidores.Rows.Add(row["id"].ToString(), row["nombre"].ToString(), row["correo_contacto"].ToString(), row["numero_contacto"].ToString(), row["estado"].ToString());
+                DgvTablaDistribuidores.Rows.Add(proveedor.Id.ToString(),
+                                                proveedor.Nombre.ToString(),
+                                                proveedor.Correo_Contacto.ToString(),
+                                                proveedor.Estado ? "Activo" : "Inactivo");
+                                                proveedor.Numero_Contacto.ToString();
             }
             DgvTablaDistribuidores.Sort(DgvTablaDistribuidores.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
         }
@@ -95,9 +99,9 @@ namespace Proyecto
         {
             objDistribuidor.Id = Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[0].Value);
             objDistribuidor.Nombre = DgvTablaDistribuidores.CurrentRow.Cells[1].Value.ToString();
-            objDistribuidor.Correo = DgvTablaDistribuidores.CurrentRow.Cells[2].Value.ToString();
-            objDistribuidor.Numero = Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[3].Value.ToString());
-            objDistribuidor.Estado = DgvTablaDistribuidores.CurrentRow != null && DgvTablaDistribuidores.CurrentRow.Cells[4].Value != null && (bool)DgvTablaDistribuidores.CurrentRow.Cells[4].FormattedValue;
+            objDistribuidor.Correo_Contacto = DgvTablaDistribuidores.CurrentRow.Cells[2].Value.ToString();
+            objDistribuidor.Estado = DgvTablaDistribuidores.CurrentRow != null && DgvTablaDistribuidores.CurrentRow.Cells[3].Value != null && (bool)DgvTablaDistribuidores.CurrentRow.Cells[4].FormattedValue;
+            objDistribuidor.Numero_Contacto = Convert.ToInt32(DgvTablaDistribuidores.CurrentRow.Cells[4].Value.ToString());
         }
 
         private bool ValidarCampos()
